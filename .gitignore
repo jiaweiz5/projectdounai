@@ -1,0 +1,22 @@
+# Private environment variables and API keys
+.env
+.env.*
+
+# Allow a template containing placeholders only
+!.env.example
+
+# Python virtual environments and cache
+.venv/
+__pycache__/
+
+# Frontend dependencies and build output
+node_modules/
+.next/
+
+# Private data, model artifacts, and uploaded files
+data/private/
+artifacts/
+uploads/
+
+# macOS metadata
+.DS_Store
