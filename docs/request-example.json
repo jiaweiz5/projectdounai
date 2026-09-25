@@ -1,0 +1,13 @@
+{
+  "text": "Chinese beauty post text",
+  "comments": [
+    {
+      "id": "c01",
+      "text": "Comment text",
+      "timestamp": null
+    }
+  ],
+  "image": null,
+  "reference_image": null,
+  "locale": "zh-CN"
+}
