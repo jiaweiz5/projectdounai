@@ -1,0 +1,3058 @@
+[
+  {
+    "id": "candidate_0036",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 6.81,
+      "min_comment_length": 2,
+      "max_comment_length": 14,
+      "short_comment_ratio": 0.5,
+      "emoji_like_ratio": 0.125,
+      "exclamation_ratio": 0.0625,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0087",
+    "label": 0,
+    "features": {
+      "comment_count": 11,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 9.09,
+      "min_comment_length": 4,
+      "max_comment_length": 17,
+      "short_comment_ratio": 0.4545,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0909
+    }
+  },
+  {
+    "id": "candidate_0151",
+    "label": 0,
+    "features": {
+      "comment_count": 17,
+      "unique_comment_ratio": 0.9412,
+      "duplicate_ratio": 0.0588,
+      "avg_comment_length": 18.41,
+      "min_comment_length": 5,
+      "max_comment_length": 39,
+      "short_comment_ratio": 0.0588,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.1765
+    }
+  },
+  {
+    "id": "candidate_0057",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 14.89,
+      "min_comment_length": 2,
+      "max_comment_length": 37,
+      "short_comment_ratio": 0.2105,
+      "emoji_like_ratio": 0.0526,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0163",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 19.7,
+      "min_comment_length": 3,
+      "max_comment_length": 59,
+      "short_comment_ratio": 0.15,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.1,
+      "question_ratio": 0.1
+    }
+  },
+  {
+    "id": "candidate_0001",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 30.88,
+      "min_comment_length": 3,
+      "max_comment_length": 150,
+      "short_comment_ratio": 0.125,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0625
+    }
+  },
+  {
+    "id": "candidate_0002",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 30.1,
+      "min_comment_length": 2,
+      "max_comment_length": 115,
+      "short_comment_ratio": 0.2,
+      "emoji_like_ratio": 0.05,
+      "exclamation_ratio": 0.05,
+      "question_ratio": 0.1
+    }
+  },
+  {
+    "id": "candidate_0003",
+    "label": 0,
+    "features": {
+      "comment_count": 13,
+      "unique_comment_ratio": 0.9231,
+      "duplicate_ratio": 0.0769,
+      "avg_comment_length": 14.31,
+      "min_comment_length": 2,
+      "max_comment_length": 35,
+      "short_comment_ratio": 0.2308,
+      "emoji_like_ratio": 0.1538,
+      "exclamation_ratio": 0.2308,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0004",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 0.9375,
+      "duplicate_ratio": 0.0625,
+      "avg_comment_length": 35.06,
+      "min_comment_length": 2,
+      "max_comment_length": 160,
+      "short_comment_ratio": 0.1875,
+      "emoji_like_ratio": 0.0625,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0625
+    }
+  },
+  {
+    "id": "candidate_0005",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 49.75,
+      "min_comment_length": 6,
+      "max_comment_length": 183,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0625,
+      "question_ratio": 0.0625
+    }
+  },
+  {
+    "id": "candidate_0006",
+    "label": 0,
+    "features": {
+      "comment_count": 18,
+      "unique_comment_ratio": 0.8889,
+      "duplicate_ratio": 0.1111,
+      "avg_comment_length": 12.22,
+      "min_comment_length": 3,
+      "max_comment_length": 41,
+      "short_comment_ratio": 0.3333,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0556,
+      "question_ratio": 0.0556
+    }
+  },
+  {
+    "id": "candidate_0008",
+    "label": 0,
+    "features": {
+      "comment_count": 17,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 35.06,
+      "min_comment_length": 8,
+      "max_comment_length": 239,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0588,
+      "question_ratio": 0.2353
+    }
+  },
+  {
+    "id": "candidate_0009",
+    "label": 0,
+    "features": {
+      "comment_count": 17,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 17.06,
+      "min_comment_length": 2,
+      "max_comment_length": 80,
+      "short_comment_ratio": 0.1765,
+      "emoji_like_ratio": 0.1176,
+      "exclamation_ratio": 0.0588,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0010",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 22.8,
+      "min_comment_length": 5,
+      "max_comment_length": 78,
+      "short_comment_ratio": 0.05,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0011",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 7.75,
+      "min_comment_length": 3,
+      "max_comment_length": 15,
+      "short_comment_ratio": 0.3,
+      "emoji_like_ratio": 0.05,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0012",
+    "label": 0,
+    "features": {
+      "comment_count": 18,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 14.22,
+      "min_comment_length": 2,
+      "max_comment_length": 54,
+      "short_comment_ratio": 0.5,
+      "emoji_like_ratio": 0.0556,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0556
+    }
+  },
+  {
+    "id": "candidate_0013",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 26.15,
+      "min_comment_length": 4,
+      "max_comment_length": 130,
+      "short_comment_ratio": 0.05,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.05,
+      "question_ratio": 0.1
+    }
+  },
+  {
+    "id": "candidate_0015",
+    "label": 0,
+    "features": {
+      "comment_count": 9,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 17.78,
+      "min_comment_length": 2,
+      "max_comment_length": 96,
+      "short_comment_ratio": 0.3333,
+      "emoji_like_ratio": 0.1111,
+      "exclamation_ratio": 0.2222,
+      "question_ratio": 0.1111
+    }
+  },
+  {
+    "id": "candidate_0016",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 33.06,
+      "min_comment_length": 2,
+      "max_comment_length": 93,
+      "short_comment_ratio": 0.125,
+      "emoji_like_ratio": 0.125,
+      "exclamation_ratio": 0.0625,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0017",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 74.1,
+      "min_comment_length": 3,
+      "max_comment_length": 299,
+      "short_comment_ratio": 0.1,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.05
+    }
+  },
+  {
+    "id": "candidate_0018",
+    "label": 0,
+    "features": {
+      "comment_count": 18,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 25.06,
+      "min_comment_length": 5,
+      "max_comment_length": 83,
+      "short_comment_ratio": 0.0556,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0556,
+      "question_ratio": 0.2778
+    }
+  },
+  {
+    "id": "candidate_0019",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 22.84,
+      "min_comment_length": 4,
+      "max_comment_length": 80,
+      "short_comment_ratio": 0.0526,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.2105,
+      "question_ratio": 0.0526
+    }
+  },
+  {
+    "id": "candidate_0020",
+    "label": 0,
+    "features": {
+      "comment_count": 17,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 19.94,
+      "min_comment_length": 2,
+      "max_comment_length": 69,
+      "short_comment_ratio": 0.1176,
+      "emoji_like_ratio": 0.0588,
+      "exclamation_ratio": 0.1765,
+      "question_ratio": 0.1176
+    }
+  },
+  {
+    "id": "candidate_0021",
+    "label": 0,
+    "features": {
+      "comment_count": 18,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 10.83,
+      "min_comment_length": 2,
+      "max_comment_length": 56,
+      "short_comment_ratio": 0.3889,
+      "emoji_like_ratio": 0.1111,
+      "exclamation_ratio": 0.0556,
+      "question_ratio": 0.1667
+    }
+  },
+  {
+    "id": "candidate_0022",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 22.74,
+      "min_comment_length": 2,
+      "max_comment_length": 109,
+      "short_comment_ratio": 0.1053,
+      "emoji_like_ratio": 0.0526,
+      "exclamation_ratio": 0.0526,
+      "question_ratio": 0.1053
+    }
+  },
+  {
+    "id": "candidate_0023",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 33.12,
+      "min_comment_length": 2,
+      "max_comment_length": 211,
+      "short_comment_ratio": 0.1875,
+      "emoji_like_ratio": 0.125,
+      "exclamation_ratio": 0.25,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0024",
+    "label": 0,
+    "features": {
+      "comment_count": 15,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 21.33,
+      "min_comment_length": 5,
+      "max_comment_length": 54,
+      "short_comment_ratio": 0.0667,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.2
+    }
+  },
+  {
+    "id": "candidate_0025",
+    "label": 0,
+    "features": {
+      "comment_count": 14,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 18.36,
+      "min_comment_length": 3,
+      "max_comment_length": 49,
+      "short_comment_ratio": 0.1429,
+      "emoji_like_ratio": 0.0714,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0714
+    }
+  },
+  {
+    "id": "candidate_0026",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 22.7,
+      "min_comment_length": 3,
+      "max_comment_length": 55,
+      "short_comment_ratio": 0.05,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.1,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0027",
+    "label": 0,
+    "features": {
+      "comment_count": 10,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 6.3,
+      "min_comment_length": 3,
+      "max_comment_length": 11,
+      "short_comment_ratio": 0.5,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0029",
+    "label": 0,
+    "features": {
+      "comment_count": 15,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 19.93,
+      "min_comment_length": 6,
+      "max_comment_length": 49,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0667,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0030",
+    "label": 0,
+    "features": {
+      "comment_count": 15,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 13.27,
+      "min_comment_length": 4,
+      "max_comment_length": 36,
+      "short_comment_ratio": 0.0667,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0031",
+    "label": 0,
+    "features": {
+      "comment_count": 17,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 39.88,
+      "min_comment_length": 8,
+      "max_comment_length": 129,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0588,
+      "question_ratio": 0.0588
+    }
+  },
+  {
+    "id": "candidate_0032",
+    "label": 0,
+    "features": {
+      "comment_count": 15,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 10.33,
+      "min_comment_length": 2,
+      "max_comment_length": 31,
+      "short_comment_ratio": 0.4,
+      "emoji_like_ratio": 0.0667,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0667
+    }
+  },
+  {
+    "id": "candidate_0033",
+    "label": 0,
+    "features": {
+      "comment_count": 17,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 29.24,
+      "min_comment_length": 5,
+      "max_comment_length": 68,
+      "short_comment_ratio": 0.1765,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0588,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0034",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 24.16,
+      "min_comment_length": 4,
+      "max_comment_length": 75,
+      "short_comment_ratio": 0.2105,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0526,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0035",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 25.85,
+      "min_comment_length": 5,
+      "max_comment_length": 101,
+      "short_comment_ratio": 0.1,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.05,
+      "question_ratio": 0.1
+    }
+  },
+  {
+    "id": "candidate_0037",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 24.79,
+      "min_comment_length": 2,
+      "max_comment_length": 139,
+      "short_comment_ratio": 0.2105,
+      "emoji_like_ratio": 0.0526,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0526
+    }
+  },
+  {
+    "id": "candidate_0038",
+    "label": 0,
+    "features": {
+      "comment_count": 17,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 32.65,
+      "min_comment_length": 6,
+      "max_comment_length": 133,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0588,
+      "question_ratio": 0.0588
+    }
+  },
+  {
+    "id": "candidate_0039",
+    "label": 0,
+    "features": {
+      "comment_count": 17,
+      "unique_comment_ratio": 0.7647,
+      "duplicate_ratio": 0.2353,
+      "avg_comment_length": 5.88,
+      "min_comment_length": 2,
+      "max_comment_length": 13,
+      "short_comment_ratio": 0.6471,
+      "emoji_like_ratio": 0.0588,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0040",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 60.1,
+      "min_comment_length": 3,
+      "max_comment_length": 241,
+      "short_comment_ratio": 0.15,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.1,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0041",
+    "label": 0,
+    "features": {
+      "comment_count": 9,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 11.22,
+      "min_comment_length": 3,
+      "max_comment_length": 25,
+      "short_comment_ratio": 0.2222,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.1111,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0042",
+    "label": 0,
+    "features": {
+      "comment_count": 13,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 13.15,
+      "min_comment_length": 2,
+      "max_comment_length": 48,
+      "short_comment_ratio": 0.3077,
+      "emoji_like_ratio": 0.0769,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0769
+    }
+  },
+  {
+    "id": "candidate_0043",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 20.69,
+      "min_comment_length": 7,
+      "max_comment_length": 40,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0625,
+      "question_ratio": 0.0625
+    }
+  },
+  {
+    "id": "candidate_0044",
+    "label": 0,
+    "features": {
+      "comment_count": 15,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 19.13,
+      "min_comment_length": 7,
+      "max_comment_length": 50,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0045",
+    "label": 0,
+    "features": {
+      "comment_count": 15,
+      "unique_comment_ratio": 0.9333,
+      "duplicate_ratio": 0.0667,
+      "avg_comment_length": 21.8,
+      "min_comment_length": 5,
+      "max_comment_length": 42,
+      "short_comment_ratio": 0.1333,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0667,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0046",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 29.63,
+      "min_comment_length": 5,
+      "max_comment_length": 55,
+      "short_comment_ratio": 0.0526,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0526
+    }
+  },
+  {
+    "id": "candidate_0047",
+    "label": 0,
+    "features": {
+      "comment_count": 15,
+      "unique_comment_ratio": 0.7333,
+      "duplicate_ratio": 0.2667,
+      "avg_comment_length": 10.6,
+      "min_comment_length": 2,
+      "max_comment_length": 58,
+      "short_comment_ratio": 0.4667,
+      "emoji_like_ratio": 0.1333,
+      "exclamation_ratio": 0.0667,
+      "question_ratio": 0.0667
+    }
+  },
+  {
+    "id": "candidate_0048",
+    "label": 0,
+    "features": {
+      "comment_count": 15,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 25.87,
+      "min_comment_length": 2,
+      "max_comment_length": 125,
+      "short_comment_ratio": 0.2667,
+      "emoji_like_ratio": 0.0667,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0667
+    }
+  },
+  {
+    "id": "candidate_0049",
+    "label": 0,
+    "features": {
+      "comment_count": 13,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 13.23,
+      "min_comment_length": 4,
+      "max_comment_length": 54,
+      "short_comment_ratio": 0.0769,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.2308,
+      "question_ratio": 0.0769
+    }
+  },
+  {
+    "id": "candidate_0050",
+    "label": 0,
+    "features": {
+      "comment_count": 5,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 3.2,
+      "min_comment_length": 2,
+      "max_comment_length": 5,
+      "short_comment_ratio": 1.0,
+      "emoji_like_ratio": 0.4,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0051",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 18.79,
+      "min_comment_length": 3,
+      "max_comment_length": 43,
+      "short_comment_ratio": 0.1053,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.1053,
+      "question_ratio": 0.1053
+    }
+  },
+  {
+    "id": "candidate_0052",
+    "label": 0,
+    "features": {
+      "comment_count": 13,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 8.46,
+      "min_comment_length": 2,
+      "max_comment_length": 21,
+      "short_comment_ratio": 0.3077,
+      "emoji_like_ratio": 0.0769,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0053",
+    "label": 0,
+    "features": {
+      "comment_count": 17,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 22.29,
+      "min_comment_length": 7,
+      "max_comment_length": 65,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0054",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 8.11,
+      "min_comment_length": 2,
+      "max_comment_length": 19,
+      "short_comment_ratio": 0.4211,
+      "emoji_like_ratio": 0.0526,
+      "exclamation_ratio": 0.0526,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0055",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 17.9,
+      "min_comment_length": 2,
+      "max_comment_length": 62,
+      "short_comment_ratio": 0.25,
+      "emoji_like_ratio": 0.1,
+      "exclamation_ratio": 0.1,
+      "question_ratio": 0.1
+    }
+  },
+  {
+    "id": "candidate_0056",
+    "label": 0,
+    "features": {
+      "comment_count": 14,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 26.86,
+      "min_comment_length": 3,
+      "max_comment_length": 71,
+      "short_comment_ratio": 0.0714,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0714
+    }
+  },
+  {
+    "id": "candidate_0058",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 31.2,
+      "min_comment_length": 2,
+      "max_comment_length": 85,
+      "short_comment_ratio": 0.1,
+      "emoji_like_ratio": 0.05,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.05
+    }
+  },
+  {
+    "id": "candidate_0059",
+    "label": 0,
+    "features": {
+      "comment_count": 18,
+      "unique_comment_ratio": 0.8889,
+      "duplicate_ratio": 0.1111,
+      "avg_comment_length": 9.61,
+      "min_comment_length": 2,
+      "max_comment_length": 41,
+      "short_comment_ratio": 0.2778,
+      "emoji_like_ratio": 0.0556,
+      "exclamation_ratio": 0.1111,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0060",
+    "label": 0,
+    "features": {
+      "comment_count": 17,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 32.24,
+      "min_comment_length": 5,
+      "max_comment_length": 99,
+      "short_comment_ratio": 0.0588,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0588,
+      "question_ratio": 0.1765
+    }
+  },
+  {
+    "id": "candidate_0061",
+    "label": 0,
+    "features": {
+      "comment_count": 12,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 15.67,
+      "min_comment_length": 2,
+      "max_comment_length": 46,
+      "short_comment_ratio": 0.1667,
+      "emoji_like_ratio": 0.0833,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0833
+    }
+  },
+  {
+    "id": "candidate_0062",
+    "label": 0,
+    "features": {
+      "comment_count": 15,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 14.93,
+      "min_comment_length": 4,
+      "max_comment_length": 40,
+      "short_comment_ratio": 0.1333,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0063",
+    "label": 0,
+    "features": {
+      "comment_count": 13,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 16.54,
+      "min_comment_length": 4,
+      "max_comment_length": 42,
+      "short_comment_ratio": 0.0769,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0769
+    }
+  },
+  {
+    "id": "candidate_0064",
+    "label": 0,
+    "features": {
+      "comment_count": 14,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 16.71,
+      "min_comment_length": 2,
+      "max_comment_length": 43,
+      "short_comment_ratio": 0.2143,
+      "emoji_like_ratio": 0.0714,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.1429
+    }
+  },
+  {
+    "id": "candidate_0065",
+    "label": 0,
+    "features": {
+      "comment_count": 8,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 16.75,
+      "min_comment_length": 4,
+      "max_comment_length": 55,
+      "short_comment_ratio": 0.375,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.125,
+      "question_ratio": 0.125
+    }
+  },
+  {
+    "id": "candidate_0066",
+    "label": 0,
+    "features": {
+      "comment_count": 13,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 12.38,
+      "min_comment_length": 2,
+      "max_comment_length": 42,
+      "short_comment_ratio": 0.1538,
+      "emoji_like_ratio": 0.0769,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.1538
+    }
+  },
+  {
+    "id": "candidate_0067",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 26.47,
+      "min_comment_length": 5,
+      "max_comment_length": 120,
+      "short_comment_ratio": 0.0526,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0526,
+      "question_ratio": 0.2105
+    }
+  },
+  {
+    "id": "candidate_0069",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 14.32,
+      "min_comment_length": 2,
+      "max_comment_length": 33,
+      "short_comment_ratio": 0.1579,
+      "emoji_like_ratio": 0.1053,
+      "exclamation_ratio": 0.0526,
+      "question_ratio": 0.1053
+    }
+  },
+  {
+    "id": "candidate_0070",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 17.4,
+      "min_comment_length": 4,
+      "max_comment_length": 47,
+      "short_comment_ratio": 0.15,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0071",
+    "label": 0,
+    "features": {
+      "comment_count": 17,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 26.82,
+      "min_comment_length": 4,
+      "max_comment_length": 76,
+      "short_comment_ratio": 0.1176,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0072",
+    "label": 0,
+    "features": {
+      "comment_count": 18,
+      "unique_comment_ratio": 0.9444,
+      "duplicate_ratio": 0.0556,
+      "avg_comment_length": 31.61,
+      "min_comment_length": 3,
+      "max_comment_length": 144,
+      "short_comment_ratio": 0.2222,
+      "emoji_like_ratio": 0.0556,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0556
+    }
+  },
+  {
+    "id": "candidate_0073",
+    "label": 0,
+    "features": {
+      "comment_count": 18,
+      "unique_comment_ratio": 0.9444,
+      "duplicate_ratio": 0.0556,
+      "avg_comment_length": 20.56,
+      "min_comment_length": 4,
+      "max_comment_length": 73,
+      "short_comment_ratio": 0.1667,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.1111,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0074",
+    "label": 0,
+    "features": {
+      "comment_count": 14,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 12.43,
+      "min_comment_length": 4,
+      "max_comment_length": 36,
+      "short_comment_ratio": 0.3571,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0075",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 22.05,
+      "min_comment_length": 2,
+      "max_comment_length": 60,
+      "short_comment_ratio": 0.1,
+      "emoji_like_ratio": 0.05,
+      "exclamation_ratio": 0.05,
+      "question_ratio": 0.2
+    }
+  },
+  {
+    "id": "candidate_0076",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 27.53,
+      "min_comment_length": 4,
+      "max_comment_length": 136,
+      "short_comment_ratio": 0.1053,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0526
+    }
+  },
+  {
+    "id": "candidate_0078",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 11.31,
+      "min_comment_length": 2,
+      "max_comment_length": 36,
+      "short_comment_ratio": 0.25,
+      "emoji_like_ratio": 0.125,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.1875
+    }
+  },
+  {
+    "id": "candidate_0079",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 28.95,
+      "min_comment_length": 2,
+      "max_comment_length": 125,
+      "short_comment_ratio": 0.1,
+      "emoji_like_ratio": 0.05,
+      "exclamation_ratio": 0.05,
+      "question_ratio": 0.1
+    }
+  },
+  {
+    "id": "candidate_0080",
+    "label": 0,
+    "features": {
+      "comment_count": 12,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 21.17,
+      "min_comment_length": 3,
+      "max_comment_length": 74,
+      "short_comment_ratio": 0.25,
+      "emoji_like_ratio": 0.0833,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0081",
+    "label": 0,
+    "features": {
+      "comment_count": 15,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 17.6,
+      "min_comment_length": 4,
+      "max_comment_length": 47,
+      "short_comment_ratio": 0.0667,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0667
+    }
+  },
+  {
+    "id": "candidate_0082",
+    "label": 0,
+    "features": {
+      "comment_count": 14,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 11.86,
+      "min_comment_length": 2,
+      "max_comment_length": 30,
+      "short_comment_ratio": 0.2857,
+      "emoji_like_ratio": 0.0714,
+      "exclamation_ratio": 0.1429,
+      "question_ratio": 0.0714
+    }
+  },
+  {
+    "id": "candidate_0083",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 42.5,
+      "min_comment_length": 5,
+      "max_comment_length": 170,
+      "short_comment_ratio": 0.0625,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0625
+    }
+  },
+  {
+    "id": "candidate_0085",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 40.7,
+      "min_comment_length": 5,
+      "max_comment_length": 222,
+      "short_comment_ratio": 0.05,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.05,
+      "question_ratio": 0.05
+    }
+  },
+  {
+    "id": "candidate_0086",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 18.75,
+      "min_comment_length": 3,
+      "max_comment_length": 63,
+      "short_comment_ratio": 0.125,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.3125
+    }
+  },
+  {
+    "id": "candidate_0088",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 0.9474,
+      "duplicate_ratio": 0.0526,
+      "avg_comment_length": 18.05,
+      "min_comment_length": 4,
+      "max_comment_length": 53,
+      "short_comment_ratio": 0.1579,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0526
+    }
+  },
+  {
+    "id": "candidate_0089",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 14.8,
+      "min_comment_length": 2,
+      "max_comment_length": 39,
+      "short_comment_ratio": 0.15,
+      "emoji_like_ratio": 0.1,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0090",
+    "label": 0,
+    "features": {
+      "comment_count": 18,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 17.44,
+      "min_comment_length": 2,
+      "max_comment_length": 79,
+      "short_comment_ratio": 0.1667,
+      "emoji_like_ratio": 0.0556,
+      "exclamation_ratio": 0.0556,
+      "question_ratio": 0.1667
+    }
+  },
+  {
+    "id": "candidate_0091",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 25.85,
+      "min_comment_length": 4,
+      "max_comment_length": 101,
+      "short_comment_ratio": 0.15,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.05
+    }
+  },
+  {
+    "id": "candidate_0092",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 10.1,
+      "min_comment_length": 2,
+      "max_comment_length": 25,
+      "short_comment_ratio": 0.45,
+      "emoji_like_ratio": 0.1,
+      "exclamation_ratio": 0.1,
+      "question_ratio": 0.1
+    }
+  },
+  {
+    "id": "candidate_0093",
+    "label": 0,
+    "features": {
+      "comment_count": 11,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 9.82,
+      "min_comment_length": 4,
+      "max_comment_length": 43,
+      "short_comment_ratio": 0.1818,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0909,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0094",
+    "label": 0,
+    "features": {
+      "comment_count": 11,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 19.73,
+      "min_comment_length": 2,
+      "max_comment_length": 58,
+      "short_comment_ratio": 0.0909,
+      "emoji_like_ratio": 0.0909,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.1818
+    }
+  },
+  {
+    "id": "candidate_0095",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 14,
+      "min_comment_length": 2,
+      "max_comment_length": 32,
+      "short_comment_ratio": 0.1875,
+      "emoji_like_ratio": 0.0625,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.1875
+    }
+  },
+  {
+    "id": "candidate_0096",
+    "label": 0,
+    "features": {
+      "comment_count": 15,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 13.4,
+      "min_comment_length": 3,
+      "max_comment_length": 64,
+      "short_comment_ratio": 0.3333,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.2667,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0097",
+    "label": 0,
+    "features": {
+      "comment_count": 15,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 13.53,
+      "min_comment_length": 3,
+      "max_comment_length": 40,
+      "short_comment_ratio": 0.2,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.2667,
+      "question_ratio": 0.1333
+    }
+  },
+  {
+    "id": "candidate_0098",
+    "label": 0,
+    "features": {
+      "comment_count": 18,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 24.28,
+      "min_comment_length": 6,
+      "max_comment_length": 78,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0556
+    }
+  },
+  {
+    "id": "candidate_0100",
+    "label": 0,
+    "features": {
+      "comment_count": 14,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 9.43,
+      "min_comment_length": 2,
+      "max_comment_length": 27,
+      "short_comment_ratio": 0.4286,
+      "emoji_like_ratio": 0.2143,
+      "exclamation_ratio": 0.1429,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0101",
+    "label": 0,
+    "features": {
+      "comment_count": 17,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 11.06,
+      "min_comment_length": 3,
+      "max_comment_length": 18,
+      "short_comment_ratio": 0.1765,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0588
+    }
+  },
+  {
+    "id": "candidate_0103",
+    "label": 0,
+    "features": {
+      "comment_count": 12,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 50.5,
+      "min_comment_length": 11,
+      "max_comment_length": 146,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.1667,
+      "question_ratio": 0.1667
+    }
+  },
+  {
+    "id": "candidate_0104",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 11.95,
+      "min_comment_length": 3,
+      "max_comment_length": 25,
+      "short_comment_ratio": 0.1579,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0105",
+    "label": 0,
+    "features": {
+      "comment_count": 14,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 23.5,
+      "min_comment_length": 5,
+      "max_comment_length": 56,
+      "short_comment_ratio": 0.0714,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.2143,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0106",
+    "label": 0,
+    "features": {
+      "comment_count": 18,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 12.5,
+      "min_comment_length": 2,
+      "max_comment_length": 36,
+      "short_comment_ratio": 0.1667,
+      "emoji_like_ratio": 0.1111,
+      "exclamation_ratio": 0.1111,
+      "question_ratio": 0.0556
+    }
+  },
+  {
+    "id": "candidate_0107",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 34.95,
+      "min_comment_length": 2,
+      "max_comment_length": 299,
+      "short_comment_ratio": 0.2105,
+      "emoji_like_ratio": 0.1053,
+      "exclamation_ratio": 0.0526,
+      "question_ratio": 0.0526
+    }
+  },
+  {
+    "id": "candidate_0108",
+    "label": 0,
+    "features": {
+      "comment_count": 18,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 16.39,
+      "min_comment_length": 4,
+      "max_comment_length": 59,
+      "short_comment_ratio": 0.0556,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0556
+    }
+  },
+  {
+    "id": "candidate_0109",
+    "label": 0,
+    "features": {
+      "comment_count": 7,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 39.29,
+      "min_comment_length": 2,
+      "max_comment_length": 251,
+      "short_comment_ratio": 0.7143,
+      "emoji_like_ratio": 0.2857,
+      "exclamation_ratio": 0.1429,
+      "question_ratio": 0.1429
+    }
+  },
+  {
+    "id": "candidate_0110",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 29.6,
+      "min_comment_length": 3,
+      "max_comment_length": 88,
+      "short_comment_ratio": 0.05,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.05,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0111",
+    "label": 0,
+    "features": {
+      "comment_count": 10,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 31.7,
+      "min_comment_length": 6,
+      "max_comment_length": 109,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.1
+    }
+  },
+  {
+    "id": "candidate_0112",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 62.5,
+      "min_comment_length": 6,
+      "max_comment_length": 183,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.05,
+      "question_ratio": 0.1
+    }
+  },
+  {
+    "id": "candidate_0113",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 49.05,
+      "min_comment_length": 2,
+      "max_comment_length": 132,
+      "short_comment_ratio": 0.0526,
+      "emoji_like_ratio": 0.0526,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0526
+    }
+  },
+  {
+    "id": "candidate_0114",
+    "label": 0,
+    "features": {
+      "comment_count": 14,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 51.86,
+      "min_comment_length": 9,
+      "max_comment_length": 158,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0714,
+      "question_ratio": 0.0714
+    }
+  },
+  {
+    "id": "candidate_0115",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 42.25,
+      "min_comment_length": 8,
+      "max_comment_length": 155,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.2
+    }
+  },
+  {
+    "id": "candidate_0117",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 28.05,
+      "min_comment_length": 11,
+      "max_comment_length": 114,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.1
+    }
+  },
+  {
+    "id": "candidate_0118",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 44.12,
+      "min_comment_length": 2,
+      "max_comment_length": 136,
+      "short_comment_ratio": 0.0625,
+      "emoji_like_ratio": 0.0625,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0625
+    }
+  },
+  {
+    "id": "candidate_0119",
+    "label": 0,
+    "features": {
+      "comment_count": 8,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 18.75,
+      "min_comment_length": 8,
+      "max_comment_length": 48,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.25
+    }
+  },
+  {
+    "id": "candidate_0120",
+    "label": 0,
+    "features": {
+      "comment_count": 17,
+      "unique_comment_ratio": 0.9412,
+      "duplicate_ratio": 0.0588,
+      "avg_comment_length": 12.06,
+      "min_comment_length": 2,
+      "max_comment_length": 65,
+      "short_comment_ratio": 0.2941,
+      "emoji_like_ratio": 0.1176,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0588
+    }
+  },
+  {
+    "id": "candidate_0121",
+    "label": 0,
+    "features": {
+      "comment_count": 15,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 13.4,
+      "min_comment_length": 2,
+      "max_comment_length": 35,
+      "short_comment_ratio": 0.3333,
+      "emoji_like_ratio": 0.0667,
+      "exclamation_ratio": 0.0667,
+      "question_ratio": 0.0667
+    }
+  },
+  {
+    "id": "candidate_0122",
+    "label": 0,
+    "features": {
+      "comment_count": 14,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 31.79,
+      "min_comment_length": 6,
+      "max_comment_length": 225,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0123",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 0.9,
+      "duplicate_ratio": 0.1,
+      "avg_comment_length": 8.1,
+      "min_comment_length": 2,
+      "max_comment_length": 27,
+      "short_comment_ratio": 0.45,
+      "emoji_like_ratio": 0.1,
+      "exclamation_ratio": 0.05,
+      "question_ratio": 0.05
+    }
+  },
+  {
+    "id": "candidate_0124",
+    "label": 0,
+    "features": {
+      "comment_count": 17,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 23.76,
+      "min_comment_length": 4,
+      "max_comment_length": 65,
+      "short_comment_ratio": 0.1176,
+      "emoji_like_ratio": 0.0588,
+      "exclamation_ratio": 0.1176,
+      "question_ratio": 0.1176
+    }
+  },
+  {
+    "id": "candidate_0125",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 21,
+      "min_comment_length": 3,
+      "max_comment_length": 83,
+      "short_comment_ratio": 0.1053,
+      "emoji_like_ratio": 0.1053,
+      "exclamation_ratio": 0.1053,
+      "question_ratio": 0.0526
+    }
+  },
+  {
+    "id": "candidate_0126",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 0.6842,
+      "duplicate_ratio": 0.3158,
+      "avg_comment_length": 7.79,
+      "min_comment_length": 2,
+      "max_comment_length": 22,
+      "short_comment_ratio": 0.5263,
+      "emoji_like_ratio": 0.0526,
+      "exclamation_ratio": 0.0526,
+      "question_ratio": 0.1579
+    }
+  },
+  {
+    "id": "candidate_0127",
+    "label": 0,
+    "features": {
+      "comment_count": 10,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 5.2,
+      "min_comment_length": 2,
+      "max_comment_length": 9,
+      "short_comment_ratio": 0.7,
+      "emoji_like_ratio": 0.1,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.3
+    }
+  },
+  {
+    "id": "candidate_0128",
+    "label": 0,
+    "features": {
+      "comment_count": 11,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 3.09,
+      "min_comment_length": 2,
+      "max_comment_length": 5,
+      "short_comment_ratio": 1.0,
+      "emoji_like_ratio": 0.4545,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0909
+    }
+  },
+  {
+    "id": "candidate_0129",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 28.45,
+      "min_comment_length": 2,
+      "max_comment_length": 187,
+      "short_comment_ratio": 0.25,
+      "emoji_like_ratio": 0.05,
+      "exclamation_ratio": 0.15,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0130",
+    "label": 0,
+    "features": {
+      "comment_count": 14,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 12.71,
+      "min_comment_length": 2,
+      "max_comment_length": 35,
+      "short_comment_ratio": 0.2143,
+      "emoji_like_ratio": 0.0714,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0714
+    }
+  },
+  {
+    "id": "candidate_0131",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 29.15,
+      "min_comment_length": 5,
+      "max_comment_length": 168,
+      "short_comment_ratio": 0.1,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.05,
+      "question_ratio": 0.1
+    }
+  },
+  {
+    "id": "candidate_0132",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 9.75,
+      "min_comment_length": 4,
+      "max_comment_length": 30,
+      "short_comment_ratio": 0.125,
+      "emoji_like_ratio": 0.0625,
+      "exclamation_ratio": 0.0625,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0133",
+    "label": 0,
+    "features": {
+      "comment_count": 5,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 17.2,
+      "min_comment_length": 8,
+      "max_comment_length": 27,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.4
+    }
+  },
+  {
+    "id": "candidate_0134",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 12.63,
+      "min_comment_length": 3,
+      "max_comment_length": 69,
+      "short_comment_ratio": 0.4211,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0526,
+      "question_ratio": 0.0526
+    }
+  },
+  {
+    "id": "candidate_0135",
+    "label": 0,
+    "features": {
+      "comment_count": 18,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 8,
+      "min_comment_length": 2,
+      "max_comment_length": 16,
+      "short_comment_ratio": 0.3333,
+      "emoji_like_ratio": 0.1111,
+      "exclamation_ratio": 0.1667,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0136",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 14.6,
+      "min_comment_length": 2,
+      "max_comment_length": 53,
+      "short_comment_ratio": 0.3,
+      "emoji_like_ratio": 0.05,
+      "exclamation_ratio": 0.15,
+      "question_ratio": 0.2
+    }
+  },
+  {
+    "id": "candidate_0137",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 20.11,
+      "min_comment_length": 3,
+      "max_comment_length": 77,
+      "short_comment_ratio": 0.2632,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.3158,
+      "question_ratio": 0.1579
+    }
+  },
+  {
+    "id": "candidate_0138",
+    "label": 0,
+    "features": {
+      "comment_count": 13,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 9.08,
+      "min_comment_length": 2,
+      "max_comment_length": 33,
+      "short_comment_ratio": 0.4615,
+      "emoji_like_ratio": 0.0769,
+      "exclamation_ratio": 0.0769,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0139",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 51.74,
+      "min_comment_length": 2,
+      "max_comment_length": 123,
+      "short_comment_ratio": 0.0526,
+      "emoji_like_ratio": 0.0526,
+      "exclamation_ratio": 0.0526,
+      "question_ratio": 0.0526
+    }
+  },
+  {
+    "id": "candidate_0140",
+    "label": 0,
+    "features": {
+      "comment_count": 17,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 59.06,
+      "min_comment_length": 3,
+      "max_comment_length": 177,
+      "short_comment_ratio": 0.0588,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.1765
+    }
+  },
+  {
+    "id": "candidate_0141",
+    "label": 0,
+    "features": {
+      "comment_count": 15,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 25.8,
+      "min_comment_length": 2,
+      "max_comment_length": 80,
+      "short_comment_ratio": 0.0667,
+      "emoji_like_ratio": 0.0667,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0667
+    }
+  },
+  {
+    "id": "candidate_0142",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 12,
+      "min_comment_length": 2,
+      "max_comment_length": 54,
+      "short_comment_ratio": 0.3158,
+      "emoji_like_ratio": 0.1053,
+      "exclamation_ratio": 0.1579,
+      "question_ratio": 0.0526
+    }
+  },
+  {
+    "id": "candidate_0143",
+    "label": 0,
+    "features": {
+      "comment_count": 12,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 11.83,
+      "min_comment_length": 2,
+      "max_comment_length": 53,
+      "short_comment_ratio": 0.25,
+      "emoji_like_ratio": 0.1667,
+      "exclamation_ratio": 0.0833,
+      "question_ratio": 0.25
+    }
+  },
+  {
+    "id": "candidate_0144",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 22.12,
+      "min_comment_length": 3,
+      "max_comment_length": 65,
+      "short_comment_ratio": 0.125,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.125,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0145",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 24.15,
+      "min_comment_length": 7,
+      "max_comment_length": 78,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.1,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0146",
+    "label": 0,
+    "features": {
+      "comment_count": 18,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 11.33,
+      "min_comment_length": 2,
+      "max_comment_length": 23,
+      "short_comment_ratio": 0.2222,
+      "emoji_like_ratio": 0.1111,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.2222
+    }
+  },
+  {
+    "id": "candidate_0147",
+    "label": 0,
+    "features": {
+      "comment_count": 18,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 28.28,
+      "min_comment_length": 3,
+      "max_comment_length": 148,
+      "short_comment_ratio": 0.3333,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.1111,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0148",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 39.1,
+      "min_comment_length": 5,
+      "max_comment_length": 119,
+      "short_comment_ratio": 0.05,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.05,
+      "question_ratio": 0.15
+    }
+  },
+  {
+    "id": "candidate_0149",
+    "label": 0,
+    "features": {
+      "comment_count": 17,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 38.76,
+      "min_comment_length": 8,
+      "max_comment_length": 172,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.2941
+    }
+  },
+  {
+    "id": "candidate_0150",
+    "label": 0,
+    "features": {
+      "comment_count": 7,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 6.57,
+      "min_comment_length": 4,
+      "max_comment_length": 10,
+      "short_comment_ratio": 0.5714,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.4286
+    }
+  },
+  {
+    "id": "candidate_0152",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 0.9474,
+      "duplicate_ratio": 0.0526,
+      "avg_comment_length": 9.42,
+      "min_comment_length": 3,
+      "max_comment_length": 23,
+      "short_comment_ratio": 0.3158,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.1579,
+      "question_ratio": 0.0526
+    }
+  },
+  {
+    "id": "candidate_0153",
+    "label": 0,
+    "features": {
+      "comment_count": 18,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 35.28,
+      "min_comment_length": 8,
+      "max_comment_length": 152,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.1111,
+      "question_ratio": 0.0556
+    }
+  },
+  {
+    "id": "candidate_0154",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 20.95,
+      "min_comment_length": 2,
+      "max_comment_length": 66,
+      "short_comment_ratio": 0.1053,
+      "emoji_like_ratio": 0.0526,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.1053
+    }
+  },
+  {
+    "id": "candidate_0155",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 15.56,
+      "min_comment_length": 2,
+      "max_comment_length": 144,
+      "short_comment_ratio": 0.5625,
+      "emoji_like_ratio": 0.1875,
+      "exclamation_ratio": 0.1875,
+      "question_ratio": 0.125
+    }
+  },
+  {
+    "id": "candidate_0156",
+    "label": 0,
+    "features": {
+      "comment_count": 18,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 18.78,
+      "min_comment_length": 6,
+      "max_comment_length": 74,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0556,
+      "question_ratio": 0.0556
+    }
+  },
+  {
+    "id": "candidate_0157",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 0.9375,
+      "duplicate_ratio": 0.0625,
+      "avg_comment_length": 9.5,
+      "min_comment_length": 2,
+      "max_comment_length": 40,
+      "short_comment_ratio": 0.4375,
+      "emoji_like_ratio": 0.0625,
+      "exclamation_ratio": 0.1875,
+      "question_ratio": 0.0625
+    }
+  },
+  {
+    "id": "candidate_0158",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 14.45,
+      "min_comment_length": 2,
+      "max_comment_length": 30,
+      "short_comment_ratio": 0.15,
+      "emoji_like_ratio": 0.1,
+      "exclamation_ratio": 0.2,
+      "question_ratio": 0.1
+    }
+  },
+  {
+    "id": "candidate_0159",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 63.9,
+      "min_comment_length": 5,
+      "max_comment_length": 301,
+      "short_comment_ratio": 0.05,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.15
+    }
+  },
+  {
+    "id": "candidate_0160",
+    "label": 0,
+    "features": {
+      "comment_count": 15,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 19.2,
+      "min_comment_length": 4,
+      "max_comment_length": 39,
+      "short_comment_ratio": 0.2,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0667,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0161",
+    "label": 0,
+    "features": {
+      "comment_count": 18,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 18.44,
+      "min_comment_length": 3,
+      "max_comment_length": 53,
+      "short_comment_ratio": 0.1111,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0556,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0162",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 11.75,
+      "min_comment_length": 2,
+      "max_comment_length": 35,
+      "short_comment_ratio": 0.25,
+      "emoji_like_ratio": 0.0625,
+      "exclamation_ratio": 0.0625,
+      "question_ratio": 0.25
+    }
+  },
+  {
+    "id": "candidate_0164",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 49.06,
+      "min_comment_length": 3,
+      "max_comment_length": 299,
+      "short_comment_ratio": 0.125,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0625,
+      "question_ratio": 0.1875
+    }
+  },
+  {
+    "id": "candidate_0165",
+    "label": 0,
+    "features": {
+      "comment_count": 18,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 29.06,
+      "min_comment_length": 2,
+      "max_comment_length": 127,
+      "short_comment_ratio": 0.2778,
+      "emoji_like_ratio": 0.0556,
+      "exclamation_ratio": 0.0556,
+      "question_ratio": 0.1111
+    }
+  },
+  {
+    "id": "candidate_0166",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 18.9,
+      "min_comment_length": 4,
+      "max_comment_length": 78,
+      "short_comment_ratio": 0.05,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.1,
+      "question_ratio": 0.1
+    }
+  },
+  {
+    "id": "candidate_0167",
+    "label": 0,
+    "features": {
+      "comment_count": 14,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 31.79,
+      "min_comment_length": 4,
+      "max_comment_length": 250,
+      "short_comment_ratio": 0.1429,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0714,
+      "question_ratio": 0.0714
+    }
+  },
+  {
+    "id": "candidate_0168",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 0.875,
+      "duplicate_ratio": 0.125,
+      "avg_comment_length": 19.5,
+      "min_comment_length": 2,
+      "max_comment_length": 68,
+      "short_comment_ratio": 0.25,
+      "emoji_like_ratio": 0.0625,
+      "exclamation_ratio": 0.0625,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0169",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 47,
+      "min_comment_length": 3,
+      "max_comment_length": 159,
+      "short_comment_ratio": 0.2,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.05,
+      "question_ratio": 0.1
+    }
+  },
+  {
+    "id": "candidate_0170",
+    "label": 0,
+    "features": {
+      "comment_count": 7,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 6.43,
+      "min_comment_length": 2,
+      "max_comment_length": 14,
+      "short_comment_ratio": 0.4286,
+      "emoji_like_ratio": 0.2857,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0171",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 45.89,
+      "min_comment_length": 4,
+      "max_comment_length": 195,
+      "short_comment_ratio": 0.1053,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0526,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0172",
+    "label": 0,
+    "features": {
+      "comment_count": 18,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 9.11,
+      "min_comment_length": 2,
+      "max_comment_length": 19,
+      "short_comment_ratio": 0.2222,
+      "emoji_like_ratio": 0.0556,
+      "exclamation_ratio": 0.1111,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0173",
+    "label": 0,
+    "features": {
+      "comment_count": 13,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 9.38,
+      "min_comment_length": 2,
+      "max_comment_length": 25,
+      "short_comment_ratio": 0.3846,
+      "emoji_like_ratio": 0.0769,
+      "exclamation_ratio": 0.2308,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0174",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 10.65,
+      "min_comment_length": 3,
+      "max_comment_length": 44,
+      "short_comment_ratio": 0.3,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.2,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0175",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 20.19,
+      "min_comment_length": 2,
+      "max_comment_length": 81,
+      "short_comment_ratio": 0.125,
+      "emoji_like_ratio": 0.0625,
+      "exclamation_ratio": 0.1875,
+      "question_ratio": 0.1875
+    }
+  },
+  {
+    "id": "candidate_0176",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 0.9474,
+      "duplicate_ratio": 0.0526,
+      "avg_comment_length": 14.58,
+      "min_comment_length": 2,
+      "max_comment_length": 83,
+      "short_comment_ratio": 0.2105,
+      "emoji_like_ratio": 0.0526,
+      "exclamation_ratio": 0.1053,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0177",
+    "label": 0,
+    "features": {
+      "comment_count": 15,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 27.53,
+      "min_comment_length": 6,
+      "max_comment_length": 78,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0667,
+      "question_ratio": 0.0667
+    }
+  },
+  {
+    "id": "candidate_0178",
+    "label": 0,
+    "features": {
+      "comment_count": 15,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 41.47,
+      "min_comment_length": 2,
+      "max_comment_length": 120,
+      "short_comment_ratio": 0.0667,
+      "emoji_like_ratio": 0.0667,
+      "exclamation_ratio": 0.1333,
+      "question_ratio": 0.0667
+    }
+  },
+  {
+    "id": "candidate_0179",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 0.7368,
+      "duplicate_ratio": 0.2632,
+      "avg_comment_length": 6.95,
+      "min_comment_length": 2,
+      "max_comment_length": 13,
+      "short_comment_ratio": 0.5789,
+      "emoji_like_ratio": 0.2105,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0180",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 41.12,
+      "min_comment_length": 9,
+      "max_comment_length": 89,
+      "short_comment_ratio": 0.0,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.125
+    }
+  },
+  {
+    "id": "candidate_0181",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 19.6,
+      "min_comment_length": 3,
+      "max_comment_length": 59,
+      "short_comment_ratio": 0.3,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.05,
+      "question_ratio": 0.15
+    }
+  },
+  {
+    "id": "candidate_0182",
+    "label": 0,
+    "features": {
+      "comment_count": 18,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 17.94,
+      "min_comment_length": 3,
+      "max_comment_length": 72,
+      "short_comment_ratio": 0.1667,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.1111,
+      "question_ratio": 0.1111
+    }
+  },
+  {
+    "id": "candidate_0183",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 0.9,
+      "duplicate_ratio": 0.1,
+      "avg_comment_length": 12.7,
+      "min_comment_length": 2,
+      "max_comment_length": 55,
+      "short_comment_ratio": 0.4,
+      "emoji_like_ratio": 0.2,
+      "exclamation_ratio": 0.2,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0184",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 8.95,
+      "min_comment_length": 2,
+      "max_comment_length": 22,
+      "short_comment_ratio": 0.2632,
+      "emoji_like_ratio": 0.0526,
+      "exclamation_ratio": 0.1053,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0185",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 39.81,
+      "min_comment_length": 5,
+      "max_comment_length": 116,
+      "short_comment_ratio": 0.125,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.1875
+    }
+  },
+  {
+    "id": "candidate_0186",
+    "label": 0,
+    "features": {
+      "comment_count": 17,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 9.82,
+      "min_comment_length": 3,
+      "max_comment_length": 24,
+      "short_comment_ratio": 0.2353,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.1176,
+      "question_ratio": 0.0588
+    }
+  },
+  {
+    "id": "candidate_0187",
+    "label": 0,
+    "features": {
+      "comment_count": 18,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 9.5,
+      "min_comment_length": 2,
+      "max_comment_length": 42,
+      "short_comment_ratio": 0.4444,
+      "emoji_like_ratio": 0.1667,
+      "exclamation_ratio": 0.4444,
+      "question_ratio": 0.0556
+    }
+  },
+  {
+    "id": "candidate_0188",
+    "label": 0,
+    "features": {
+      "comment_count": 8,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 13.38,
+      "min_comment_length": 4,
+      "max_comment_length": 23,
+      "short_comment_ratio": 0.25,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0189",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 0.875,
+      "duplicate_ratio": 0.125,
+      "avg_comment_length": 18.81,
+      "min_comment_length": 2,
+      "max_comment_length": 106,
+      "short_comment_ratio": 0.4375,
+      "emoji_like_ratio": 0.0625,
+      "exclamation_ratio": 0.125,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0190",
+    "label": 0,
+    "features": {
+      "comment_count": 15,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 19,
+      "min_comment_length": 5,
+      "max_comment_length": 54,
+      "short_comment_ratio": 0.0667,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0191",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 17.7,
+      "min_comment_length": 2,
+      "max_comment_length": 42,
+      "short_comment_ratio": 0.15,
+      "emoji_like_ratio": 0.1,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.1
+    }
+  },
+  {
+    "id": "candidate_0192",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 35.55,
+      "min_comment_length": 2,
+      "max_comment_length": 267,
+      "short_comment_ratio": 0.15,
+      "emoji_like_ratio": 0.05,
+      "exclamation_ratio": 0.05,
+      "question_ratio": 0.05
+    }
+  },
+  {
+    "id": "candidate_0193",
+    "label": 0,
+    "features": {
+      "comment_count": 17,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 10.65,
+      "min_comment_length": 2,
+      "max_comment_length": 28,
+      "short_comment_ratio": 0.2353,
+      "emoji_like_ratio": 0.1176,
+      "exclamation_ratio": 0.1176,
+      "question_ratio": 0.0588
+    }
+  },
+  {
+    "id": "candidate_0194",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 91.47,
+      "min_comment_length": 5,
+      "max_comment_length": 294,
+      "short_comment_ratio": 0.0526,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.1053,
+      "question_ratio": 0.2105
+    }
+  },
+  {
+    "id": "candidate_0195",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 29.21,
+      "min_comment_length": 4,
+      "max_comment_length": 113,
+      "short_comment_ratio": 0.0526,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0526,
+      "question_ratio": 0.1053
+    }
+  },
+  {
+    "id": "candidate_0196",
+    "label": 0,
+    "features": {
+      "comment_count": 12,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 15.25,
+      "min_comment_length": 2,
+      "max_comment_length": 56,
+      "short_comment_ratio": 0.3333,
+      "emoji_like_ratio": 0.1667,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0
+    }
+  },
+  {
+    "id": "candidate_0197",
+    "label": 0,
+    "features": {
+      "comment_count": 20,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 22,
+      "min_comment_length": 3,
+      "max_comment_length": 124,
+      "short_comment_ratio": 0.15,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.05,
+      "question_ratio": 0.05
+    }
+  },
+  {
+    "id": "candidate_0198",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 18.58,
+      "min_comment_length": 5,
+      "max_comment_length": 39,
+      "short_comment_ratio": 0.0526,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.0526
+    }
+  },
+  {
+    "id": "candidate_0199",
+    "label": 0,
+    "features": {
+      "comment_count": 19,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 20.16,
+      "min_comment_length": 3,
+      "max_comment_length": 64,
+      "short_comment_ratio": 0.2105,
+      "emoji_like_ratio": 0.0,
+      "exclamation_ratio": 0.0,
+      "question_ratio": 0.1053
+    }
+  },
+  {
+    "id": "candidate_0200",
+    "label": 0,
+    "features": {
+      "comment_count": 16,
+      "unique_comment_ratio": 1.0,
+      "duplicate_ratio": 0.0,
+      "avg_comment_length": 20.81,
+      "min_comment_length": 3,
+      "max_comment_length": 54,
+      "short_comment_ratio": 0.125,
+      "emoji_like_ratio": 0.0625,
+      "exclamation_ratio": 0.0625,
+      "question_ratio": 0.0
+    }
+  }
+]
