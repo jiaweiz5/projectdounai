@@ -1,23 +1,85 @@
+"""Learned semantic features for Layer 3 comment coordination detection."""
+
+import os
 import re
 from collections import Counter
-from statistics import mean
+
+import numpy as np
+from sentence_transformers import SentenceTransformer
 
 
-TEXT_KEYS = [
+TEXT_KEYS = (
     "text",
     "content",
     "comment",
     "comment_text",
     "body",
+)
+
+DEFAULT_EMBEDDING_MODEL = "BAAI/bge-small-zh-v1.5"
+
+# Every value returned by extract_layer3_features().
+LAYER3_FEATURE_NAMES = [
+    "comment_count",
+    "duplicate_ratio",
+    "max_exact_repeat_ratio",
+    "semantic_pair_mean",
+    "semantic_pair_std",
+    "semantic_pair_p75",
+    "semantic_pair_p90",
+    "semantic_pair_max",
+    "semantic_top_pair_mean",
+    "semantic_nearest_mean",
+    "semantic_nearest_std",
+    "semantic_centroid_mean",
+    "semantic_centroid_std",
+    "semantic_component_concentration",
+]
+
+# Only these coordination-focused values are supplied to the classifier.
+# Comment count is returned for reporting but deliberately excluded here.
+LAYER3_MODEL_FEATURE_NAMES = [
+    "duplicate_ratio",
+    "max_exact_repeat_ratio",
+    "semantic_pair_mean",
+    "semantic_pair_std",
+    "semantic_pair_p75",
+    "semantic_pair_p90",
+    "semantic_pair_max",
+    "semantic_top_pair_mean",
+    "semantic_nearest_mean",
+    "semantic_nearest_std",
+    "semantic_centroid_mean",
+    "semantic_centroid_std",
+    "semantic_component_concentration",
 ]
 
 
+_embedding_model = None
+
+
+def get_embedding_model():
+    """Load the sentence-embedding model once per Python process."""
+
+    global _embedding_model
+
+    if _embedding_model is None:
+        model_name = os.getenv(
+            "LAYER3_EMBEDDING_MODEL",
+            DEFAULT_EMBEDDING_MODEL,
+        )
+        device = os.getenv("LAYER3_EMBEDDING_DEVICE") or None
+
+        _embedding_model = SentenceTransformer(
+            model_name,
+            device=device,
+        )
+
+    return _embedding_model
+
+
 def extract_comment_text(comment):
-    """
-    Extract comment text from either:
-    - a plain string
-    - a dictionary
-    """
+    """Extract text from a string or a supported comment dictionary."""
 
     if isinstance(comment, str):
         return comment.strip()
@@ -33,35 +95,120 @@ def extract_comment_text(comment):
 
 
 def normalize_text(text):
-    """
-    Basic normalization used for duplicate/similarity features.
-    """
+    """Normalize only formatting noise for exact-duplicate comparison."""
 
     text = text.strip().lower()
-
-    # Remove whitespace
     text = re.sub(r"\s+", "", text)
-
-    # Remove common punctuation
     text = re.sub(
-        r"[，。！？、；：,.!?;:'\"“”‘’（）()\[\]{}]",
+        r"[，。！？、；：,.!?;:'\"“”‘’（）()\[\]{}~～]",
         "",
         text,
     )
-
     return text
 
 
-def extract_layer3_features(group):
-    """
-    Extract comment-section behavioral/text features
-    from one Layer 3 group.
+def empty_features():
+    """Return a complete all-zero feature dictionary."""
 
-    Returns a dictionary of numerical features.
-    """
+    return {
+        name: 0.0
+        for name in LAYER3_FEATURE_NAMES
+    }
+
+
+def _safe_round(value):
+    return round(float(value), 6)
+
+
+def _semantic_features(texts):
+    """Create continuous semantic-coordination features from embeddings."""
+
+    total = len(texts)
+
+    if total < 2:
+        return {
+            "semantic_pair_mean": 0.0,
+            "semantic_pair_std": 0.0,
+            "semantic_pair_p75": 0.0,
+            "semantic_pair_p90": 0.0,
+            "semantic_pair_max": 0.0,
+            "semantic_top_pair_mean": 0.0,
+            "semantic_nearest_mean": 0.0,
+            "semantic_nearest_std": 0.0,
+            "semantic_centroid_mean": 0.0,
+            "semantic_centroid_std": 0.0,
+            "semantic_component_concentration": 0.0,
+        }
+
+    model = get_embedding_model()
+
+    embeddings = model.encode(
+        texts,
+        batch_size=min(32, total),
+        convert_to_numpy=True,
+        normalize_embeddings=True,
+        show_progress_bar=False,
+    )
+
+    embeddings = np.asarray(embeddings, dtype=np.float32)
+    similarity_matrix = embeddings @ embeddings.T
+    similarity_matrix = np.clip(similarity_matrix, -1.0, 1.0)
+
+    upper_indices = np.triu_indices(total, k=1)
+    pair_values = similarity_matrix[upper_indices]
+
+    top_count = max(1, int(np.ceil(len(pair_values) * 0.20)))
+    top_pair_values = np.partition(
+        pair_values,
+        len(pair_values) - top_count,
+    )[-top_count:]
+
+    nearest_matrix = similarity_matrix.copy()
+    np.fill_diagonal(nearest_matrix, -np.inf)
+    nearest_values = np.max(nearest_matrix, axis=1)
+
+    centroid = embeddings.mean(axis=0)
+    centroid_norm = np.linalg.norm(centroid)
+
+    if centroid_norm > 0:
+        centroid = centroid / centroid_norm
+        centroid_values = embeddings @ centroid
+    else:
+        centroid_values = np.zeros(total, dtype=np.float32)
+
+    singular_values = np.linalg.svd(
+        embeddings,
+        compute_uv=False,
+    )
+    singular_energy = np.square(singular_values)
+    total_energy = float(np.sum(singular_energy))
+    component_concentration = (
+        float(singular_energy[0] / total_energy)
+        if total_energy > 0
+        else 0.0
+    )
+
+    return {
+        "semantic_pair_mean": _safe_round(np.mean(pair_values)),
+        "semantic_pair_std": _safe_round(np.std(pair_values)),
+        "semantic_pair_p75": _safe_round(np.percentile(pair_values, 75)),
+        "semantic_pair_p90": _safe_round(np.percentile(pair_values, 90)),
+        "semantic_pair_max": _safe_round(np.max(pair_values)),
+        "semantic_top_pair_mean": _safe_round(np.mean(top_pair_values)),
+        "semantic_nearest_mean": _safe_round(np.mean(nearest_values)),
+        "semantic_nearest_std": _safe_round(np.std(nearest_values)),
+        "semantic_centroid_mean": _safe_round(np.mean(centroid_values)),
+        "semantic_centroid_std": _safe_round(np.std(centroid_values)),
+        "semantic_component_concentration": _safe_round(
+            component_concentration
+        ),
+    }
+
+
+def extract_layer3_features(group):
+    """Extract learned group-level coordination features."""
 
     comments = group.get("comments", [])
-
     texts = []
 
     for comment in comments:
@@ -72,155 +219,26 @@ def extract_layer3_features(group):
 
     total_comments = len(texts)
 
-    # Avoid divide-by-zero
     if total_comments == 0:
-        return {
-            "comment_count": 0,
-            "unique_comment_ratio": 0.0,
-            "duplicate_ratio": 0.0,
-            "avg_comment_length": 0.0,
-            "min_comment_length": 0,
-            "max_comment_length": 0,
-            "short_comment_ratio": 0.0,
-            "emoji_like_ratio": 0.0,
-            "exclamation_ratio": 0.0,
-            "question_ratio": 0.0,
-        }
+        return empty_features()
 
-    # ---------------------------------------------------------
-    # Basic text statistics
-    # ---------------------------------------------------------
-
-    lengths = [len(text) for text in texts]
-
-    avg_length = mean(lengths)
-    min_length = min(lengths)
-    max_length = max(lengths)
-
-    # ---------------------------------------------------------
-    # Duplicate / repeated comment behavior
-    # ---------------------------------------------------------
-
-    normalized = [
-        normalize_text(text)
-        for text in texts
-        if normalize_text(text)
-    ]
-
-    counts = Counter(normalized)
-
-    unique_count = len(counts)
-
-    unique_ratio = (
-        unique_count / len(normalized)
-        if normalized
-        else 0.0
-    )
+    normalized = [normalize_text(text) for text in texts]
+    exact_counts = Counter(normalized)
 
     duplicate_count = sum(
         count - 1
-        for count in counts.values()
+        for count in exact_counts.values()
         if count > 1
     )
 
-    duplicate_ratio = (
-        duplicate_count / len(normalized)
-        if normalized
-        else 0.0
-    )
+    duplicate_ratio = duplicate_count / total_comments
+    max_exact_repeat_ratio = max(exact_counts.values()) / total_comments
 
-    # ---------------------------------------------------------
-    # Short comments
-    # ---------------------------------------------------------
-
-    short_count = sum(
-        1
-        for text in texts
-        if len(text) <= 5
-    )
-
-    short_comment_ratio = (
-        short_count / total_comments
-    )
-
-    # ---------------------------------------------------------
-    # Emoji-like comments
-    #
-    # Simple approximation:
-    # comments containing relatively little Chinese/alphanumeric
-    # content.
-    # ---------------------------------------------------------
-
-    emoji_like_count = 0
-
-    for text in texts:
-
-        meaningful_chars = re.findall(
-            r"[\u4e00-\u9fffA-Za-z0-9]",
-            text,
-        )
-
-        if len(meaningful_chars) <= 2:
-            emoji_like_count += 1
-
-    emoji_like_ratio = (
-        emoji_like_count / total_comments
-    )
-
-    # ---------------------------------------------------------
-    # Punctuation behavior
-    # ---------------------------------------------------------
-
-    exclamation_count = sum(
-        1
-        for text in texts
-        if "!" in text or "！" in text
-    )
-
-    question_count = sum(
-        1
-        for text in texts
-        if "?" in text or "？" in text
-    )
-
-    exclamation_ratio = (
-        exclamation_count / total_comments
-    )
-
-    question_ratio = (
-        question_count / total_comments
-    )
-
-    return {
+    features = {
         "comment_count": total_comments,
-        "unique_comment_ratio": round(
-            unique_ratio,
-            4,
-        ),
-        "duplicate_ratio": round(
-            duplicate_ratio,
-            4,
-        ),
-        "avg_comment_length": round(
-            avg_length,
-            2,
-        ),
-        "min_comment_length": min_length,
-        "max_comment_length": max_length,
-        "short_comment_ratio": round(
-            short_comment_ratio,
-            4,
-        ),
-        "emoji_like_ratio": round(
-            emoji_like_ratio,
-            4,
-        ),
-        "exclamation_ratio": round(
-            exclamation_ratio,
-            4,
-        ),
-        "question_ratio": round(
-            question_ratio,
-            4,
-        ),
+        "duplicate_ratio": _safe_round(duplicate_ratio),
+        "max_exact_repeat_ratio": _safe_round(max_exact_repeat_ratio),
     }
+    features.update(_semantic_features(texts))
+
+    return features
