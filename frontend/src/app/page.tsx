@@ -3,11 +3,20 @@
 import { useState } from "react";
 import type { ChangeEvent } from "react";
 import Layer3ScreenshotAnalyzer from "@/components/Layer3ScreenshotAnalyzer";
+import Layer4ReferenceAnalyzer from "@/components/Layer4ReferenceAnalyzer";
+import Layer4ResultCard from "@/components/Layer4ResultCard";
+import type { Layer4Result } from "@/components/Layer4ResultCard";
 
 type Comment = {
   id: string;
   text: string;
   timestamp: null;
+};
+
+// Only Layer 4 needs a detailed type here. The raw response still keeps all
+// Layer 1–3 fields so they remain visible in the expandable JSON section.
+type AnalyzeResponse = Record<string, unknown> & {
+  layer4?: Layer4Result;
 };
 
 export default function Home() {
@@ -17,7 +26,7 @@ export default function Home() {
   const [images, setImages] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [result, setResult] = useState<unknown>(null);
+  const [result, setResult] = useState<AnalyzeResponse | null>(null);
 
   function addComment() {
     const trimmed = commentInput.trim();
@@ -65,6 +74,8 @@ export default function Home() {
 
     setError("");
 
+    // FileReader turns the selected images into the data URLs expected by the
+    // existing /api/analyze JSON request.
     Promise.all(
       files.map(
         (file) =>
@@ -79,6 +90,7 @@ export default function Home() {
     )
       .then((dataUrls) => {
         setImages(dataUrls);
+        setResult(null);
       })
       .catch(() => {
         setError("Could not read the selected image.");
@@ -94,10 +106,10 @@ export default function Home() {
     }
 
     const input = {
-  text,
-  comments: comments.map((comment) => comment.text),
-  images,
-};
+      text,
+      comments: comments.map((comment) => comment.text),
+      images,
+    };
 
     const serialized = JSON.stringify(input);
     const requestBytes = new Blob([serialized]).size;
@@ -125,7 +137,7 @@ export default function Home() {
         return;
       }
 
-      const data = await response.json();
+      const data = (await response.json()) as AnalyzeResponse;
       setResult(data);
     } catch {
       setError("Analysis unavailable");
@@ -137,7 +149,7 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-zinc-100 px-6 py-10">
       <div className="mx-auto max-w-4xl space-y-8">
-        {/* Title */}
+        {/* Page title */}
         <div>
           <h1 className="text-3xl font-bold text-zinc-900">
             XHS Content Verifier
@@ -148,10 +160,10 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Layer 3 screenshot upload and coordination detection */}
+        {/* Existing Layer 3 screenshot workflow remains unchanged. */}
         <Layer3ScreenshotAnalyzer />
 
-        {/* Original text, image, and comment analyzer */}
+        {/* Post text used by Layers 1, 2, and 4. */}
         <section className="rounded-xl bg-white p-6 shadow-sm">
           <h2 className="mb-3 text-lg font-semibold text-zinc-900">
             Post Text
@@ -159,7 +171,10 @@ export default function Home() {
 
           <textarea
             value={text}
-            onChange={(event) => setText(event.target.value)}
+            onChange={(event) => {
+              setText(event.target.value);
+              setResult(null);
+            }}
             maxLength={10000}
             placeholder="Paste the Xiaohongshu post text here..."
             className="min-h-48 w-full rounded-lg border border-zinc-300 p-4 text-zinc-900 outline-none focus:border-zinc-500"
@@ -170,7 +185,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Images */}
+        {/* Post images are converted to data URLs and checked by Layer 4. */}
         <section className="rounded-xl bg-white p-6 shadow-sm">
           <h2 className="mb-3 text-lg font-semibold text-zinc-900">Images</h2>
 
@@ -193,7 +208,7 @@ export default function Home() {
           )}
         </section>
 
-        {/* Comments */}
+        {/* Manual comments are checked by Layer 3. */}
         <section className="rounded-xl bg-white p-6 shadow-sm">
           <h2 className="mb-3 text-lg font-semibold text-zinc-900">
             Comments
@@ -251,14 +266,13 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Error from the original analyzer */}
         {error && (
           <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-700">
             {error}
           </div>
         )}
 
-        {/* Analyze button for the original analyzer */}
+        {/* This remains the main Layer 1–4 analysis button. */}
         <button
           type="button"
           onClick={analyze}
@@ -268,22 +282,34 @@ export default function Home() {
           {loading ? "Analyzing..." : "Analyze"}
         </button>
 
-        {/* JSON result from the original analyzer */}
+        {/* Human-readable Layer 4 output from the main Analyze request. */}
+        {result?.layer4 && <Layer4ResultCard result={result.layer4} />}
+
+        {/* Keep the full response available for development and debugging. */}
         <section className="rounded-xl bg-white p-6 shadow-sm">
-          <h2 className="mb-3 text-lg font-semibold text-zinc-900">
-            Analysis Result
+          <h2 className="text-lg font-semibold text-zinc-900">
+            Full Analysis Result
           </h2>
 
           {result ? (
-            <pre className="overflow-x-auto rounded-lg bg-zinc-950 p-4 text-sm text-green-400">
-              {JSON.stringify(result, null, 2)}
-            </pre>
+            <details className="mt-3">
+              <summary className="cursor-pointer text-sm font-medium text-zinc-700">
+                Show raw JSON
+              </summary>
+
+              <pre className="mt-3 overflow-x-auto rounded-lg bg-zinc-950 p-4 text-sm text-green-400">
+                {JSON.stringify(result, null, 2)}
+              </pre>
+            </details>
           ) : (
-            <div className="rounded-lg bg-zinc-100 p-4 text-zinc-500">
+            <div className="mt-3 rounded-lg bg-zinc-100 p-4 text-zinc-500">
               Analysis results will appear here.
             </div>
           )}
         </section>
+
+        {/* Separate two-file workflow for detecting edits against an original. */}
+        <Layer4ReferenceAnalyzer />
       </div>
     </main>
   );
