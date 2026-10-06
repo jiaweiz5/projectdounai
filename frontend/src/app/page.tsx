@@ -1,6 +1,8 @@
 "use client";
 
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
+import type { ChangeEvent } from "react";
+import Layer3ScreenshotAnalyzer from "@/components/Layer3ScreenshotAnalyzer";
 
 type Comment = {
   id: string;
@@ -12,14 +14,11 @@ export default function Home() {
   const [text, setText] = useState("");
   const [comments, setComments] = useState<Comment[]>([]);
   const [commentInput, setCommentInput] = useState("");
-
   const [images, setImages] = useState<string[]>([]);
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [result, setResult] = useState<unknown>(null);
 
-  // Add a comment
   function addComment() {
     const trimmed = commentInput.trim();
 
@@ -41,14 +40,12 @@ export default function Home() {
     setError("");
   }
 
-  // Remove a comment
   function removeComment(id: string) {
     setComments((previous) =>
-      previous.filter((comment) => comment.id !== id)
+      previous.filter((comment) => comment.id !== id),
     );
   }
 
-  // Convert uploaded images into data URLs
   function handleImages(event: ChangeEvent<HTMLInputElement>) {
     const files = Array.from(event.target.files ?? []);
 
@@ -76,10 +73,9 @@ export default function Home() {
 
             reader.onload = () => resolve(reader.result as string);
             reader.onerror = () => reject(new Error("Could not read image"));
-
             reader.readAsDataURL(file);
-          })
-      )
+          }),
+      ),
     )
       .then((dataUrls) => {
         setImages(dataUrls);
@@ -89,7 +85,6 @@ export default function Home() {
       });
   }
 
-  // Send everything to our Next.js proxy
   async function analyze() {
     if (loading) return;
 
@@ -99,10 +94,10 @@ export default function Home() {
     }
 
     const input = {
-      text,
-      comments,
-      images,
-    };
+  text,
+  comments: comments.map((comment) => comment.text),
+  images,
+};
 
     const serialized = JSON.stringify(input);
     const requestBytes = new Blob([serialized]).size;
@@ -131,7 +126,6 @@ export default function Home() {
       }
 
       const data = await response.json();
-
       setResult(data);
     } catch {
       setError("Analysis unavailable");
@@ -143,7 +137,6 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-zinc-100 px-6 py-10">
       <div className="mx-auto max-w-4xl space-y-8">
-
         {/* Title */}
         <div>
           <h1 className="text-3xl font-bold text-zinc-900">
@@ -155,7 +148,10 @@ export default function Home() {
           </p>
         </div>
 
-        {/* Post text */}
+        {/* Layer 3 screenshot upload and coordination detection */}
+        <Layer3ScreenshotAnalyzer />
+
+        {/* Original text, image, and comment analyzer */}
         <section className="rounded-xl bg-white p-6 shadow-sm">
           <h2 className="mb-3 text-lg font-semibold text-zinc-900">
             Post Text
@@ -176,9 +172,7 @@ export default function Home() {
 
         {/* Images */}
         <section className="rounded-xl bg-white p-6 shadow-sm">
-          <h2 className="mb-3 text-lg font-semibold text-zinc-900">
-            Images
-          </h2>
+          <h2 className="mb-3 text-lg font-semibold text-zinc-900">Images</h2>
 
           <p className="mb-3 text-sm text-zinc-500">
             Optional. Maximum 2 images and 2 MB total.
@@ -211,9 +205,7 @@ export default function Home() {
               value={commentInput}
               onChange={(event) => setCommentInput(event.target.value)}
               onKeyDown={(event) => {
-                if (event.key === "Enter") {
-                  addComment();
-                }
+                if (event.key === "Enter") addComment();
               }}
               placeholder="Add a comment..."
               className="flex-1 rounded-lg border border-zinc-300 px-4 py-2 text-zinc-900 outline-none focus:border-zinc-500"
@@ -244,9 +236,7 @@ export default function Home() {
                     {comment.id}
                   </span>
 
-                  <span className="text-zinc-800">
-                    {comment.text}
-                  </span>
+                  <span className="text-zinc-800">{comment.text}</span>
                 </div>
 
                 <button
@@ -261,14 +251,14 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Error */}
+        {/* Error from the original analyzer */}
         {error && (
           <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-700">
             {error}
           </div>
         )}
 
-        {/* Analyze button */}
+        {/* Analyze button for the original analyzer */}
         <button
           type="button"
           onClick={analyze}
@@ -278,7 +268,7 @@ export default function Home() {
           {loading ? "Analyzing..." : "Analyze"}
         </button>
 
-        {/* JSON Result */}
+        {/* JSON result from the original analyzer */}
         <section className="rounded-xl bg-white p-6 shadow-sm">
           <h2 className="mb-3 text-lg font-semibold text-zinc-900">
             Analysis Result

@@ -28,16 +28,32 @@ export async function POST(request: Request) {
     });
 
     if (!upstream.ok) {
+      const upstreamError = await upstream.text();
+
+      console.error(
+        "Backend analysis failed:",
+        upstream.status,
+        upstreamError
+      );
+
       return Response.json(
         { error: "Analysis unavailable" },
         { status: 502 }
       );
     }
 
-    return Response.json(await upstream.json());
-  } catch {
+    const data = await upstream.json();
+    return Response.json(data);
+  } catch (error) {
+    console.error("Analyze proxy error:", error);
+
     return Response.json(
-      { error: "Please retry the analysis" },
+      {
+        error:
+          error instanceof Error
+            ? error.message
+            : "Please retry the analysis",
+      },
       { status: 503 }
     );
   }

@@ -1,6 +1,9 @@
+// This component previews a local blob URL, so Next image optimization
+// is not useful for this temporary browser-only image.
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { ChangeEvent, CSSProperties, FormEvent } from "react";
 
 
@@ -49,44 +52,64 @@ const API_BASE_URL =
 export default function Layer3ScreenshotAnalyzer() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  // Remember the current browser preview URL without causing another render.
+  // We use this reference to release the URL when it is no longer needed.
+  const previewUrlRef = useRef<string | null>(null);
+
   const [result, setResult] = useState<ScreenshotResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Browser preview URLs use memory. Revoke the previous one whenever the
-  // selected image changes or the component leaves the page.
+    // This effect only performs cleanup when the component leaves the page.
+  // State changes happen in the file-selection handler instead of the effect.
   useEffect(() => {
-    if (!selectedFile) {
-      setPreviewUrl(null);
-      return;
-    }
+    return () => {
+      const currentPreviewUrl = previewUrlRef.current;
 
-    const nextPreviewUrl = URL.createObjectURL(selectedFile);
-    setPreviewUrl(nextPreviewUrl);
+      if (currentPreviewUrl) {
+        URL.revokeObjectURL(currentPreviewUrl);
+      }
+    };
+  }, []);
 
-    return () => URL.revokeObjectURL(nextPreviewUrl);
-  }, [selectedFile]);
-
-  function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
+    function handleFileChange(event: ChangeEvent<HTMLInputElement>) {
+    // Get the first selected file, or null if the selection was cleared.
     const file = event.target.files?.[0] ?? null;
 
-    // Reset old output whenever the user chooses another screenshot.
+    // Reset the previous analysis whenever the screenshot changes.
     setResult(null);
     setError(null);
+
+    // Release the old temporary browser URL before creating another one.
+    if (previewUrlRef.current) {
+      URL.revokeObjectURL(previewUrlRef.current);
+      previewUrlRef.current = null;
+    }
+
+    // Remove the previous preview while validating the new selection.
+    setPreviewUrl(null);
 
     if (!file) {
       setSelectedFile(null);
       return;
     }
 
+    // Reject non-image files before sending anything to the backend.
     if (!file.type.startsWith("image/")) {
       setSelectedFile(null);
       setError("Please choose a PNG, JPEG, WEBP, or another image file.");
       return;
     }
 
+    // Create a temporary local URL so the browser can preview the image.
+    const nextPreviewUrl = URL.createObjectURL(file);
+
+    // Remember both the actual file and its temporary preview URL.
+    previewUrlRef.current = nextPreviewUrl;
     setSelectedFile(file);
+    setPreviewUrl(nextPreviewUrl);
   }
+    
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();

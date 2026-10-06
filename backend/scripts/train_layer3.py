@@ -202,7 +202,7 @@ def main():
 
     negative_probabilities = out_of_fold_probabilities[y == 0]
     medium_threshold = float(
-        np.percentile(negative_probabilities, 95)
+        np.percentile(negative_probabilities, 90)
     )
     medium_threshold = min(medium_threshold, threshold)
 

@@ -1,0 +1,362 @@
+[
+  {
+    "id": "case_001",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.7582
+  },
+  {
+    "id": "case_002",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.9169
+  },
+  {
+    "id": "case_003",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.4334
+  },
+  {
+    "id": "case_004",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.9361
+  },
+  {
+    "id": "case_005",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.6238
+  },
+  {
+    "id": "case_006",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.746
+  },
+  {
+    "id": "case_007",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.3726
+  },
+  {
+    "id": "case_008",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.097
+  },
+  {
+    "id": "case_009",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.9121
+  },
+  {
+    "id": "case_010",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.055
+  },
+  {
+    "id": "case_011",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.4795
+  },
+  {
+    "id": "case_012",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.8134
+  },
+  {
+    "id": "case_013",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.0342
+  },
+  {
+    "id": "case_014",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.9209
+  },
+  {
+    "id": "case_015",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.0292
+  },
+  {
+    "id": "case_016",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.242
+  },
+  {
+    "id": "case_017",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.9731
+  },
+  {
+    "id": "case_018",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.972
+  },
+  {
+    "id": "case_019",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.9715
+  },
+  {
+    "id": "case_020",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.986
+  },
+  {
+    "id": "case_021",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.1039
+  },
+  {
+    "id": "case_022",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.5423
+  },
+  {
+    "id": "case_023",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.6138
+  },
+  {
+    "id": "case_024",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.806
+  },
+  {
+    "id": "case_025",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.9343
+  },
+  {
+    "id": "case_026",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.865
+  },
+  {
+    "id": "case_027",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.2324
+  },
+  {
+    "id": "case_028",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.0097
+  },
+  {
+    "id": "case_029",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.0805
+  },
+  {
+    "id": "case_030",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.0759
+  },
+  {
+    "id": "case_031",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.5497
+  },
+  {
+    "id": "case_032",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.0414
+  },
+  {
+    "id": "case_033",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.7636
+  },
+  {
+    "id": "case_034",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.8754
+  },
+  {
+    "id": "case_035",
+    "label": 0,
+    "issue_type": "none",
+    "image_text_similarity": 0.2771
+  },
+  {
+    "id": "case_036",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0263
+  },
+  {
+    "id": "case_037",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0005
+  },
+  {
+    "id": "case_038",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0001
+  },
+  {
+    "id": "case_039",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0021
+  },
+  {
+    "id": "case_040",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0001
+  },
+  {
+    "id": "case_041",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0
+  },
+  {
+    "id": "case_042",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0
+  },
+  {
+    "id": "case_043",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0012
+  },
+  {
+    "id": "case_044",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0015
+  },
+  {
+    "id": "case_045",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0
+  },
+  {
+    "id": "case_046",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0
+  },
+  {
+    "id": "case_047",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0032
+  },
+  {
+    "id": "case_048",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0004
+  },
+  {
+    "id": "case_049",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0006
+  },
+  {
+    "id": "case_050",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0002
+  },
+  {
+    "id": "case_051",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0
+  },
+  {
+    "id": "case_052",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0628
+  },
+  {
+    "id": "case_053",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0003
+  },
+  {
+    "id": "case_054",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.012
+  },
+  {
+    "id": "case_055",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0004
+  },
+  {
+    "id": "case_056",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0
+  },
+  {
+    "id": "case_057",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0001
+  },
+  {
+    "id": "case_058",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0106
+  },
+  {
+    "id": "case_059",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0
+  },
+  {
+    "id": "case_060",
+    "label": 1,
+    "issue_type": "image_text_mismatch",
+    "image_text_similarity": 0.0
+  }
+]

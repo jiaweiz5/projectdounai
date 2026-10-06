@@ -204,9 +204,9 @@ def extract_comment_lines(ocr_lines):
 #
 # The multiplier is calculated from the screenshot's typical OCR row height,
 # so it automatically scales for differently sized screenshots. A value of
-# 1.95 allows normal username-to-comment spacing while still separating
+# 1.75 allows normal username-to-comment spacing while still separating
 # distinct comment cards.
-    block_gap = typical_height * 1.95
+    block_gap = typical_height * 1.75
     blocks = []
     current_block = []
     previous_top = None
@@ -230,7 +230,7 @@ def extract_comment_lines(ocr_lines):
 
     comments = []
     alignment_tolerance = typical_height * 0.75
-    continuation_gap = typical_height * 1.35
+    continuation_gap = typical_height * 1.20
 
     for block in blocks:
         # A one-row block is usually an interface control rather than a full
@@ -305,8 +305,44 @@ def extract_comment_lines(ocr_lines):
             }
         )
 
-    return comments
+    # If no comment candidates were found, return an empty list.
+    if not comments:
+        return []
 
+    # Collect the horizontal starting position of every candidate.
+    # Xiaohongshu top-level comments normally share one main left margin.
+    candidate_lefts = [
+        comment["box"]["left"]
+        for comment in comments
+    ]
+
+    # Find the left margin with the largest group of nearby candidates.
+    # This identifies the dominant top-level comment indentation.
+    root_left = max(
+        candidate_lefts,
+        key=lambda candidate_left: (
+            sum(
+                abs(other_left - candidate_left)
+                <= alignment_tolerance
+                for other_left in candidate_lefts
+            ),
+            # If two groups are equally large, prefer the leftmost group,
+            # since replies and image content are normally indented.
+            -candidate_left,
+        ),
+    )
+
+    # Keep only candidates aligned with the top-level comment margin.
+    # This removes indented replies, reply controls, and text inside
+    # attached reply images from the Layer 3 model input.
+    comments = [
+        comment
+        for comment in comments
+        if abs(comment["box"]["left"] - root_left)
+        <= alignment_tolerance
+    ]
+
+    return comments
 
 def extract_text_lines(image_bytes, minimum_confidence=0.50):
     """Run OCR and return reading-order text lines with confidence and boxes."""
