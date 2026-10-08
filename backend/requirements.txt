@@ -17,3 +17,16 @@ uvicorn==0.53.0
 uvloop==0.22.1
 watchfiles==1.3.0
 websockets==17.1
+
+# Layer 3 model training and inference
+joblib>=1.4,<2.0
+numpy>=1.26,<3.0
+scikit-learn>=1.5,<2.0
+sentence-transformers>=5.0,<7.0
+torch>=2.2,<3.0
+
+# Screenshot upload and local OCR
+python-multipart>=0.0.20,<1.0
+Pillow>=11.0,<13.0
+rapidocr>=3.0,<4.0
+onnxruntime>=1.19,<2.0

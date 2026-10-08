@@ -1,0 +1,95 @@
+{
+  "Home": {
+    "title": "小红书内容核验",
+    "tagline": "检查小红书帖子正文、评论和配图，辅助评估内容可信度。",
+    "analyze": "开始综合分析",
+    "analyzing": "正在分析……"
+  },
+  "PostText": {
+    "title": "帖子正文",
+    "placeholder": "请粘贴小红书帖子正文……",
+    "characterCount": "{count} / 10,000 字"
+  },
+  "Images": {
+    "title": "帖子配图",
+    "description": "上传帖子中实际发布的图片，系统会据此评估图片内容与正文是否相符。请勿在此上传评论区截图；评论截图请放到下方的评论区识别区域。配图为选填，最多 2 张，合计不超过 2 MB。",
+    "selectedCount": "已选择 {count} 张配图",
+    "chooseImages": "选择帖子配图",
+    "previewAlt": "第 {number} 张帖子配图预览",
+    "removeImage": "移除第 {number} 张配图"
+  },
+  "Comments": {
+    "title": "评论",
+    "instructions": "你可以手动输入评论，也可以上传评论区截图自动识别；识别出的评论会和手动输入的内容放在同一个列表中。请先检查并修正列表，再点击“开始综合分析”。评论区截图用于第三层；第四层所需的帖子配图请在上方单独上传。第三层至少需要 5 条评论才能计算评分；不足 5 条时仍可分析，但该层会显示数据不足。",
+    "manualOption": "手动添加评论",
+    "inputPlaceholder": "输入一条评论……",
+    "count": "已添加 {count} / 30 条评论",
+    "editAriaLabel": "编辑评论 {id}"
+  },
+  "Screenshot": {
+    "title": "上传评论区截图并识别评论",
+    "description": "选择一张评论文字清晰可见的截图。系统会尝试识别评论并加入下方列表。识别结果可能有误，请在综合分析前仔细检查。",
+    "chooseScreenshot": "选择评论区截图",
+    "screenshotPreviewAlt": "已选评论区截图预览",
+    "removeScreenshot": "移除这张截图",
+    "extractButton": "识别并添加评论",
+    "extracting": "正在识别评论……",
+    "invalidImage": "请选择 PNG、JPEG、WEBP 或其他图片格式的文件。",
+    "fileTooLarge": "评论区截图不能超过 12 MB。",
+    "ocrFailed": "无法识别这张截图。请尝试使用更清晰、且裁剪到评论区的图片。",
+    "processingFailed": "截图处理失败，请重试。",
+    "invalidResponse": "截图处理结果中没有提取到评论。",
+    "noneExtracted": "没有从这张截图中提取到评论。",
+    "noCommentsHint": "未能识别出评论。请使用更清晰、评论文字更大的截图。",
+    "extractedSummary": "已识别出 {count} 条评论并加入下方列表。重复内容会自动跳过，列表最多保留 30 条。请检查并修正识别结果。",
+    "ocrConfidence": "文字识别置信度：{percent}%"
+  },
+  "Common": {
+    "language": "语言",
+    "add": "添加",
+    "remove": "删除"
+  },
+  "Errors": {
+    "maxComments": "最多只能添加 30 条评论。",
+    "maxImages": "最多只能上传 2 张图片。",
+    "imagesTooLarge": "图片总大小不能超过 2 MB。",
+    "readImageFailed": "无法读取所选图片。",
+    "missingPostText": "请先输入帖子正文。",
+    "requestTooLarge": "请求内容过大，请减少图片或输入内容。",
+    "analysisUnavailable": "暂时无法完成分析。请确认后端服务正在运行，然后重试。"
+  },
+  "Report": {
+    "title": "综合分析报告",
+    "insufficientData": "数据不足：",
+    "separator": "；",
+    "missingAuthorship": "正文过短，无法评估 AI 写作迹象",
+    "missingLayer3": "评论不足，无法评估评论协同情况",
+    "missingLayer4": "未提供帖子配图，无法评估图文一致性",
+    "rawResultTitle": "完整分析结果",
+    "showRawJson": "查看原始 JSON",
+    "emptyState": "分析结果会显示在这里。"
+  },
+  "ReferenceTool": {
+    "title": "图片原图核验（独立工具）",
+    "description": "只有同时拥有待核验图片和对应的可信原图时，才使用此功能。它用于比对两张图片，不属于上方的帖子综合分析流程。",
+    "workflowHint": "请在左侧选择需要核验的图片，在右侧选择同一图片的可信原图。两张图片都选好后，点击“开始比对”。",
+    "targetTitle": "待核验图片",
+    "targetDescription": "选择你想检查的图片。",
+    "referenceTitle": "可信原图",
+    "referenceDescription": "选择这张图片对应的可信原始版本。",
+    "chooseImage": "选择图片",
+    "removeTarget": "移除待核验图片",
+    "removeReference": "移除可信原图",
+    "targetPreviewAlt": "待核验图片预览",
+    "referencePreviewAlt": "可信原图预览",
+    "compareButton": "开始比对",
+    "comparing": "正在比对……",
+    "selectBothImages": "请先选择待核验图片和可信原图。",
+    "invalidImage": "请选择有效的图片文件。",
+    "fileTooLarge": "单张图片不能超过 12 MB。",
+    "comparisonFailed": "图片比对失败，请检查服务是否正常后重试。",
+    "invalidResponse": "未收到有效的比对结果，请重试。",
+    "resultTitle": "比对结果",
+    "resultHint": "以下为模型返回的结果。请结合图片和其他证据判断；模型结果不能单独证明图片被修改或修改者的意图。"
+  }
+}

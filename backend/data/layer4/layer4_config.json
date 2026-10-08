@@ -1,0 +1,9 @@
+{
+  "alignment": {
+    "model_name": "google/siglip2-base-patch16-224",
+    "mismatch_when": "image_text_similarity < threshold",
+    "similarity_threshold": 0.0278,
+    "calibration_case_count": 60,
+    "calibration_note": "Development calibration using controlled Layer 4 cases 001–060; this is not an independent production test."
+  }
+}

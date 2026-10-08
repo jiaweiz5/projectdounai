@@ -20,3 +20,8 @@ uploads/
 
 # macOS metadata
 .DS_Store
+
+
+backend/main.py.before-layer4-api
+backend/layer4_calibration.log
+backend/screenshot_ocr.pyx

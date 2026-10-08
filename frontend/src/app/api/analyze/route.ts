@@ -1,44 +1,43 @@
-export const runtime = "nodejs";
+/**
+ * Next.js route for POST /api/analyze.
+ * Place this file at frontend/src/app/api/analyze/route.ts.
+ * It forwards the main form's JSON to the FastAPI /analyze endpoint.
+ */
 
-export const maxDuration = 120;
+// Use a configurable backend address, defaulting to the local port in use.
+const backendUrl = (process.env.BACKEND_URL ?? "http://127.0.0.1:8000").replace(
+  /\/+$/,
+  "",
+);
 
-export async function POST(request: Request) {
-  const base = process.env.BACKEND_URL;
-  const token = process.env.BACKEND_SHARED_TOKEN;
-
-  if (!base || !token) {
-    return Response.json(
-      { error: "Server configuration missing" },
-      { status: 503 }
-    );
-  }
+export async function POST(request: Request): Promise<Response> {
+  // Preserve the JSON body exactly as the frontend sent it to this route.
+  const body = await request.text();
 
   try {
-    const body = await request.json();
-
-    const upstream = await fetch(`${base}/analyze`, {
+    // Forward the request to FastAPI rather than handling the model in Next.js.
+    const backendResponse = await fetch(`${backendUrl}/analyze`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
-        "X-Backend-Token": token,
+        "content-type": request.headers.get("content-type") ?? "application/json",
       },
-      body: JSON.stringify(body),
+      body,
       cache: "no-store",
-      signal: AbortSignal.timeout(105000),
     });
 
-    if (!upstream.ok) {
-      return Response.json(
-        { error: "Analysis unavailable" },
-        { status: 502 }
-      );
-    }
-
-    return Response.json(await upstream.json());
+    // Return FastAPI's status and body, including helpful validation errors.
+    return new Response(await backendResponse.text(), {
+      status: backendResponse.status,
+      headers: {
+        "content-type":
+          backendResponse.headers.get("content-type") ?? "application/json",
+      },
+    });
   } catch {
+    // A network failure means Next.js could not reach the running backend.
     return Response.json(
-      { error: "Please retry the analysis" },
-      { status: 503 }
+      { detail: "The analysis backend is unavailable." },
+      { status: 502 },
     );
   }
 }
