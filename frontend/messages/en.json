@@ -1,0 +1,95 @@
+{
+  "Home": {
+    "title": "XHS Content Verifier",
+    "tagline": "Review Xiaohongshu post text, comments, and images for authenticity.",
+    "analyze": "Analyze",
+    "analyzing": "Analyzing..."
+  },
+  "PostText": {
+    "title": "Post Text",
+    "placeholder": "Paste the Xiaohongshu post text here...",
+    "characterCount": "{count} / 10,000 characters"
+  },
+  "Images": {
+    "title": "Post Images",
+    "description": "Upload the actual image(s) attached to the post for Layer 4 image-text consistency. This is different from the comment screenshot below. Optional; maximum 2 images and 2 MB total.",
+    "selectedCount": "{count, plural, one {# post image selected} other {# post images selected}}",
+    "chooseImages": "Choose post images",
+    "previewAlt": "Preview of post image {number}",
+    "removeImage": "Remove post image {number}"
+  },
+  "Comments": {
+    "title": "Comments",
+    "instructions": "Choose either option: type comments manually or upload a screenshot of the post's comment section to extract them. Both options add comments to the same list. Review and correct the list, then click the main Analyze button once for the combined report. The comment screenshot is only for Layer 3; upload actual post photos in Images above for Layer 4. Layer 3 needs at least 5 comments to calculate a score; fewer comments can still be submitted but will be marked as insufficient data.",
+    "manualOption": "Enter comments manually",
+    "inputPlaceholder": "Add a comment...",
+    "count": "{count} / 30 comments",
+    "editAriaLabel": "Edit comment {id}"
+  },
+  "Screenshot": {
+    "title": "Import comments from a screenshot",
+    "description": "Choose a screenshot showing the post's comment section. OCR will extract the visible comments and add them to the shared list below. Check for recognition mistakes before running the main analysis.",
+    "chooseScreenshot": "Choose a comment-section screenshot",
+    "screenshotPreviewAlt": "Preview of the selected comment screenshot",
+    "removeScreenshot": "Remove this screenshot",
+    "extractButton": "Recognize and add comments",
+    "extracting": "Extracting comments...",
+    "invalidImage": "Choose a PNG, JPEG, WEBP, or another image file.",
+    "fileTooLarge": "The comment screenshot must be 12 MB or smaller.",
+    "ocrFailed": "The screenshot could not be read. Try a clearer screenshot cropped to the comment section.",
+    "processingFailed": "The screenshot could not be processed. Please retry.",
+    "invalidResponse": "The screenshot response did not contain extracted comments.",
+    "noneExtracted": "No comments were extracted from this screenshot.",
+    "noCommentsHint": "No comments were recognized. Try a clearer screenshot that shows the comment text at a larger size.",
+    "extractedSummary": "Recognized {count, plural, one {# comment} other {# comments}} and added them to the list below. Duplicates are skipped, and the list holds up to 30 comments. Review and correct the results.",
+    "ocrConfidence": "OCR confidence: {percent}%"
+  },
+  "Common": {
+    "language": "Language",
+    "add": "Add",
+    "remove": "Remove"
+  },
+  "Errors": {
+    "maxComments": "Maximum of 30 comments allowed.",
+    "maxImages": "You can upload a maximum of 2 images.",
+    "imagesTooLarge": "Images must be under 2 MB total.",
+    "readImageFailed": "Could not read the selected image.",
+    "missingPostText": "Please enter some post text.",
+    "requestTooLarge": "The request is too large.",
+    "analysisUnavailable": "Analysis is unavailable. Check that the backend is running and try again."
+  },
+  "Report": {
+    "title": "Final Analysis Report / 综合分析报告",
+    "insufficientData": "Insufficient data: ",
+    "separator": "; ",
+    "missingAuthorship": "Not enough text to assess AI-writing signals",
+    "missingLayer3": "Not enough comments to assess comment coordination",
+    "missingLayer4": "No post images to assess image-text consistency",
+    "rawResultTitle": "Full Analysis Result",
+    "showRawJson": "Show raw JSON",
+    "emptyState": "Analysis results will appear here."
+  },
+  "ReferenceTool": {
+    "title": "Image Reference Check (Separate Tool)",
+    "description": "Use this only when you have both an image to check and its trusted original. This compares those two images; it is separate from the post analysis above.",
+    "workflowHint": "Choose the image you want to check on the left and its trusted original on the right. Then select Compare Images.",
+    "targetTitle": "Image to Check",
+    "targetDescription": "Choose the image you want to inspect.",
+    "referenceTitle": "Trusted Original",
+    "referenceDescription": "Choose the trusted original version of the same image.",
+    "chooseImage": "Choose an image",
+    "removeTarget": "Remove image to check",
+    "removeReference": "Remove trusted original",
+    "targetPreviewAlt": "Preview of the image to check",
+    "referencePreviewAlt": "Preview of the trusted original",
+    "compareButton": "Compare Images",
+    "comparing": "Comparing images...",
+    "selectBothImages": "Choose both the image to check and its trusted original.",
+    "invalidImage": "Choose a valid image file.",
+    "fileTooLarge": "Each image must be 12 MB or smaller.",
+    "comparisonFailed": "Image comparison failed. Check that the service is running and try again.",
+    "invalidResponse": "No valid comparison result was returned. Please retry.",
+    "resultTitle": "Comparison Result",
+    "resultHint": "This is the model output. Review it alongside the images and other evidence; it cannot by itself prove that an image was changed or establish anyone's intent."
+  }
+}

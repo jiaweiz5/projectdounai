@@ -1,307 +1,266 @@
 "use client";
 
-import { useState } from "react";
-import type { ChangeEvent, FormEvent } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { ChangeEvent, FormEvent, RefObject } from "react";
+import { useTranslations } from "next-intl";
 
-const MAX_IMAGE_BYTES = 12 * 1024 * 1024;
-
-type ReferenceFeatures = {
-  structural_difference: number;
-  mean_gray_difference: number;
-  mean_color_difference: number;
-  p99_5_color_difference: number;
-  changed_pixel_ratio: number;
-  largest_change_ratio: number;
-};
-
-type ReferenceResult = {
-  status: string;
-  available: boolean;
-  task: string;
-  edit_probability: number;
-  threshold: number;
-  label: number;
-  prediction: string;
-  risk: string;
-  reference_similarity: number;
-  changed_region_count: number;
-  target_size: [number, number];
-  reference_size: [number, number];
-  features: ReferenceFeatures;
-  training_note?: string;
-};
-
+// Describe the fields returned by the independent image-reference endpoint.
 type ReferenceResponse = {
-  filename: string;
-  reference_filename: string;
-  layer4_reference: ReferenceResult;
+  filename?: string;
+  reference_filename?: string;
+  layer4_reference?: Record<string, unknown>;
   message?: string;
 };
 
-function formatScore(value: number) {
-  return value.toFixed(4);
-}
+// Keep the two upload slots visually consistent while their labels differ.
+type ImageSlotProps = {
+  title: string;
+  description: string;
+  chooseLabel: string;
+  removeLabel: string;
+  previewAlt: string;
+  file: File | null;
+  previewUrl: string | null;
+  inputRef: RefObject<HTMLInputElement | null>;
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  onRemove: () => void;
+};
 
-function validateImage(file: File | undefined) {
-  if (!file) return "Select an image file.";
+function ImageSlot({
+  title,
+  description,
+  chooseLabel,
+  removeLabel,
+  previewAlt,
+  file,
+  previewUrl,
+  inputRef,
+  onChange,
+  onRemove,
+}: ImageSlotProps) {
+  return (
+    <div className="rounded-lg border border-zinc-200 bg-zinc-50 p-4">
+      <h3 className="font-semibold text-zinc-900">{title}</h3>
+      <p className="mt-1 text-sm leading-6 text-zinc-600">{description}</p>
+      <input
+        ref={inputRef}
+        type="file"
+        accept="image/*"
+        onChange={onChange}
+        className="sr-only"
+      />
+      {/* Click this translated button to open the browser's file picker. */}
+      <button
+        type="button"
+        onClick={() => inputRef.current?.click()}
+        className="mt-3 rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-800 hover:bg-zinc-100 focus:outline-none focus:ring-2 focus:ring-blue-600"
+      >
+        {chooseLabel}
+      </button>
 
-  if (!file.type.startsWith("image/")) {
-    return "The selected file must be an image.";
-  }
-
-  if (file.size > MAX_IMAGE_BYTES) {
-    return "Each image must be 12 MB or smaller.";
-  }
-
-  return null;
+      {file && previewUrl && (
+        <div className="relative mt-3">
+          {/* The browser creates this temporary URL only for the local preview. */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={previewUrl}
+            alt={previewAlt}
+            className="h-52 w-full rounded-lg border border-zinc-200 bg-white object-contain"
+          />
+          <p className="mt-2 truncate text-xs text-zinc-600" title={file.name}>
+            {file.name}
+          </p>
+          <button
+            type="button"
+            onClick={onRemove}
+            aria-label={removeLabel}
+            title={removeLabel}
+            className="absolute right-2 top-2 flex h-9 w-9 items-center justify-center rounded-full bg-black/75 text-2xl leading-none text-white hover:bg-black focus:outline-none focus:ring-2 focus:ring-white"
+          >
+            ×
+          </button>
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default function Layer4ReferenceAnalyzer() {
+  // Load labels and feedback in the language currently chosen in the app.
+  const t = useTranslations("ReferenceTool");
   const [targetFile, setTargetFile] = useState<File | null>(null);
   const [referenceFile, setReferenceFile] = useState<File | null>(null);
-  const [result, setResult] = useState<ReferenceResponse | null>(null);
-  const [loading, setLoading] = useState(false);
+  const [targetPreview, setTargetPreview] = useState<string | null>(null);
+  const [referencePreview, setReferencePreview] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+  const [result, setResult] = useState<ReferenceResponse | null>(null);
+  const targetInputRef = useRef<HTMLInputElement>(null);
+  const referenceInputRef = useRef<HTMLInputElement>(null);
 
-  function handleTargetFile(event: ChangeEvent<HTMLInputElement>) {
-    const file = event.target.files?.[0];
-    const validationError = validateImage(file);
+  // Release temporary browser image URLs when a preview changes or the page closes.
+  useEffect(() => {
+    const targetUrl = targetPreview;
+    const referenceUrl = referencePreview;
+    return () => {
+      if (targetUrl) URL.revokeObjectURL(targetUrl);
+      if (referenceUrl) URL.revokeObjectURL(referenceUrl);
+    };
+  }, [targetPreview, referencePreview]);
 
-    if (validationError) {
+  // Validate the selected image and update the matching preview slot.
+  function handleImageChange(
+    kind: "target" | "reference",
+    event: ChangeEvent<HTMLInputElement>,
+  ) {
+    const file = event.target.files?.[0] ?? null;
+    // Reset the input so selecting the same file again will still be detected.
+    event.target.value = "";
+    setError("");
+    setResult(null);
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      setError(t("invalidImage"));
+      return;
+    }
+    if (file.size > 12 * 1024 * 1024) {
+      setError(t("fileTooLarge"));
+      return;
+    }
+
+    const previewUrl = URL.createObjectURL(file);
+    if (kind === "target") {
+      setTargetFile(file);
+      setTargetPreview(previewUrl);
+    } else {
+      setReferenceFile(file);
+      setReferencePreview(previewUrl);
+    }
+  }
+
+  // Remove one selected image so it will not be sent to the comparison endpoint.
+  function removeImage(kind: "target" | "reference") {
+    if (kind === "target") {
       setTargetFile(null);
-      setError(validationError);
-      event.target.value = "";
-      return;
-    }
-
-    setTargetFile(file ?? null);
-    setResult(null);
-    setError("");
-  }
-
-  function handleReferenceFile(event: ChangeEvent<HTMLInputElement>) {
-    const file = event.target.files?.[0];
-    const validationError = validateImage(file);
-
-    if (validationError) {
+      setTargetPreview(null);
+      if (targetInputRef.current) targetInputRef.current.value = "";
+    } else {
       setReferenceFile(null);
-      setError(validationError);
-      event.target.value = "";
-      return;
+      setReferencePreview(null);
+      if (referenceInputRef.current) referenceInputRef.current.value = "";
     }
-
-    setReferenceFile(file ?? null);
     setResult(null);
     setError("");
   }
 
-  async function compareImages(event: FormEvent<HTMLFormElement>) {
+  // Send both selected images to the existing reference-comparison API route.
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
-    if (loading) return;
-
+    if (isLoading) return;
     if (!targetFile || !referenceFile) {
-      setError("Select both the suspected image and its trusted reference.");
+      setError(t("selectBothImages"));
       return;
     }
 
-    // FormData preserves the two files as multipart uploads for FastAPI.
-    const formData = new FormData();
-    formData.append("file", targetFile);
-    formData.append("reference_file", referenceFile);
-
-    setLoading(true);
+    setIsLoading(true);
     setError("");
     setResult(null);
-
     try {
+      // The backend expects these exact multipart field names.
+      const formData = new FormData();
+      formData.append("file", targetFile);
+      formData.append("reference_file", referenceFile);
+
       const response = await fetch("/api/analyze-layer4-reference", {
         method: "POST",
         body: formData,
       });
-
-      const data = (await response.json()) as ReferenceResponse & {
-        error?: string;
-      };
+      const payload = (await response.json().catch(() => ({}))) as
+        | ReferenceResponse
+        | { detail?: string; error?: string };
 
       if (!response.ok) {
-        throw new Error(data.error ?? "Reference comparison unavailable.");
+        if (response.status === 413) throw new Error(t("fileTooLarge"));
+        if (response.status === 415) throw new Error(t("invalidImage"));
+        throw new Error(t("comparisonFailed"));
       }
-
-      setResult(data);
-    } catch (caughtError) {
+      const parsed = payload as ReferenceResponse;
+      if (
+        !parsed.layer4_reference ||
+        typeof parsed.layer4_reference !== "object"
+      ) {
+        throw new Error(t("invalidResponse"));
+      }
+      setResult(parsed);
+    } catch (requestError) {
+      // Keep translated validation messages; use a translated fallback otherwise.
+      const knownErrors = [t("fileTooLarge"), t("invalidImage"), t("comparisonFailed"), t("invalidResponse")];
       setError(
-        caughtError instanceof Error
-          ? caughtError.message
-          : "Reference comparison unavailable.",
+        requestError instanceof Error && knownErrors.includes(requestError.message)
+          ? requestError.message
+          : t("comparisonFailed"),
       );
     } finally {
-      setLoading(false);
+      setIsLoading(false);
     }
   }
 
-  const analysis = result?.layer4_reference;
-  const possibleEditing = analysis?.label === 1;
-
   return (
-    <section className="rounded-xl bg-white p-6 shadow-sm">
-      <div>
-        <p className="text-xs font-semibold uppercase tracking-wide text-zinc-500">
-          Layer 4
-        </p>
-
-        <h2 className="mt-1 text-xl font-semibold text-zinc-900">
-          Reference Image Comparison
-        </h2>
-
-        <p className="mt-2 text-sm text-zinc-600">
-          Compare a suspected image with a trusted original version of the same
-          image. This tool cannot work reliably without a genuine reference.
-        </p>
-      </div>
-
-      <form onSubmit={compareImages} className="mt-6 space-y-5">
+    <div className="rounded-lg border border-zinc-200 bg-white p-4">
+      <p className="mb-4 text-sm leading-6 text-zinc-600">{t("workflowHint")}</p>
+      <form onSubmit={handleSubmit} className="grid gap-4">
         <div className="grid gap-4 md:grid-cols-2">
-          <label className="rounded-lg border border-zinc-200 bg-zinc-50 p-4">
-            <span className="block font-semibold text-zinc-900">
-              Suspected or edited image
-            </span>
-
-            <span className="mt-1 block text-xs text-zinc-500">
-              This is the image you want to check.
-            </span>
-
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleTargetFile}
-              className="mt-4 block w-full text-sm text-zinc-700"
-            />
-
-            {targetFile && (
-              <span className="mt-2 block text-xs font-medium text-zinc-700">
-                Selected: {targetFile.name}
-              </span>
-            )}
-          </label>
-
-          <label className="rounded-lg border border-zinc-200 bg-zinc-50 p-4">
-            <span className="block font-semibold text-zinc-900">
-              Trusted reference image
-            </span>
-
-            <span className="mt-1 block text-xs text-zinc-500">
-              Use a known original of the same image.
-            </span>
-
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleReferenceFile}
-              className="mt-4 block w-full text-sm text-zinc-700"
-            />
-
-            {referenceFile && (
-              <span className="mt-2 block text-xs font-medium text-zinc-700">
-                Selected: {referenceFile.name}
-              </span>
-            )}
-          </label>
+          <ImageSlot
+            title={t("targetTitle")}
+            description={t("targetDescription")}
+            chooseLabel={t("chooseImage")}
+            removeLabel={t("removeTarget")}
+            previewAlt={t("targetPreviewAlt")}
+            file={targetFile}
+            previewUrl={targetPreview}
+            inputRef={targetInputRef}
+            onChange={(event) => handleImageChange("target", event)}
+            onRemove={() => removeImage("target")}
+          />
+          <ImageSlot
+            title={t("referenceTitle")}
+            description={t("referenceDescription")}
+            chooseLabel={t("chooseImage")}
+            removeLabel={t("removeReference")}
+            previewAlt={t("referencePreviewAlt")}
+            file={referenceFile}
+            previewUrl={referencePreview}
+            inputRef={referenceInputRef}
+            onChange={(event) => handleImageChange("reference", event)}
+            onRemove={() => removeImage("reference")}
+          />
         </div>
-
-        {error && (
-          <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">
-            {error}
-          </div>
-        )}
 
         <button
           type="submit"
-          disabled={loading || !targetFile || !referenceFile}
-          className="w-full rounded-lg bg-zinc-900 px-5 py-3 font-semibold text-white hover:bg-zinc-700 disabled:cursor-not-allowed disabled:opacity-50"
+          disabled={!targetFile || !referenceFile || isLoading}
+          className="w-full rounded-lg bg-zinc-900 px-5 py-3 font-semibold text-white hover:bg-zinc-700 disabled:cursor-not-allowed disabled:bg-zinc-400"
         >
-          {loading ? "Comparing images..." : "Compare with reference"}
+          {isLoading ? t("comparing") : t("compareButton")}
         </button>
       </form>
 
-      {analysis && (
-        <div
-          className={`mt-6 rounded-xl border p-5 ${
-            possibleEditing
-              ? "border-red-200 bg-red-50"
-              : "border-emerald-200 bg-emerald-50"
-          }`}
-        >
-          <div className="flex flex-wrap items-start justify-between gap-3">
-            <div>
-              <p className="text-sm text-zinc-600">Reference result</p>
-              <h3 className="mt-1 text-lg font-semibold text-zinc-900">
-                {possibleEditing ? "Possible editing detected" : "No edit detected"}
-              </h3>
-            </div>
-
-            <span
-              className={`rounded-full px-3 py-1 text-sm font-semibold ${
-                possibleEditing
-                  ? "bg-red-100 text-red-800"
-                  : "bg-emerald-100 text-emerald-800"
-              }`}
-            >
-              {analysis.risk} risk
-            </span>
-          </div>
-
-          <dl className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            <div className="rounded-lg bg-white/80 p-3">
-              <dt className="text-xs text-zinc-500">Editing probability</dt>
-              <dd className="mt-1 font-semibold text-zinc-900">
-                {formatScore(analysis.edit_probability)}
-              </dd>
-            </div>
-
-            <div className="rounded-lg bg-white/80 p-3">
-              <dt className="text-xs text-zinc-500">Decision threshold</dt>
-              <dd className="mt-1 font-semibold text-zinc-900">
-                {formatScore(analysis.threshold)}
-              </dd>
-            </div>
-
-            <div className="rounded-lg bg-white/80 p-3">
-              <dt className="text-xs text-zinc-500">Reference similarity</dt>
-              <dd className="mt-1 font-semibold text-zinc-900">
-                {formatScore(analysis.reference_similarity)}
-              </dd>
-            </div>
-
-            <div className="rounded-lg bg-white/80 p-3">
-              <dt className="text-xs text-zinc-500">Changed regions</dt>
-              <dd className="mt-1 font-semibold text-zinc-900">
-                {analysis.changed_region_count}
-              </dd>
-            </div>
-          </dl>
-
-          <div className="mt-4 rounded-lg bg-white/80 p-4 text-sm text-zinc-700">
-            <p>
-              Target size: {analysis.target_size[0]} × {analysis.target_size[1]}
-            </p>
-            <p className="mt-1">
-              Reference size: {analysis.reference_size[0]} ×{" "}
-              {analysis.reference_size[1]}
-            </p>
-          </div>
-
-          {result?.message && (
-            <p className="mt-4 text-xs text-zinc-600">{result.message}</p>
-          )}
-
-          {analysis.training_note && (
-            <p className="mt-2 text-xs text-zinc-500">
-              {analysis.training_note}
-            </p>
-          )}
-        </div>
+      {error && (
+        <p role="alert" className="mt-4 rounded-lg bg-red-50 p-3 text-sm text-red-700">
+          {error}
+        </p>
       )}
-    </section>
+
+      {result?.layer4_reference && (
+        <section className="mt-4 rounded-lg bg-zinc-50 p-4">
+          <h3 className="font-semibold text-zinc-900">{t("resultTitle")}</h3>
+          <p className="mt-1 text-sm text-zinc-600">{t("resultHint")}</p>
+          <pre className="mt-3 overflow-x-auto rounded-lg bg-zinc-950 p-4 text-sm text-green-300">
+            {JSON.stringify(result.layer4_reference, null, 2)}
+          </pre>
+        </section>
+      )}
+    </div>
   );
 }
