@@ -1,719 +1,140 @@
 "use client";
 
-// Main analysis page: gathers inputs and displays detector results for Layers 1–4.
 import { useRef, useState } from "react";
-import type { ChangeEvent, ReactNode } from "react";
-import { useLocale, useTranslations } from "next-intl";
+import type { ChangeEvent, CSSProperties } from "react";
+import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
-import Layer3ScreenshotAnalyzer from "@/components/Layer3ScreenshotAnalyzer";
-import Layer4ReferenceAnalyzer from "@/components/Layer4ReferenceAnalyzer";
-import Layer4ResultCard from "@/components/Layer4ResultCard";
-import type { Layer4Result } from "@/components/Layer4ResultCard";
-type Comment = {
-  id: string;
-  text: string;
-  timestamp: null;
+import Link from "next/link";
+import AdditionalChecks from "@/components/AdditionalChecks";
+import "./verifier.css";
+
+type Analysis = {
+  authorship: { status: string; classification?: string; probability_any_ai?: number | null; character_count?: number; model_version?: string };
+  covert_ad?: { label: string; probability: number };
 };
-// This is the optional Qwen explanation; detector scores stay in their own fields.
-type FinalReport = {
-  status: "generated" | "unavailable";
-  summary: string;
-  missing_inputs: string[];
-};
-// Map stable API identifiers to translation message keys.
-const missingInputKeys: Record<
-  string,
-  "missingAuthorship" | "missingLayer3" | "missingLayer4"
-> = {
-  authorship: "missingAuthorship",
-  layer3: "missingLayer3",
-  layer4: "missingLayer4",
-};
-// Layer 1 can decline to classify a post, so its score and label are optional.
-type AuthorshipResult = {
-  status: string;
-  classification?: string | null;
-  probability_any_ai?: number | null;
-  risk_score?: number | null;
-  character_count?: number;
-};
-
-// Layer 2 returns an ad score and the cutoff used to choose its label.
-type CovertAdResult = {
-  label: string;
-  probability: number;
-  threshold: number;
-};
-
-// Layer 3 is unavailable when there are too few usable comments.
-type CoordinationResult = {
-  status: string;
-  available: boolean;
-  score: number | null;
-  threshold?: number | null;
-  prediction?: string | null;
-  comment_count?: number;
-  message?: string;
-};
-
-// The backend can be ready while still lacking enough comments to make a prediction.
-function hasCoordinationPrediction(result: CoordinationResult): boolean {
-  return (
-    result.status === "completed" &&
-    result.available &&
-    typeof result.score === "number" &&
-    typeof result.prediction === "string"
-  );
-}
-
-// Find the first FastAPI validation path without showing the submitted content.
-function rejectedInputLocation(payload: unknown): string | null {
-  if (!payload || typeof payload !== "object" || !("detail" in payload)) {
-    return null;
-  }
-  const detail = payload.detail;
-  if (!Array.isArray(detail) || detail.length === 0) return null;
-  const first = detail[0];
-  if (!first || typeof first !== "object" || !("loc" in first) || !Array.isArray(first.loc)) {
-    return null;
-  }
-  const parts = first.loc
-    .filter((part: unknown): part is string | number =>
-      typeof part === "string" || typeof part === "number",
-    )
-    .filter((part: string | number) => part !== "body");
-  return (
-    parts
-      .map((part: string | number, index: number) =>
-        typeof part === "number" ? `[${part}]` : index === 0 ? part : `.${part}`,
-      )
-      .join("") || null
-  );
-}
-
-// Type the fields shown in result cards while retaining the full response for JSON.
-type AnalyzeResponse = Record<string, unknown> & {
-  authorship?: AuthorshipResult;
-  covert_ad?: CovertAdResult;
-  layer3?: CoordinationResult;
-  layer4?: Layer4Result;
-  final_report?: FinalReport;
-};
-
-// Format a 0–1 model score as a percentage without rounding away cutoff details.
-function formatPercent(value: number | null | undefined): string {
-  return typeof value === "number" && Number.isFinite(value)
-    ? `${(value * 100).toFixed(2)}%`
-    : "—";
-}
-
-// Give the first three layers the same accessible card layout.
-function ResultCard({
-  title,
-  outcome,
-  children,
-}: {
-  title: string;
-  outcome: string;
-  children: ReactNode;
-}) {
-  return (
-    <section className="rounded-xl bg-white p-6 shadow-sm">
-      <h2 className="text-lg font-semibold text-zinc-900">{title}</h2>
-      <p className="mt-3 text-base font-medium text-zinc-800">{outcome}</p>
-      <div className="mt-3 space-y-2 text-sm leading-6 text-zinc-600">
-        {children}
-      </div>
-    </section>
-  );
-}
-
-// These labels cover the new cards in both languages without changing message files.
-const resultLabels = {
-  en: {
-    authorship: "Layer 1 · AI involvement",
-    aiInvolved: "AI involvement indicated",
-    noAi: "AI involvement not indicated",
-    covertAd: "Layer 2 · Covert advertising",
-    likelyAd: "Likely advertisement",
-    likelyNonAd: "Likely not an advertisement",
-    coordination: "Layer 3 · Comment coordination",
-    normal: "No coordination indicated",
-    coordinated: "Possible coordinated comments",
-    unavailable: "Insufficient data for this check",
-    aiEstimate: "Estimated AI involvement",
-    riskScore: "Risk score",
-    modelScore: "Model score",
-    cutoff: "Decision cutoff",
-    characters: "Characters analyzed",
-    comments: "Comments analyzed",
-    invalidInput: "The backend could not accept this input.",
-    errorField: "Problem field",
-    checkInput: "Check this item and try again.",
-    needFiveComments: "Add at least five comments to run this check.",
-    authorshipHelp: "This checks writing patterns. It cannot tell which tools the author actually used.",
-    adHelp: "This checks whether the post reads like a promotion. A score at or above the cutoff is flagged.",
-    coordinationHelp: "This compares comments for repetition and similar wording. Few comments may not be enough to judge.",
-    note: "Model predictions are estimates, not proof.",
-  },
+type Mode = "text" | "images" | "comments";
+const copy = {
   zh: {
-    authorship: "第 1 项 · 笔记文字有 AI 参与迹象吗？",
-    aiInvolved: "文字可能有 AI 参与写作",
-    noAi: "暂未发现明显的 AI 写作迹象",
-    covertAd: "第 2 项 · 这篇笔记像推广吗？",
-    likelyAd: "疑似推广内容",
-    likelyNonAd: "暂未发现明显的推广迹象",
-    coordination: "第 3 项 · 评论区有刷评迹象吗？",
-    normal: "暂未发现明显的刷评迹象",
-    coordinated: "评论可能存在集中刷评迹象",
-    unavailable: "信息不够，暂时无法判断",
-    aiEstimate: "AI 参与可能性（模型估计）",
-    riskScore: "风险参考分（0～1，并非概率）",
-    modelScore: "模型给出的分数",
-    cutoff: "判定线",
-    characters: "本次分析的字数",
-    comments: "本次分析的评论数",
-    invalidInput: "提交的内容未通过检查。",
-    errorField: "出错位置",
-    checkInput: "请检查这一项后再试。",
-    needFiveComments: "请至少添加 5 条评论，才能查看这一项结果。",
-    authorshipHelp: "系统只看文字的写法，无法知道作者实际用了什么工具。",
-    adHelp: "系统会判断文字是否像推广文案；分数达到判定线时会提示疑似推广。",
-    coordinationHelp: "系统会比较评论是否重复、说法是否相似；评论太少时可能无法判断。",
-    note: "检测结果仅供参考，不能单独作为定论。",
+    brand: "种草鉴别助手", tagline: "读懂种草，也读懂文字背后", title: "这篇种草文案，", accent: "有 AI 参与吗？",
+    intro: "粘贴笔记正文，一键查看 AI 写作迹象。配图与评论，也可以进一步核验。",
+    tabs: ["文案鉴别", "配图核验", "评论分析"], input: "待检测文案", sample: "试用示例", sampleHint: "演示文案，仅用于体验操作，不代表真人样本。",
+    placeholder: "把想了解的种草笔记粘贴到这里…\n\n保留原文的标点、分段和 emoji，完整的上下文有助于分析。",
+    upload: "导入文本", clear: "清空", detect: "开始鉴别", busy: "正在分析…", shortcut: "Ctrl / ⌘ + Enter 开始检测",
+    result: "鉴别结果", waiting: "等待检测", empty: "这篇文案，有哪些写作迹象？", emptyHelp: "在左侧粘贴一篇笔记，点击「开始鉴别」，结果会显示在这里。",
+    analyzing: "正在读懂这篇文案", analyzingHelp: "正在分析文字特征，请稍候。", retry: "检测未完成", retryHelp: "请检查提示后重新检测。",
+    ai: "发现 AI 参与写作的迹象", human: "暂未发现明显 AI 写作迹象", unknown: "信息不足，暂时无法判断", unknownHelp: "请提供更完整的中文笔记正文，再试一次。",
+    score: "AI 参与可能性", explanation: "这是对整篇文案的模型估计，不代表文中有多少字由 AI 写成。",
+    note: "结果仅供辅助判断，不能证明作者实际使用了 AI，也不代表商品或使用体验的真假。",
+    download: "下载结果", ad: "补充观察 · 推广倾向", adYes: "文字存在推广倾向", adNo: "暂未发现明显推广倾向", adHelp: "推广倾向与 AI 写作是两项独立判断。",
+    footer: "独立研究项目 · 非小红书官方产品", privacy: "只分析文字特征，不替你判断好物。",
+    tooShort: "请至少输入 20 个字，并尽量保留完整正文。", fileError: "请导入 UTF-8 编码的 .txt 文件，正文不超过 10,000 字。",
+    network: "检测服务暂时不可用，请稍后重试。", invalid: "检测服务没有返回有效结果，请重试。",
+    tips: ["01  粘贴完整笔记", "02  查看写作迹象", "03  按需补充核验"], help: "如何使用", helpText: "粘贴 20–10,000 字正文后开始检测。修改文字后需重新检测；配图核验和评论分析可从上方切换。",
   },
-} as const;
+  en: {
+    brand: "NoteCheck", tagline: "A closer look at the words behind a recommendation", title: "A recommendation,", accent: "written with AI?",
+    intro: "Paste a post to check for signs of AI writing. Explore images and comments when you need more context.",
+    tabs: ["Text detection", "Image checks", "Comment analysis"], input: "Text to check", sample: "Try a sample", sampleHint: "Demo text for trying the interface, not a verified human sample.",
+    placeholder: "Paste a recommendation here…\n\nKeep the original punctuation, paragraphs and emoji for context.",
+    upload: "Import text", clear: "Clear", detect: "Check text", busy: "Analyzing…", shortcut: "Ctrl / ⌘ + Enter to check",
+    result: "Detection result", waiting: "Ready when you are", empty: "What does the writing suggest?", emptyHelp: "Paste a post on the left and select Check text. Your result will appear here.",
+    analyzing: "Reading your post", analyzingHelp: "Analyzing writing patterns. Please wait.", retry: "Check not completed", retryHelp: "Review the message and try again.",
+    ai: "Signs of AI involvement detected", human: "No clear signs of AI involvement", unknown: "Not enough evidence", unknownHelp: "Try a more complete Chinese post.",
+    score: "Estimated AI involvement", explanation: "An estimate for the whole post, not the percentage of words written by AI.",
+    note: "Results are signals, not proof of AI use or of a product’s quality or authenticity.", download: "Download result",
+    ad: "Additional check · Promotional tone", adYes: "Promotional tone detected", adNo: "No clear promotional tone", adHelp: "Promotion and AI authorship are separate checks.",
+    footer: "Independent research project · Not affiliated with Xiaohongshu", privacy: "Writing patterns, not product verdicts.",
+    tooShort: "Enter at least 20 characters, ideally the complete post.", fileError: "Import a UTF-8 .txt file with no more than 10,000 characters.",
+    network: "Detection is temporarily unavailable. Please try again.", invalid: "The service returned an invalid result. Please retry.",
+    tips: ["01  Paste a complete post", "02  Review writing patterns", "03  Explore extra checks"], help: "How it works", helpText: "Paste 20–10,000 characters. Recheck after editing. Switch tabs for image and comment checks.",
+  },
+};
+const example = "最近换了一支洁面，用了一个多星期，简单记一下感受。\n\n泡沫挺细的，洗完脸颊没有紧绷感，这点我很喜欢。不过香味比预想中重，介意香味的姐妹可以先试小样。\n\n我一般只在晚上用，早上还是清水。暂时没有打算囤货，先把这一支用完再说～";
 
-// Render the input form, request analysis, and show the response on this page.
+function Mark({ kind = "text" }: { kind?: Mode | "spark" }) {
+  return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    {kind === "text" ? <><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 12h7M9 16h5"/></> : kind === "images" ? <><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="8" cy="9" r="1"/><path d="m4 17 5-5 4 4 3-3 5 5"/></> : kind === "comments" ? <path d="M20 11a8 8 0 0 1-8 8H4l1-4a8 8 0 1 1 15-4ZM8 10h8M8 13h5"/> : <path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5Z"/>}
+  </svg>;
+}
+
 export default function Home() {
-  // Load each part of the screen from the separate English/Chinese catalogs.
-  const homeText = useTranslations("Home");
-  const postText = useTranslations("PostText");
-  const imageText = useTranslations("Images");
-  const commentText = useTranslations("Comments");
-  const commonText = useTranslations("Common");
-  const errorText = useTranslations("Errors");
-  const reportText = useTranslations("Report");
-  const referenceText = useTranslations("ReferenceTool");
-  // Read the active language and router so the language button can refresh UI.
   const locale = useLocale();
+  const t = locale === "en" ? copy.en : copy.zh;
   const router = useRouter();
-  // Pick the new card labels using the same language setting as the rest of the page.
-  const resultText = locale === "zh-CN" ? resultLabels.zh : resultLabels.en;
+  const [mode, setMode] = useState<Mode>("text");
   const [text, setText] = useState("");
-  const [comments, setComments] = useState<Comment[]>([]);
-  const [commentInput, setCommentInput] = useState("");
-  const [images, setImages] = useState<string[]>([]);
+  const [sample, setSample] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [result, setResult] = useState<AnalyzeResponse | null>(null);
-  // This ref lets the styled upload button open the browser's native file picker.
-  const imageInputRef = useRef<HTMLInputElement>(null);
-  // Add one manually typed comment after validating it and assigning an ID.
-  function addComment() {
-    const trimmed = commentInput.trim();
-    if (!trimmed) return;
-    if (comments.length >= 30) {
-      setError(errorText("maxComments"));
-      return;
-    }
-    let sequence = comments.length + 1;
-    let id = `c${String(sequence).padStart(2, "0")}`;
-    while (comments.some((comment) => comment.id === id)) {
-      sequence += 1;
-      id = `c${String(sequence).padStart(2, "0")}`;
-    }
-    const newComment: Comment = {
-      id,
-      text: trimmed,
-      timestamp: null,
-    };
-    setComments((previous) => [...previous, newComment]);
-    setCommentInput("");
-    setError("");
-    setResult(null);
+  const [result, setResult] = useState<Analysis | null>(null);
+  const [help, setHelp] = useState(false);
+  const fileInput = useRef<HTMLInputElement>(null);
+  const requestId = useRef(0);
+  const count = Array.from(text).length;
+  const a = result?.authorship;
+  const p = a?.status === "supported" && typeof a.probability_any_ai === "number" && Number.isFinite(a.probability_any_ai) && a.probability_any_ai >= 0 && a.probability_any_ai <= 1 ? a.probability_any_ai : null;
+  const known = p !== null && ["ai_involved", "human_like", "human_written", "human_likely"].includes(a?.classification ?? "");
+  const outcome = !known ? t.unknown : a?.classification === "ai_involved" ? t.ai : t.human;
+
+  function updateText(value: string) { requestId.current++; setText(value); setResult(null); setError(""); setSample(false); }
+  async function importFile(event: ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0]; event.target.value = "";
+    if (!file) return;
+    const id = ++requestId.current;
+    if (!file.name.toLowerCase().endsWith(".txt") || file.size > 100000) { setError(t.fileError); return; }
+    try {
+      const value = new TextDecoder("utf-8", { fatal: true }).decode(await file.arrayBuffer());
+      if (requestId.current !== id) return;
+      if (Array.from(value).length > 10000) { setError(t.fileError); return; }
+      updateText(value);
+    } catch { if (requestId.current === id) setError(t.fileError); }
   }
-  // Clean OCR output, skip duplicates, and merge it into the shared comments list.
-  function addExtractedComments(extracted: string[]) {
-    const cleaned = extracted
-      .map((item) => item.replace(/\s+/g, " ").trim())
-      .filter(Boolean);
-    setComments((previous) => {
-      const seen = new Set(
-        previous.map((comment) => comment.text.trim().toLocaleLowerCase()),
-      );
-      const usedIds = new Set(previous.map((comment) => comment.id));
-      const additions: Comment[] = [];
-      let sequence = previous.length + 1;
-      for (const value of cleaned) {
-        const key = value.toLocaleLowerCase();
-        if (seen.has(key) || previous.length + additions.length >= 30) continue;
-        // Keep IDs unique even if the user removed an earlier comment.
-        let id = `c${String(sequence).padStart(2, "0")}`;
-        while (usedIds.has(id)) {
-          sequence += 1;
-          id = `c${String(sequence).padStart(2, "0")}`;
-        }
-        usedIds.add(id);
-        seen.add(key);
-        additions.push({ id, text: value, timestamp: null });
-        sequence += 1;
-      }
-      return [...previous, ...additions];
-    });
-    setResult(null);
-    setError("");
-  }
-  // Update one comment so the user can correct OCR mistakes before analysis.
-  function editComment(id: string, text: string) {
-    setComments((previous) =>
-      previous.map((comment) =>
-        comment.id === id ? { ...comment, text } : comment,
-      ),
-    );
-    setResult(null);
-  }
-  // Remove the selected comment from the shared list.
-  function removeComment(id: string) {
-    setComments((previous) =>
-      previous.filter((comment) => comment.id !== id),
-    );
-    setResult(null);
-  }
-  // Validate post images, then convert them to data URLs for the backend API.
-  function handleImages(event: ChangeEvent<HTMLInputElement>) {
-    const files = Array.from(event.target.files ?? []);
-    // Clear the input so choosing the same file again still triggers onChange.
-    event.target.value = "";
-    if (files.length > 2) {
-      setError(errorText("maxImages"));
-      event.target.value = "";
-      return;
-    }
-    const totalBytes = files.reduce((sum, file) => sum + file.size, 0);
-    if (totalBytes > 2 * 1024 * 1024) {
-      setError(errorText("imagesTooLarge"));
-      event.target.value = "";
-      return;
-    }
-    setError("");
-    // FileReader turns the selected images into the data URLs expected by the
-    // existing /api/analyze JSON request.
-    Promise.all(
-      files.map(
-        (file) =>
-          new Promise<string>((resolve, reject) => {
-            const reader = new FileReader();
-            reader.onload = () => resolve(reader.result as string);
-            reader.onerror = () => reject(new Error(errorText("readImageFailed")));
-            reader.readAsDataURL(file);
-          }),
-      ),
-    )
-      .then((dataUrls) => {
-        setImages(dataUrls);
-        setResult(null);
-      })
-      .catch(() => {
-        setError(errorText("readImageFailed"));
-    });
-  }
-  // Remove one image preview and exclude that image from the next analysis request.
-  function removeImage(indexToRemove: number) {
-    setImages((previous) => previous.filter((_, index) => index !== indexToRemove));
-    setResult(null);
-  }
-  // Save a language choice in a cookie, then refresh so next-intl reloads messages.
-  function changeLanguage(nextLocale: "en" | "zh-CN") {
-    document.cookie = `locale=${nextLocale}; Path=/; Max-Age=31536000; SameSite=Lax`;
-    router.refresh();
-  }
-  // Send post text, comments, images, and the request for a Qwen report to the API.
   async function analyze() {
     if (loading) return;
-    if (!text.trim()) {
-      setError(errorText("missingPostText"));
-      return;
-    }
-    const input = {
-      text,
-      comments: comments.map((comment) => comment.text.trim()).filter(Boolean),
-      images,
-      // This opts in to the Qwen call after the four detector results are ready.
-      include_report: true,
-    };
-    const serialized = JSON.stringify(input);
-    const requestBytes = new Blob([serialized]).size;
-    if (requestBytes > 3.5 * 1024 * 1024) {
-      setError(errorText("requestTooLarge"));
-      return;
-    }
-    setLoading(true);
-    setError("");
-    setResult(null);
+    if (Array.from(text.trim()).length < 20) { setError(t.tooShort); return; }
+    const id = ++requestId.current;
+    setLoading(true); setError(""); setResult(null);
     try {
-      const response = await fetch("/api/analyze", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: serialized,
-      });
-    // A 422 means the backend is reachable but rejected a field in our request.
-    if (response.status === 422) {
-      let field: string | null = null;
-      try {
-        field = rejectedInputLocation(await response.json());
-      } catch {
-        // Keep a useful message if the server did not send a JSON error body.
-      }
-      setError(
-        `${resultText.invalidInput}${field ? ` ${resultText.errorField}: ${field}.` : ""} ${resultText.checkInput}`,
-      );
-      return;
-    }
-    if (!response.ok) {
-        setError(errorText("analysisUnavailable"));
-        return;
-      }
-      const data = (await response.json()) as AnalyzeResponse;
-      setResult(data);
-    } catch {
-      setError(errorText("analysisUnavailable"));
-    } finally {
-      setLoading(false);
-    }
+      const response = await fetch("/api/analyze", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ text, comments: [], images: [], include_report: false }), signal: AbortSignal.timeout(60000) });
+      if (!response.ok) throw new Error(t.network);
+      const data = await response.json();
+      if (!data?.authorship || typeof data.authorship.status !== "string") throw new Error(t.invalid);
+      if (requestId.current === id) setResult(data);
+    } catch (e) { if (requestId.current === id) setError(e instanceof Error && [t.network, t.invalid].includes(e.message) ? e.message : t.network); }
+    finally { setLoading(false); }
   }
-  return (
-    <main className="min-h-screen bg-zinc-100 px-6 py-10">
-      <div className="mx-auto max-w-4xl space-y-8">
-        {/* Page title and the language controls. */}
-        <div className="flex items-start justify-between gap-4">
-          <div>
-            <h1 className="text-3xl font-bold text-zinc-900">
-              {homeText("title")}
-            </h1>
-            <p className="mt-2 text-zinc-600">{homeText("tagline")}</p>
-          </div>
-          <div className="flex shrink-0 gap-2" aria-label={commonText("language")}>
-            <button
-              type="button"
-              onClick={() => changeLanguage("en")}
-              aria-pressed={locale === "en"}
-              className="rounded border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-800 aria-pressed:border-zinc-900 aria-pressed:bg-zinc-900 aria-pressed:text-white"
-            >
-              English
-            </button>
-            <button
-              type="button"
-              onClick={() => changeLanguage("zh-CN")}
-              aria-pressed={locale === "zh-CN"}
-              className="rounded border border-zinc-300 bg-white px-3 py-2 text-sm text-zinc-800 aria-pressed:border-zinc-900 aria-pressed:bg-zinc-900 aria-pressed:text-white"
-            >
-              中文
-            </button>
-          </div>
-        </div>
-        {/* Post text used by Layers 1, 2, and 4. */}
-        <section className="rounded-xl bg-white p-6 shadow-sm">
-          <h2 className="mb-3 text-lg font-semibold text-zinc-900">
-            {postText("title")}
-          </h2>
-          <textarea
-            value={text}
-            onChange={(event) => {
-              setText(event.target.value);
-              setResult(null);
-            }}
-            maxLength={10000}
-            placeholder={postText("placeholder")}
-            className="min-h-48 w-full rounded-lg border border-zinc-300 p-4 text-zinc-900 outline-none focus:border-zinc-500"
-          />
-          <div className="mt-2 text-right text-sm text-zinc-500">
-            {postText("characterCount", { count: text.length })}
-          </div>
-        </section>
-        {/* Post images are converted to data URLs and checked by Layer 4. */}
-        <section className="rounded-xl bg-white p-6 shadow-sm">
-          <h2 className="mb-3 text-lg font-semibold text-zinc-900">
-            {imageText("title")}
-          </h2>
-          <p className="mb-3 text-sm text-zinc-500">
-            {imageText("description")}
-          </p>
-          <input
-            ref={imageInputRef}
-            type="file"
-            accept="image/*"
-            multiple
-            onChange={handleImages}
-            className="sr-only"
-          />
-          {/* This visible button opens the hidden file input's system picker. */}
-          <button
-            type="button"
-            onClick={() => imageInputRef.current?.click()}
-            className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium text-zinc-800 hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-blue-600"
-          >
-            {imageText("chooseImages")}
-          </button>
-          {images.length > 0 && (
-            <p className="mt-3 text-sm text-zinc-600">
-              {imageText("selectedCount", { count: images.length })}
-            </p>
-          )}
-          {/* Show selected post photos immediately and let the user remove each one. */}
-          {images.length > 0 && (
-            <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {images.map((image, index) => (
-                <div key={`${index}-${image.slice(0, 32)}`} className="relative">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={image}
-                    alt={imageText("previewAlt", { number: index + 1 })}
-                    className="h-36 w-full rounded-lg border border-zinc-200 bg-zinc-100 object-contain"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => removeImage(index)}
-                    aria-label={imageText("removeImage", { number: index + 1 })}
-                    className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-black/75 text-xl leading-none text-white hover:bg-black focus:outline-none focus:ring-2 focus:ring-white"
-                  >
-                    ×
-                  </button>
-                </div>
-              ))}
-            </div>
-          )}
-        </section>
-        {/* Both comment entry options feed the same list for the main analysis. */}
-        <section className="rounded-xl bg-white p-6 shadow-sm">
-          <h2 className="mb-3 text-lg font-semibold text-zinc-900">
-            {commentText("title")}
-          </h2>
-          <p className="mb-4 text-sm leading-6 text-zinc-600">
-            {commentText("instructions")}
-          </p>
-          <Layer3ScreenshotAnalyzer onCommentsExtracted={addExtractedComments} />
-          <h3 className="mb-2 mt-6 text-sm font-semibold text-zinc-800">
-            {commentText("manualOption")}
-          </h3>
-          <div className="flex gap-2">
-            <input
-              type="text"
-              value={commentInput}
-              onChange={(event) => setCommentInput(event.target.value)}
-              onKeyDown={(event) => {
-                if (event.key === "Enter") addComment();
-              }}
-              placeholder={commentText("inputPlaceholder")}
-              className="flex-1 rounded-lg border border-zinc-300 px-4 py-2 text-zinc-900 outline-none focus:border-zinc-500"
-            />
-            <button
-              type="button"
-              onClick={addComment}
-              disabled={comments.length >= 30}
-              className="rounded-lg bg-zinc-800 px-5 py-2 text-white hover:bg-zinc-700 disabled:cursor-not-allowed disabled:opacity-50"
-            >
-              {commonText("add")}
-            </button>
-          </div>
-          <p className="mt-2 text-sm text-zinc-500">
-            {commentText("count", { count: comments.length })}
-          </p>
-          <div className="mt-4 space-y-2">
-            {comments.map((comment) => (
-              <div
-                key={comment.id}
-                className="flex items-center justify-between rounded-lg bg-zinc-100 p-3"
-              >
-                <div className="flex min-w-0 flex-1 items-center">
-                  <span className="mr-2 text-xs font-semibold text-zinc-500">
-                    {comment.id}
-                  </span>
-                  <input
-                    type="text"
-                    value={comment.text}
-                    aria-label={commentText("editAriaLabel", { id: comment.id })}
-                    onChange={(event) =>
-                      editComment(comment.id, event.target.value)
-                    }
-                    className="min-w-0 flex-1 rounded border border-transparent bg-transparent px-1 text-zinc-800 outline-none focus:border-zinc-300 focus:bg-white"
-                  />
-                </div>
-                <button
-                  type="button"
-                  onClick={() => removeComment(comment.id)}
-                  className="ml-4 text-sm text-red-600 hover:text-red-800"
-                >
-                  {commonText("remove")}
-                </button>
-              </div>
-            ))}
-          </div>
-        </section>
-        {error && (
-          <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-red-700">
-            {error}
-          </div>
-        )}
-        {/* This remains the main Layer 1–4 analysis button. */}
-        <button
-          type="button"
-          onClick={analyze}
-          disabled={loading}
-          className="w-full rounded-xl bg-black px-6 py-4 font-semibold text-white hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-50"
-        >
-          {loading ? homeText("analyzing") : homeText("analyze")}
-        </button>
-        {/* Show the three text/comment detector results before the image result. */}
-        {result && (
-          <div className="grid gap-4 md:grid-cols-3" aria-live="polite">
-            {result.authorship && (
-              <ResultCard
-                title={resultText.authorship}
-                outcome={
-                  result.authorship.status !== "supported" ||
-                  !result.authorship.classification
-                    ? resultText.unavailable
-                    : result.authorship.classification === "ai_involved"
-                      ? resultText.aiInvolved
-                    : result.authorship.classification === "human_like" ||
-                        result.authorship.classification === "human_written" ||
-                          result.authorship.classification === "human_likely"
-                        ? resultText.noAi
-                        : result.authorship.classification.replaceAll("_", " ")
-                }
-              >
-                {result.authorship.status === "supported" && (
-                  <>
-                    <p>{resultText.aiEstimate}: {formatPercent(result.authorship.probability_any_ai)}</p>
-                    {typeof result.authorship.risk_score === "number" && (
-                      <p>{resultText.riskScore}: {result.authorship.risk_score.toFixed(3)}</p>
-                    )}
-                    {typeof result.authorship.character_count === "number" && (
-                      <p>{resultText.characters}: {result.authorship.character_count}</p>
-                    )}
-                  </>
-                )}
-                <p>{resultText.authorshipHelp}</p>
-                <p>{resultText.note}</p>
-              </ResultCard>
-            )}
-            {result.covert_ad && (
-              <ResultCard
-                title={resultText.covertAd}
-                outcome={
-                  result.covert_ad.label === "likely_ad"
-                    ? resultText.likelyAd
-                    : result.covert_ad.label === "likely_non_ad"
-                      ? resultText.likelyNonAd
-                      : result.covert_ad.label.replaceAll("_", " ")
-                }
-              >
-                <p>{resultText.modelScore}: {formatPercent(result.covert_ad.probability)}</p>
-                <p>{resultText.cutoff}: {formatPercent(result.covert_ad.threshold)}</p>
-                <p>{resultText.adHelp}</p>
-                <p>{resultText.note}</p>
-              </ResultCard>
-            )}
-            {result.layer3 && (
-              <ResultCard
-                title={resultText.coordination}
-                outcome={
-                  !hasCoordinationPrediction(result.layer3)
-                    ? resultText.unavailable
-                    : result.layer3.prediction === "normal"
-                      ? resultText.normal
-                      : result.layer3.prediction === "coordinated"
-                        ? resultText.coordinated
-                        : (result.layer3.prediction ?? resultText.unavailable).replaceAll("_", " ")
-                }
-              >
-                {hasCoordinationPrediction(result.layer3) ? (
-                  <>
-                    <p>{resultText.modelScore}: {formatPercent(result.layer3.score)}</p>
-                    {typeof result.layer3.threshold === "number" && (
-                      <p>{resultText.cutoff}: {formatPercent(result.layer3.threshold)}</p>
-                    )}
-                  </>
-                ) : (
-                  <p>
-                    {result.layer3.status === "insufficient_data" &&
-                    typeof result.layer3.comment_count === "number" &&
-                    result.layer3.comment_count < 5
-                      ? resultText.needFiveComments
-                      : locale === "zh-CN"
-                        ? resultText.unavailable
-                        : (result.layer3.message ?? resultText.unavailable)}
-                  </p>
-                )}
-                {typeof result.layer3.comment_count === "number" && (
-                  <p>{resultText.comments}: {result.layer3.comment_count}</p>
-                )}
-                <p>{resultText.coordinationHelp}</p>
-                <p>{resultText.note}</p>
-              </ResultCard>
-            )}
-          </div>
-        )}
-        {/* Human-readable Layer 4 output from the main Analyze request. */}
-        {result?.layer4 && <Layer4ResultCard result={result.layer4} />}
-        {/* Render the optional Qwen explanation returned by /analyze. */}
-        {result?.final_report && (
-          <section className="rounded-xl bg-white p-6 shadow-sm">
-            <h2 className="text-lg font-semibold text-zinc-900">
-              {reportText("title")}
-            </h2>
-            {/* The backend provides a fallback message if Qwen is unavailable. */}
-            <p className="mt-3 whitespace-pre-wrap text-zinc-700">
-              {result.final_report.summary}
-            </p>
-            {/* Tell the user which layers could not evaluate the supplied data. */}
-            {result.final_report.missing_inputs.length > 0 && (
-              <p className="mt-3 text-sm text-zinc-500">
-                {reportText("insufficientData")}
-                {result.final_report.missing_inputs
-                  .map((layer) => {
-                    const messageKey = missingInputKeys[layer];
-                    return messageKey ? reportText(messageKey) : layer;
-                  })
-                  .join(reportText("separator"))}
-              </p>
-            )}
+  function download() {
+    if (!result) return;
+    const content = `${t.brand}\n${new Date().toLocaleString(locale)}\n\n${outcome}\n${known ? `${t.score}: ${(p! * 100).toFixed(1)}%\n${t.explanation}\n` : ""}\n${t.note}\n\n${t.input}\n${text}`;
+    const url = URL.createObjectURL(new Blob(["\uFEFF", content], { type: "text/plain;charset=utf-8" }));
+    const link = document.createElement("a"); link.href = url; link.download = "notecheck-result.txt"; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+  return <div className="verifier-shell">
+    <header className="site-header"><Link className="brand" href="/"><span className="brand-icon"><Mark kind="spark"/></span>{t.brand}<span className="beta">BETA</span></Link><div className="header-actions"><button onClick={() => setHelp(!help)} aria-expanded={help}>{t.help}</button><span className="header-divider"/><button aria-label={locale === "en" ? "切换为中文" : "Switch to English"} onClick={() => { document.cookie = `locale=${locale === "en" ? "zh-CN" : "en"}; Path=/; Max-Age=31536000; SameSite=Lax`; router.refresh(); }}>{locale === "en" ? "中文" : "EN"}</button></div></header>
+    {help && <div className="help-banner">{t.helpText}</div>}
+    <main className="workspace">
+      <section className="hero"><p className="eyebrow"><span/>{t.tagline}</p><h1>{t.title}<em>{t.accent}</em></h1><p className="hero-description">{t.intro}</p></section>
+      <nav className="mode-switch" aria-label={locale === "en" ? "Check type" : "核验类型"}>{(["text", "images", "comments"] as const).map((item, i) => <button key={item} aria-pressed={mode === item} onClick={() => setMode(item)}><Mark kind={item}/>{t.tabs[i]}</button>)}</nav>
+      <div hidden={mode !== "text"}>
+        <div className="detection-grid">
+          <section className="editor-card" aria-label={t.input}><div className="editor-heading"><h2><Mark/>{t.input}</h2><button className="sample-button" disabled={loading} onClick={() => { updateText(example); setSample(true); }}>{t.sample}<span aria-hidden="true"> ↗</span></button></div>
+            <textarea aria-label={t.input} value={text} disabled={loading} maxLength={10000} placeholder={t.placeholder} onChange={e => updateText(e.target.value)} onKeyDown={e => { if ((e.ctrlKey || e.metaKey) && e.key === "Enter") { e.preventDefault(); void analyze(); } }}/>
+            {sample && <p className="sample-note">{t.sampleHint}</p>}
+            {error && <p className="error-message" role="alert">{error}</p>}
+            <div className="editor-meta"><span>{t.shortcut}</span><span>{count.toLocaleString()} / 10,000</span></div>
+            <div className="editor-actions"><input aria-label={t.upload} ref={fileInput} type="file" accept=".txt,text/plain" hidden onChange={importFile}/><button className="import-button" disabled={loading} onClick={() => fileInput.current?.click()}><span aria-hidden="true">↑</span>{t.upload}</button><div><button className="clear-button" disabled={loading || !text} onClick={() => updateText("")}>{t.clear}</button><button className="primary-button" disabled={loading || !text.trim()} onClick={analyze}>{loading ? t.busy : t.detect}<span aria-hidden="true"> →</span></button></div></div>
           </section>
-        )}
-        {/* Keep the full response available for development and debugging. */}
-        <section className="rounded-xl bg-white p-6 shadow-sm">
-          <h2 className="text-lg font-semibold text-zinc-900">
-            {reportText("rawResultTitle")}
-          </h2>
-          {result ? (
-            <details className="mt-3">
-              <summary className="cursor-pointer text-sm font-medium text-zinc-700">
-                {reportText("showRawJson")}
-              </summary>
-              <pre className="mt-3 overflow-x-auto rounded-lg bg-zinc-950 p-4 text-sm text-green-400">
-                {JSON.stringify(result, null, 2)}
-              </pre>
-            </details>
-          ) : (
-            <div className="mt-3 rounded-lg bg-zinc-100 p-4 text-zinc-500">
-              {reportText("emptyState")}
-            </div>
-          )}
-        </section>
-        {/* This separate tool compares two images; it is not part of main analysis. */}
-        <section className="rounded-xl bg-white p-6 shadow-sm">
-          <h2 className="mb-2 text-lg font-semibold text-zinc-900">
-            {referenceText("title")}
-          </h2>
-          <p className="mb-4 text-sm leading-6 text-zinc-600">
-            {referenceText("description")}
-          </p>
-          <Layer4ReferenceAnalyzer />
-        </section>
+          <aside className="result-panel" aria-live="polite" aria-busy={loading}><div className="result-heading"><h2>{t.result}</h2><span className="status-label">{loading ? t.busy : result ? "✓" : t.waiting}</span></div>
+            {!result ? <div className="result-empty"><div className={`empty-orbit ${loading ? "is-loading" : ""}`}><Mark kind="spark"/></div><h3>{loading ? t.analyzing : error ? t.retry : t.empty}</h3><p>{loading ? t.analyzingHelp : error ? t.retryHelp : t.emptyHelp}</p><div className="placeholder-lines" aria-hidden="true"><span/><span/><span/></div></div> : <div className="result-content"><p className={`outcome ${known && a?.classification !== "ai_involved" ? "human" : ""}`}>{outcome}</p>{known ? <><div className="score-ring" style={{ "--score": `${p! * 100}%` } as CSSProperties}><div><strong>{(p! * 100).toFixed(1)}<small>%</small></strong><span>{t.score}</span></div></div><p className="score-explanation">{t.explanation}</p></> : <p className="score-explanation unknown-copy">{t.unknownHelp}</p>}
+              {result.covert_ad && ["likely_ad", "likely_non_ad"].includes(result.covert_ad.label) && <details className="ad-detail"><summary>{t.ad}</summary><p>{result.covert_ad.label === "likely_ad" ? t.adYes : t.adNo}</p><p>{t.adHelp}</p></details>}<button className="download-button" onClick={download}>↓ {t.download}</button></div>}
+            <p className="result-note">ⓘ {t.note}</p>
+          </aside>
+        </div>
+        <div className="steps">{t.tips.map(tip => <span key={tip}>{tip}</span>)}</div>
       </div>
+      <div hidden={mode !== "images"}><AdditionalChecks mode="images"/></div>
+      <div hidden={mode !== "comments"}><AdditionalChecks mode="comments"/></div>
+      <footer className="site-footer"><span>{t.footer}</span><span>{t.privacy}</span></footer>
     </main>
-  );
+  </div>;
 }

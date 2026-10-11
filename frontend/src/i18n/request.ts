@@ -19,8 +19,8 @@ export default getRequestConfig(async () => {
   const cookieStore = await cookies();
   const savedLocale = cookieStore.get("locale")?.value;
 
-  // Use Chinese only for the supported zh-CN value; otherwise default to English.
-  const locale: AppLocale = savedLocale === "zh-CN" ? "zh-CN" : "en";
+  // Default to Chinese for the primary audience; preserve an explicit English choice.
+  const locale: AppLocale = savedLocale === "en" ? "en" : "zh-CN";
 
   // Return both the active language and its matching message catalog.
   return {

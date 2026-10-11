@@ -1,18 +1,7 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale } from "next-intl/server";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 // Set the browser tab title and description in the selected language.
 export async function generateMetadata(): Promise<Metadata> {
@@ -20,13 +9,13 @@ export async function generateMetadata(): Promise<Metadata> {
 
   if (locale === "zh-CN") {
     return {
-      title: "小红书内容核验",
+      title: "种草鉴别助手",
       description: "分析小红书帖子正文、评论和配图，辅助评估内容可信度。",
     };
   }
 
   return {
-    title: "XHS Content Verifier",
+    title: "NoteCheck",
     description:
       "Analyze Xiaohongshu post text, comments, and images to assess content authenticity.",
   };
@@ -39,7 +28,7 @@ export default async function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang={locale}
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className="h-full antialiased"
     >
       <body className="min-h-full flex flex-col">
         {/* Makes the selected language messages available to the page and components. */}
