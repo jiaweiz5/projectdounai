@@ -166,7 +166,7 @@ export default function ImageCheckWorkspace() {
           <p className={`score-explanation ${styles.explanation}`}>{explanation}</p>
           {validScore && result.method === "alignment" && <p className="score-explanation">{t.matchHelp}</p>}
           {complete && result.method === "reference" && Number.isInteger(result.data.changed_region_count) && <p className={styles.regions}>{t.regions}<strong>{result.data.changed_region_count}</strong></p>}
-          {alignment?.ocr && <details className="ad-detail"><summary>{t.ocr}</summary><p className={styles.ocr}>{alignment.ocr.ocr_text || t.noOcr}</p></details>}
+          {alignment?.ocr && <div className={styles.ocrCard}><div><strong>{t.ocr}</strong><span>{alignment.ocr.ocr_item_count} · {Math.round((alignment.ocr.ocr_confidence || 0) * 100)}%</span></div><p className={styles.ocr}>{alignment.ocr.ocr_text || t.noOcr}</p></div>}
           <button className="download-button" onClick={download}>↓ {t.download}</button>
         </div> : <div className="result-empty"><div className={`empty-orbit ${loading ? "is-loading" : ""}`}><PictureIcon/></div><h3>{loading ? t.loading : error ? t.failed : t.empty}</h3><p>{loading ? t.loadingHint : error ? t.failedHint : t.emptyHint}</p><div className="placeholder-lines" aria-hidden="true"><span/><span/><span/></div></div>}
         <p className="result-note">ⓘ {t.note}</p>
