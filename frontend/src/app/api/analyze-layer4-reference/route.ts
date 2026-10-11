@@ -3,10 +3,16 @@ export const runtime = "nodejs";
 export const maxDuration = 120;
 
 export async function POST(request: Request) {
-  const base = process.env.BACKEND_URL;
+  const base = (process.env.BACKEND_URL ?? "http://127.0.0.1:8000").replace(/\/+$/, "");
   const token = process.env.BACKEND_SHARED_TOKEN;
+  let localBackend = false;
+  try {
+    localBackend = ["127.0.0.1", "localhost", "[::1]"].includes(new URL(base).hostname);
+  } catch {
+    return Response.json({ error: "Invalid backend configuration" }, { status: 503 });
+  }
 
-  if (!base || !token) {
+  if (!localBackend && !token) {
     return Response.json(
       { error: "Server configuration missing" },
       { status: 503 }
@@ -19,26 +25,16 @@ export async function POST(request: Request) {
 
     const upstream = await fetch(`${base}/analyze-layer4-reference`, {
       method: "POST",
-      headers: {
-        "X-Backend-Token": token,
-      },
+      headers: token ? { "X-Backend-Token": token } : {},
       body: formData,
       cache: "no-store",
       signal: AbortSignal.timeout(105000),
     });
 
     if (!upstream.ok) {
-      const upstreamError = await upstream.text();
-
-      console.error(
-        "Backend Layer 4 reference analysis failed:",
-        upstream.status,
-        upstreamError
-      );
-
       return Response.json(
         { error: "Layer 4 reference analysis unavailable" },
-        { status: 502 }
+        { status: [413, 415, 422].includes(upstream.status) ? upstream.status : 502 }
       );
     }
 
@@ -50,9 +46,7 @@ export async function POST(request: Request) {
     return Response.json(
       {
         error:
-          error instanceof Error
-            ? error.message
-            : "Please retry the Layer 4 reference analysis",
+          "Please retry the Layer 4 reference analysis",
       },
       { status: 503 }
     );

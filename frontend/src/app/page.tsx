@@ -6,6 +6,7 @@ import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import AdditionalChecks from "@/components/AdditionalChecks";
+import ImageCheckWorkspace from "@/components/ImageCheckWorkspace";
 import "./verifier.css";
 
 type Analysis = {
@@ -17,7 +18,8 @@ const copy = {
   zh: {
     brand: "种草鉴别助手", tagline: "读懂种草，也读懂文字背后", title: "这篇种草文案，", accent: "有 AI 参与吗？",
     intro: "粘贴笔记正文，一键查看 AI 写作迹象。配图与评论，也可以进一步核验。",
-    tabs: ["文案鉴别", "配图核验", "评论分析"], input: "待检测文案", sample: "试用示例", sampleHint: "演示文案，仅用于体验操作，不代表真人样本。",
+    tabs: ["文案鉴别", "图片核验", "评论分析"], input: "待检测文案", sample: "试用示例", sampleHint: "演示文案，仅用于体验操作，不代表真人样本。",
+    imageTitle: "这张图片，", imageAccent: "藏着哪些线索？", imageIntro: "上传图片，核验图文是否对应，或与可信原图比对改动。", imageHelp: "选择图文一致性并补充文案，或选择原图比对并上传可信原图。支持 JPG、PNG、WebP；图文核验限 2 MB，原图比对单张限 12 MB。", imageFooter: "多一份上下文，多一点判断依据。",
     placeholder: "把想了解的种草笔记粘贴到这里…\n\n保留原文的标点、分段和 emoji，完整的上下文有助于分析。",
     upload: "导入文本", clear: "清空", detect: "开始鉴别", busy: "正在分析…", shortcut: "Ctrl / ⌘ + Enter 开始检测",
     result: "鉴别结果", waiting: "等待检测", empty: "这篇文案，有哪些写作迹象？", emptyHelp: "在左侧粘贴一篇笔记，点击「开始鉴别」，结果会显示在这里。",
@@ -29,12 +31,13 @@ const copy = {
     footer: "独立研究项目 · 非小红书官方产品", privacy: "只分析文字特征，不替你判断好物。",
     tooShort: "请至少输入 20 个字，并尽量保留完整正文。", fileError: "请导入 UTF-8 编码的 .txt 文件，正文不超过 10,000 字。",
     network: "检测服务暂时不可用，请稍后重试。", invalid: "检测服务没有返回有效结果，请重试。",
-    tips: ["01  粘贴完整笔记", "02  查看写作迹象", "03  按需补充核验"], help: "如何使用", helpText: "粘贴 20–10,000 字正文后开始检测。修改文字后需重新检测；配图核验和评论分析可从上方切换。",
+    tips: ["01  粘贴完整笔记", "02  查看写作迹象", "03  按需补充核验"], help: "如何使用", helpText: "粘贴 20–10,000 字正文后开始检测。修改文字后需重新检测；图片核验和评论分析可从上方切换。",
   },
   en: {
     brand: "NoteCheck", tagline: "A closer look at the words behind a recommendation", title: "A recommendation,", accent: "written with AI?",
     intro: "Paste a post to check for signs of AI writing. Explore images and comments when you need more context.",
     tabs: ["Text detection", "Image checks", "Comment analysis"], input: "Text to check", sample: "Try a sample", sampleHint: "Demo text for trying the interface, not a verified human sample.",
+    imageTitle: "A closer look,", imageAccent: "at this image.", imageIntro: "Compare an image with its caption or a trusted original for more context.", imageHelp: "Add a caption for an image-text check, or a trusted original for comparison. JPG, PNG and WebP supported. Up to 2 MB for image-text checks; 12 MB per image for original comparison.", imageFooter: "More context for a clearer picture.",
     placeholder: "Paste a recommendation here…\n\nKeep the original punctuation, paragraphs and emoji for context.",
     upload: "Import text", clear: "Clear", detect: "Check text", busy: "Analyzing…", shortcut: "Ctrl / ⌘ + Enter to check",
     result: "Detection result", waiting: "Ready when you are", empty: "What does the writing suggest?", emptyHelp: "Paste a post on the left and select Check text. Your result will appear here.",
@@ -111,9 +114,9 @@ export default function Home() {
   }
   return <div className="verifier-shell">
     <header className="site-header"><Link className="brand" href="/"><span className="brand-icon"><Mark kind="spark"/></span>{t.brand}<span className="beta">BETA</span></Link><div className="header-actions"><button onClick={() => setHelp(!help)} aria-expanded={help}>{t.help}</button><span className="header-divider"/><button aria-label={locale === "en" ? "切换为中文" : "Switch to English"} onClick={() => { document.cookie = `locale=${locale === "en" ? "zh-CN" : "en"}; Path=/; Max-Age=31536000; SameSite=Lax`; router.refresh(); }}>{locale === "en" ? "中文" : "EN"}</button></div></header>
-    {help && <div className="help-banner">{t.helpText}</div>}
+    {help && <div className="help-banner">{mode === "images" ? t.imageHelp : t.helpText}</div>}
     <main className="workspace">
-      <section className="hero"><p className="eyebrow"><span/>{t.tagline}</p><h1>{t.title}<em>{t.accent}</em></h1><p className="hero-description">{t.intro}</p></section>
+      <section className="hero"><p className="eyebrow"><span/>{t.tagline}</p><h1>{mode === "images" ? t.imageTitle : t.title}<em>{mode === "images" ? t.imageAccent : t.accent}</em></h1><p className="hero-description">{mode === "images" ? t.imageIntro : t.intro}</p></section>
       <nav className="mode-switch" aria-label={locale === "en" ? "Check type" : "核验类型"}>{(["text", "images", "comments"] as const).map((item, i) => <button key={item} aria-pressed={mode === item} onClick={() => setMode(item)}><Mark kind={item}/>{t.tabs[i]}</button>)}</nav>
       <div hidden={mode !== "text"}>
         <div className="detection-grid">
@@ -132,9 +135,9 @@ export default function Home() {
         </div>
         <div className="steps">{t.tips.map(tip => <span key={tip}>{tip}</span>)}</div>
       </div>
-      <div hidden={mode !== "images"}><AdditionalChecks mode="images"/></div>
+      <div hidden={mode !== "images"}><ImageCheckWorkspace/></div>
       <div hidden={mode !== "comments"}><AdditionalChecks mode="comments"/></div>
-      <footer className="site-footer"><span>{t.footer}</span><span>{t.privacy}</span></footer>
+      <footer className="site-footer"><span>{t.footer}</span><span>{mode === "images" ? t.imageFooter : t.privacy}</span></footer>
     </main>
   </div>;
 }
