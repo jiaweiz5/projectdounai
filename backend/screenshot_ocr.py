@@ -1,6 +1,7 @@
 """OCR utilities for extracting text lines from comment screenshots."""
 
 from io import BytesIO
+import re
 from statistics import mean
 
 import numpy as np
@@ -228,6 +229,67 @@ def extract_comment_lines(ocr_lines):
     if current_block:
         blocks.append(current_block)
 
+    def is_comment_meta(text):
+        """Return true for the small date/action row below a comment."""
+
+        normalized = " ".join(str(text).split()).lower()
+        if not normalized:
+            return False
+        return bool(
+            re.search(r"\b\d{1,2}\s*/\s*\d{1,2}\b", normalized)
+            or re.search(r"\b\d{1,2}\s*(?:分钟前|小时前|天前)\b", normalized)
+            or re.search(r"\b(?:刚刚|昨天|今天)\b", normalized)
+            or "reply" in normalized
+            or "translate" in normalized
+            or re.search(r"\bvi[eo]w\s+\d", normalized)
+        )
+
+    def is_date_meta(text):
+        normalized = " ".join(str(text).split()).lower()
+        return bool(
+            re.search(r"\b\d{1,2}\s*/\s*\d{1,2}\b", normalized)
+            or re.search(r"\b\d{1,2}\s*(?:分钟前|小时前|天前)\b", normalized)
+            or re.search(r"\b(?:刚刚|昨天|今天)\b", normalized)
+        )
+
+    # A date/action row is the most reliable boundary for wrapped comments.
+    # Use it first when available; this also prevents surrounding page chrome
+    # from being mistaken for the first username/comment block.
+    date_indices = [index for index, line in enumerate(ordered) if is_date_meta(line["text"])]
+    if date_indices:
+        dated_comments = []
+        previous_index = -1
+        for date_index in date_indices:
+            marker = ordered[date_index]
+            candidates = [
+                line for line in ordered[previous_index + 1 : date_index]
+                if abs(line["box"]["left"] - marker["box"]["left"]) <= max(36.0, typical_height * 2.0)
+                and marker["box"]["top"] - line["box"]["top"] <= max(90.0, typical_height * 4.0)
+                and not is_comment_meta(line["text"])
+            ]
+            # Usernames are usually short; start at the first plausible body
+            # line and keep every wrapped line until the date marker.
+            body_start = next(
+                (position for position, line in enumerate(candidates) if len(line["text"].strip()) >= 8),
+                max(0, len(candidates) - 1),
+            )
+            body_rows = candidates[body_start:]
+            text = "".join(row["text"] for row in body_rows).strip()
+            if text:
+                dated_comments.append({
+                    "text": text,
+                    "confidence": round(mean(row["confidence"] for row in body_rows), 4),
+                    "box": {
+                        "left": round(min(row["box"]["left"] for row in body_rows), 2),
+                        "top": round(min(row["box"]["top"] for row in body_rows), 2),
+                        "right": round(max(row["box"]["right"] for row in body_rows), 2),
+                        "bottom": round(max(row["box"]["bottom"] for row in body_rows), 2),
+                    },
+                })
+            previous_index = date_index
+        if dated_comments:
+            return dated_comments
+
     comments = []
     alignment_tolerance = typical_height * 0.75
     continuation_gap = typical_height * 1.20
@@ -254,6 +316,11 @@ def extract_comment_lines(ocr_lines):
         previous_body_row = first_body_row
 
         for candidate in block[2:]:
+            # On Xiaohongshu the date/action row follows the complete body.
+            # Treat it as an explicit boundary so wrapped comment text stays
+            # together instead of being mistaken for a new comment.
+            if is_comment_meta(candidate["text"]):
+                break
             vertical_gap = (
                 candidate["box"]["top"]
                 - previous_body_row["box"]["top"]
@@ -264,7 +331,7 @@ def extract_comment_lines(ocr_lines):
             )
 
             if (
-                vertical_gap <= continuation_gap
+                vertical_gap <= continuation_gap * 1.8
                 and alignment_gap <= alignment_tolerance
             ):
                 body_rows.append(candidate)
