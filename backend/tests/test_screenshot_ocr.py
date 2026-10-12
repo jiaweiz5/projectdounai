@@ -30,6 +30,28 @@ def make_ocr_line(
 class ScreenshotCommentExtractionTests(unittest.TestCase):
     """Verify that only top-level comment bodies are returned."""
 
+    def test_dates_long_body_duplicates_and_undated_tail(self):
+        rows = []
+        bodies = [
+            ["好用"],
+            ["第一行评论", "第二行评论", "第三行评论", "第四行评论", "第五行评论"],
+            ["昨天用了感觉很好", "我在9/30买的"],
+            ["好用"],
+            ["没有日期的最后评论", "仍然保留完整正文"],
+        ]
+        markers = ["2022-09-30上海回复", "9/30 Reply Translate", "昨天 上海", "2h ago California", None]
+        top = 0
+        for body, marker in zip(bodies, markers):
+            rows.append(make_ocr_line("这是一个超过八个字的用户名", 70, top))
+            top += 25
+            for line in body:
+                rows.append(make_ocr_line(line, 70, top))
+                top += 25
+            if marker:
+                rows.append(make_ocr_line(marker, 70, top))
+            top += 70
+        self.assertEqual([c["text"] for c in extract_comment_lines(rows)], ["".join(b) for b in bodies])
+
     def test_empty_ocr_input_returns_empty_list(self):
         """An empty screenshot result should produce no comments."""
 

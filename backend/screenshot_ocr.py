@@ -176,240 +176,75 @@ def _merge_visual_rows(detections):
 
 
 def extract_comment_lines(ocr_lines):
-    """Extract comment bodies from OCR rows using visual block structure.
+    """Group username/body/date cards; preserve duplicates and undated tails.
 
-    Xiaohongshu-style comment cards generally begin with a username row and
-    place the comment body immediately below it at the same indentation. This
-    parser uses only geometry and row spacing; it does not contain username,
-    location, button, or Chinese phrase lists.
+    Dates terminate a card, while geometry is the fallback for missing dates.
+    Ambiguous rows remain available in the raw OCR response for user review.
     """
-
     if not ocr_lines:
         return []
+    ordered = sorted(ocr_lines, key=lambda row: (row["box"]["top"], row["box"]["left"]))
+    height = max(6.0, float(np.median([
+        max(1.0, row["box"]["bottom"] - row["box"]["top"]) for row in ordered
+    ])))
+    tolerance = height * 0.75
 
-    ordered = sorted(
-        ocr_lines,
-        key=lambda item: (
-            item["box"]["top"],
-            item["box"]["left"],
-        ),
-    )
+    def metadata(text):
+        value = " ".join(str(text).split()).lower()
+        # Anchor dates to the beginning: a date mentioned within a comment
+        # must not truncate the rest of that comment.
+        return bool(
+            re.match(r"^(?:\d{4}[-/]\d{1,2}[-/]\d{1,2}|\d{1,2}[-/]\d{1,2})(?:\s|$|(?=.*(?:回复|reply|translate)))", value)
+            or re.match(r"^\d+\s*(?:分钟前|小时前|天前|周前|个月前)(?:\s|$)", value)
+            or re.match(r"^(?:刚刚|昨天|今天|前天)(?:\s|$)", value)
+            or re.match(r"^\d+\s*(?:m|h|d|minutes?|hours?|days?)\s+ago\b", value)
+            or re.fullmatch(r"(?:like\s*(?:\d+)?\s*)?(?:reply|translate)(?:\s+translate)?", value)
+            or re.fullmatch(r"(?:回复|翻译|赞)(?:\s+\d+)?", value)
+            or re.match(r"^vi[eo]w\s+\d+\s+repl", value)
+            or re.fullmatch(r"展开\s*\d*\s*条?回复", value)
+        )
 
-    heights = [
-        max(1.0, item["box"]["bottom"] - item["box"]["top"])
-        for item in ordered
-    ]
-    typical_height = max(18.0, float(np.median(heights)))
-
-    # A new visual block begins after a gap notably larger than one text row.
-#
-# The multiplier is calculated from the screenshot's typical OCR row height,
-# so it automatically scales for differently sized screenshots. A value of
-# 1.75 allows normal username-to-comment spacing while still separating
-# distinct comment cards.
-    block_gap = typical_height * 1.75
-    blocks = []
-    current_block = []
-    previous_top = None
-
-    for line in ordered:
-        current_top = line["box"]["top"]
-
-        if (
-            current_block
-            and previous_top is not None
-            and current_top - previous_top > block_gap
+    blocks, current = [], []
+    for row in ordered:
+        if metadata(row["text"]):
+            if current:
+                blocks.append(current)
+                current = []
+            continue
+        if current and (
+            row["box"]["top"] - current[-1]["box"]["top"] > height * 1.9
+            or abs(row["box"]["left"] - current[-1]["box"]["left"]) > tolerance
         ):
-            blocks.append(current_block)
-            current_block = []
-
-        current_block.append(line)
-        previous_top = current_top
-
-    if current_block:
-        blocks.append(current_block)
-
-    def is_comment_meta(text):
-        """Return true for the small date/action row below a comment."""
-
-        normalized = " ".join(str(text).split()).lower()
-        if not normalized:
-            return False
-        return bool(
-            re.search(r"\b\d{1,2}\s*/\s*\d{1,2}\b", normalized)
-            or re.search(r"\b\d{1,2}\s*(?:分钟前|小时前|天前)\b", normalized)
-            or re.search(r"\b(?:刚刚|昨天|今天)\b", normalized)
-            or "reply" in normalized
-            or "translate" in normalized
-            or re.search(r"\bvi[eo]w\s+\d", normalized)
-        )
-
-    def is_date_meta(text):
-        normalized = " ".join(str(text).split()).lower()
-        return bool(
-            re.search(r"\b\d{1,2}\s*/\s*\d{1,2}\b", normalized)
-            or re.search(r"\b\d{1,2}\s*(?:分钟前|小时前|天前)\b", normalized)
-            or re.search(r"\b(?:刚刚|昨天|今天)\b", normalized)
-        )
-
-    # A date/action row is the most reliable boundary for wrapped comments.
-    # Use it first when available; this also prevents surrounding page chrome
-    # from being mistaken for the first username/comment block.
-    date_indices = [index for index, line in enumerate(ordered) if is_date_meta(line["text"])]
-    if date_indices:
-        dated_comments = []
-        previous_index = -1
-        for date_index in date_indices:
-            marker = ordered[date_index]
-            candidates = [
-                line for line in ordered[previous_index + 1 : date_index]
-                if abs(line["box"]["left"] - marker["box"]["left"]) <= max(36.0, typical_height * 2.0)
-                and marker["box"]["top"] - line["box"]["top"] <= max(90.0, typical_height * 4.0)
-                and not is_comment_meta(line["text"])
-            ]
-            # Usernames are usually short; start at the first plausible body
-            # line and keep every wrapped line until the date marker.
-            body_start = next(
-                (position for position, line in enumerate(candidates) if len(line["text"].strip()) >= 8),
-                max(0, len(candidates) - 1),
-            )
-            body_rows = candidates[body_start:]
-            text = "".join(row["text"] for row in body_rows).strip()
-            if text:
-                dated_comments.append({
-                    "text": text,
-                    "confidence": round(mean(row["confidence"] for row in body_rows), 4),
-                    "box": {
-                        "left": round(min(row["box"]["left"] for row in body_rows), 2),
-                        "top": round(min(row["box"]["top"] for row in body_rows), 2),
-                        "right": round(max(row["box"]["right"] for row in body_rows), 2),
-                        "bottom": round(max(row["box"]["bottom"] for row in body_rows), 2),
-                    },
-                })
-            previous_index = date_index
-        if dated_comments:
-            return dated_comments
+            blocks.append(current)
+            current = []
+        current.append(row)
+    if current:
+        blocks.append(current)
 
     comments = []
-    alignment_tolerance = typical_height * 0.75
-    continuation_gap = typical_height * 1.20
-
     for block in blocks:
-        # A one-row block is usually an interface control rather than a full
-        # username/comment pair, so it is not sent to the classifier.
         if len(block) < 2:
             continue
-
-        username_row = block[0]
-        first_body_row = block[1]
-
-        if (
-            abs(
-                first_body_row["box"]["left"]
-                - username_row["box"]["left"]
-            )
-            > alignment_tolerance
-        ):
-            continue
-
-        body_rows = [first_body_row]
-        previous_body_row = first_body_row
-
-        for candidate in block[2:]:
-            # On Xiaohongshu the date/action row follows the complete body.
-            # Treat it as an explicit boundary so wrapped comment text stays
-            # together instead of being mistaken for a new comment.
-            if is_comment_meta(candidate["text"]):
-                break
-            vertical_gap = (
-                candidate["box"]["top"]
-                - previous_body_row["box"]["top"]
-            )
-            alignment_gap = abs(
-                candidate["box"]["left"]
-                - first_body_row["box"]["left"]
-            )
-
-            if (
-                vertical_gap <= continuation_gap * 1.8
-                and alignment_gap <= alignment_tolerance
-            ):
-                body_rows.append(candidate)
-                previous_body_row = candidate
-            else:
-                break
-
-        text = "".join(row["text"] for row in body_rows).strip()
-
-        if not text:
-            continue
-
-        comments.append(
-            {
-                "text": text,
-                "confidence": round(
-                    mean(row["confidence"] for row in body_rows),
-                    4,
-                ),
-                "box": {
-                    "left": round(
-                        min(row["box"]["left"] for row in body_rows),
-                        2,
-                    ),
-                    "top": round(
-                        min(row["box"]["top"] for row in body_rows),
-                        2,
-                    ),
-                    "right": round(
-                        max(row["box"]["right"] for row in body_rows),
-                        2,
-                    ),
-                    "bottom": round(
-                        max(row["box"]["bottom"] for row in body_rows),
-                        2,
-                    ),
-                },
-            }
-        )
-
-    # If no comment candidates were found, return an empty list.
+        # Comment cards start with the author row; length is not a reliable
+        # way to distinguish a username from a short comment.
+        body = block[1:]
+        comments.append({
+            "text": "".join(row["text"] for row in body).strip(),
+            "confidence": round(mean(row["confidence"] for row in body), 4),
+            "box": {
+                "left": min(row["box"]["left"] for row in body),
+                "top": min(row["box"]["top"] for row in body),
+                "right": max(row["box"]["right"] for row in body),
+                "bottom": max(row["box"]["bottom"] for row in body),
+            },
+        })
     if not comments:
         return []
-
-    # Collect the horizontal starting position of every candidate.
-    # Xiaohongshu top-level comments normally share one main left margin.
-    candidate_lefts = [
-        comment["box"]["left"]
-        for comment in comments
-    ]
-
-    # Find the left margin with the largest group of nearby candidates.
-    # This identifies the dominant top-level comment indentation.
-    root_left = max(
-        candidate_lefts,
-        key=lambda candidate_left: (
-            sum(
-                abs(other_left - candidate_left)
-                <= alignment_tolerance
-                for other_left in candidate_lefts
-            ),
-            # If two groups are equally large, prefer the leftmost group,
-            # since replies and image content are normally indented.
-            -candidate_left,
-        ),
-    )
-
-    # Keep only candidates aligned with the top-level comment margin.
-    # This removes indented replies, reply controls, and text inside
-    # attached reply images from the Layer 3 model input.
-    comments = [
-        comment
-        for comment in comments
-        if abs(comment["box"]["left"] - root_left)
-        <= alignment_tolerance
-    ]
-
-    return comments
+    lefts = [row["box"]["left"] for row in comments]
+    root = max(lefts, key=lambda left: (
+        sum(abs(other - left) <= tolerance for other in lefts), -left
+    ))
+    return [row for row in comments if abs(row["box"]["left"] - root) <= tolerance]
 
 def extract_text_lines(image_bytes, minimum_confidence=0.50):
     """Run OCR and return reading-order text lines with confidence and boxes."""

@@ -5,20 +5,20 @@ import type { ChangeEvent, CSSProperties } from "react";
 import { useLocale } from "next-intl";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import AdditionalChecks from "@/components/AdditionalChecks";
-import ImageCheckWorkspace from "@/components/ImageCheckWorkspace";
+import NoteCheckWorkspace from "@/components/NoteCheckWorkspace";
 import "./verifier.css";
 
 type Analysis = {
   authorship: { status: string; classification?: string; probability_any_ai?: number | null; character_count?: number; model_version?: string };
   covert_ad?: { label: string; probability: number };
 };
-type Mode = "text" | "images" | "comments";
+type Mode = "text" | "note";
 const copy = {
   zh: {
-    brand: "种草鉴别助手", tagline: "读懂种草，也读懂文字背后", title: "这篇种草文案，", accent: "有 AI 参与吗？",
-    intro: "粘贴笔记正文，一键查看 AI 写作迹象。配图与评论，也可以进一步核验。",
-    tabs: ["文案鉴别", "图片核验", "评论分析"], input: "待检测文案", sample: "试用示例", sampleHint: "演示文案，仅用于体验操作，不代表真人样本。",
+    brand: "种草鉴别助手", tagline: "读懂种草，也读懂文字背后", title: "这段文案，", accent: "像 AI 写的吗？",
+    intro: "粘贴文字，分析 AI 写作特征。想了解推广线索？切换到「种草推广核验」。",
+    tabs: ["AI 文案鉴别", "种草推广核验"], input: "待检测文案", sample: "试用示例", sampleHint: "演示文案，仅用于体验操作，不代表真人样本。",
+    noteTitle: "这篇种草，", noteAccent: "藏着推广线索吗？", noteIntro: "从正文开始，按需补充配图和评论，一起查看推广表达、互动与图片线索。", noteHelp: "输入正文后，可展开配图和评论。评论截图先识别，再检查并修正列表；至少 5 条可用评论才能分析协同风险。可信原图可在配图区添加。",
     imageTitle: "这张图片，", imageAccent: "藏着哪些线索？", imageIntro: "上传图片，核验图文是否对应，或与可信原图比对改动。", imageHelp: "选择图文一致性并补充文案，或选择原图比对并上传可信原图。支持 JPG、PNG、WebP；图文核验限 2 MB，原图比对单张限 12 MB。", imageFooter: "多一份上下文，多一点判断依据。",
     placeholder: "把想了解的种草笔记粘贴到这里…\n\n保留原文的标点、分段和 emoji，完整的上下文有助于分析。",
     upload: "导入文本", clear: "清空", detect: "开始鉴别", busy: "正在分析…", shortcut: "Ctrl / ⌘ + Enter 开始检测",
@@ -31,12 +31,13 @@ const copy = {
     footer: "独立研究项目 · 非小红书官方产品", privacy: "只分析文字特征，不替你判断好物。",
     tooShort: "请至少输入 20 个字，并尽量保留完整正文。", fileError: "请导入 UTF-8 编码的 .txt 文件，正文不超过 10,000 字。",
     network: "检测服务暂时不可用，请稍后重试。", invalid: "检测服务没有返回有效结果，请重试。",
-    tips: ["01  粘贴完整笔记", "02  查看写作迹象", "03  按需补充核验"], help: "如何使用", helpText: "粘贴 20–10,000 字正文后开始检测。修改文字后需重新检测；图片核验和评论分析可从上方切换。",
+    tips: ["01  粘贴完整文字", "02  开始 AI 鉴别", "03  查看写作迹象"], help: "如何使用", helpText: "粘贴 20–10,000 字正文后开始检测。这里分析 AI 写作特征；推广、配图和评论请进入「种草推广核验」。",
   },
   en: {
     brand: "NoteCheck", tagline: "A closer look at the words behind a recommendation", title: "A recommendation,", accent: "written with AI?",
-    intro: "Paste a post to check for signs of AI writing. Explore images and comments when you need more context.",
-    tabs: ["Text detection", "Image checks", "Comment analysis"], input: "Text to check", sample: "Try a sample", sampleHint: "Demo text for trying the interface, not a verified human sample.",
+    intro: "Check text for signs of AI writing. For promotional clues, switch to Promotion review.",
+    tabs: ["AI text detection", "Promotion review"], input: "Text to check", sample: "Try a sample", sampleHint: "Demo text for trying the interface, not a verified human sample.",
+    noteTitle: "A recommendation,", noteAccent: "or a promotion?", noteIntro: "Start with the post, then optionally add images and comments to review the evidence together.", noteHelp: "Enter the post and optionally add images or comments. Review and correct screenshot OCR before analysis. At least 5 usable comments are needed. Add a trusted original in the image section for comparison.",
     imageTitle: "A closer look,", imageAccent: "at this image.", imageIntro: "Compare an image with its caption or a trusted original for more context.", imageHelp: "Add a caption for an image-text check, or a trusted original for comparison. JPG, PNG and WebP supported. Up to 2 MB for image-text checks; 12 MB per image for original comparison.", imageFooter: "More context for a clearer picture.",
     placeholder: "Paste a recommendation here…\n\nKeep the original punctuation, paragraphs and emoji for context.",
     upload: "Import text", clear: "Clear", detect: "Check text", busy: "Analyzing…", shortcut: "Ctrl / ⌘ + Enter to check",
@@ -49,12 +50,12 @@ const copy = {
     footer: "Independent research project · Not affiliated with Xiaohongshu", privacy: "Writing patterns, not product verdicts.",
     tooShort: "Enter at least 20 characters, ideally the complete post.", fileError: "Import a UTF-8 .txt file with no more than 10,000 characters.",
     network: "Detection is temporarily unavailable. Please try again.", invalid: "The service returned an invalid result. Please retry.",
-    tips: ["01  Paste a complete post", "02  Review writing patterns", "03  Explore extra checks"], help: "How it works", helpText: "Paste 20–10,000 characters. Recheck after editing. Switch tabs for image and comment checks.",
+    tips: ["01  Paste text", "02  Check for AI", "03  Review writing patterns"], help: "How it works", helpText: "Paste 20–10,000 characters to check writing patterns. Use Promotion review for advertising, comments and images.",
   },
 };
 const example = "最近换了一支洁面，用了一个多星期，简单记一下感受。\n\n泡沫挺细的，洗完脸颊没有紧绷感，这点我很喜欢。不过香味比预想中重，介意香味的姐妹可以先试小样。\n\n我一般只在晚上用，早上还是清水。暂时没有打算囤货，先把这一支用完再说～";
 
-function Mark({ kind = "text" }: { kind?: Mode | "spark" }) {
+function Mark({ kind = "text" }: { kind?: Mode | "spark" | "images" | "comments" }) {
   return <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     {kind === "text" ? <><path d="M6 3h9l4 4v14H6z"/><path d="M14 3v5h5M9 12h7M9 16h5"/></> : kind === "images" ? <><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="8" cy="9" r="1"/><path d="m4 17 5-5 4 4 3-3 5 5"/></> : kind === "comments" ? <path d="M20 11a8 8 0 0 1-8 8H4l1-4a8 8 0 1 1 15-4ZM8 10h8M8 13h5"/> : <path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5Z"/>}
   </svg>;
@@ -114,10 +115,10 @@ export default function Home() {
   }
   return <div className="verifier-shell">
     <header className="site-header"><Link className="brand" href="/"><span className="brand-icon"><Mark kind="spark"/></span>{t.brand}<span className="beta">BETA</span></Link><div className="header-actions"><button onClick={() => setHelp(!help)} aria-expanded={help}>{t.help}</button><span className="header-divider"/><button aria-label={locale === "en" ? "切换为中文" : "Switch to English"} onClick={() => { document.cookie = `locale=${locale === "en" ? "zh-CN" : "en"}; Path=/; Max-Age=31536000; SameSite=Lax`; router.refresh(); }}>{locale === "en" ? "中文" : "EN"}</button></div></header>
-    {help && <div className="help-banner">{mode === "images" ? t.imageHelp : t.helpText}</div>}
+    {help && <div className="help-banner">{mode === "note" ? t.noteHelp : t.helpText}</div>}
     <main className="workspace">
-      <section className="hero"><p className="eyebrow"><span/>{t.tagline}</p><h1>{mode === "images" ? t.imageTitle : t.title}<em>{mode === "images" ? t.imageAccent : t.accent}</em></h1><p className="hero-description">{mode === "images" ? t.imageIntro : t.intro}</p></section>
-      <nav className="mode-switch" aria-label={locale === "en" ? "Check type" : "核验类型"}>{(["text", "images", "comments"] as const).map((item, i) => <button key={item} aria-pressed={mode === item} onClick={() => setMode(item)}><Mark kind={item}/>{t.tabs[i]}</button>)}</nav>
+      <section className="hero"><p className="eyebrow"><span/>{t.tagline}</p><h1>{mode === "note" ? t.noteTitle : t.title}<em>{mode === "note" ? t.noteAccent : t.accent}</em></h1><p className="hero-description">{mode === "note" ? t.noteIntro : t.intro}</p></section>
+      <nav className="mode-switch" aria-label={locale === "en" ? "Check type" : "核验类型"}>{(["text", "note"] as const).map((item, i) => <button key={item} aria-pressed={mode === item} onClick={() => setMode(item)}><Mark kind={item}/>{t.tabs[i]}</button>)}</nav>
       <div hidden={mode !== "text"}>
         <div className="detection-grid">
           <section className="editor-card" aria-label={t.input}><div className="editor-heading"><h2><Mark/>{t.input}</h2><button className="sample-button" disabled={loading} onClick={() => { updateText(example); setSample(true); }}>{t.sample}<span aria-hidden="true"> ↗</span></button></div>
@@ -129,15 +130,14 @@ export default function Home() {
           </section>
           <aside className="result-panel" aria-live="polite" aria-busy={loading}><div className="result-heading"><h2>{t.result}</h2><span className="status-label">{loading ? t.busy : result ? "✓" : t.waiting}</span></div>
             {!result ? <div className="result-empty"><div className={`empty-orbit ${loading ? "is-loading" : ""}`}><Mark kind="spark"/></div><h3>{loading ? t.analyzing : error ? t.retry : t.empty}</h3><p>{loading ? t.analyzingHelp : error ? t.retryHelp : t.emptyHelp}</p><div className="placeholder-lines" aria-hidden="true"><span/><span/><span/></div></div> : <div className="result-content"><p className={`outcome ${known && a?.classification !== "ai_involved" ? "human" : ""}`}>{outcome}</p>{known ? <><div className="score-ring" style={{ "--score": `${p! * 100}%` } as CSSProperties}><div><strong>{(p! * 100).toFixed(1)}<small>%</small></strong><span>{t.score}</span></div></div><p className="score-explanation">{t.explanation}</p></> : <p className="score-explanation unknown-copy">{t.unknownHelp}</p>}
-              {result.covert_ad && ["likely_ad", "likely_non_ad"].includes(result.covert_ad.label) && <details className="ad-detail"><summary>{t.ad}</summary><p>{result.covert_ad.label === "likely_ad" ? t.adYes : t.adNo}</p><p>{t.adHelp}</p></details>}<button className="download-button" onClick={download}>↓ {t.download}</button></div>}
+              <button className="download-button" onClick={download}>↓ {t.download}</button></div>}
             <p className="result-note">ⓘ {t.note}</p>
           </aside>
         </div>
         <div className="steps">{t.tips.map(tip => <span key={tip}>{tip}</span>)}</div>
       </div>
-      <div hidden={mode !== "images"}><ImageCheckWorkspace/></div>
-      <div hidden={mode !== "comments"}><AdditionalChecks mode="comments"/></div>
-      <footer className="site-footer"><span>{t.footer}</span><span>{mode === "images" ? t.imageFooter : t.privacy}</span></footer>
+      <div hidden={mode !== "note"}><NoteCheckWorkspace/></div>
+      <footer className="site-footer"><span>{t.footer}</span><span>{mode === "note" ? t.imageFooter : t.privacy}</span></footer>
     </main>
   </div>;
 }
