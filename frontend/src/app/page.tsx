@@ -122,7 +122,7 @@ export default function Home() {
       <div hidden={mode !== "text"}>
         <div className="detection-grid">
           <section className="editor-card" aria-label={t.input}><div className="editor-heading"><h2><Mark/>{t.input}</h2><button className="sample-button" disabled={loading} onClick={() => { updateText(example); setSample(true); }}>{t.sample}<span aria-hidden="true"> ↗</span></button></div>
-            <textarea aria-label={t.input} value={text} disabled={loading} maxLength={10000} placeholder={t.placeholder} onChange={e => updateText(e.target.value)} onKeyDown={e => { if ((e.ctrlKey || e.metaKey) && e.key === "Enter") { e.preventDefault(); void analyze(); } }}/>
+            <textarea className="main-editor" aria-label={t.input} value={text} disabled={loading} maxLength={10000} placeholder={t.placeholder} onChange={e => updateText(e.target.value)} onKeyDown={e => { if ((e.ctrlKey || e.metaKey) && e.key === "Enter") { e.preventDefault(); void analyze(); } }}/>
             {sample && <p className="sample-note">{t.sampleHint}</p>}
             {error && <p className="error-message" role="alert">{error}</p>}
             <div className="editor-meta"><span>{t.shortcut}</span><span>{count.toLocaleString()} / 10,000</span></div>

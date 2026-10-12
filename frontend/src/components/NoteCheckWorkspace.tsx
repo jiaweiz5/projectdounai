@@ -142,17 +142,16 @@ export default function NoteCheckWorkspace() {
     const link = document.createElement("a"); link.href = url; link.download = "promotion-review.json"; link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
-  return <div className={styles.layout}>
-    <div className={styles.inputColumn}>
+  return <div className="detection-grid">
+    <div className="editor-card">
       <fieldset disabled={!!busy} className={styles.fields}>
-        <section className={styles.card}>
-          <div className={styles.heading}><h2><Icon kind="text"/>{l("笔记正文", "Post text")}</h2><span>{l("必填", "Required")}</span></div>
-          <p className={styles.hint}>{l("保留原文里的使用体验、产品名称与推广披露，让线索更完整。", "Keep product names, personal experiences and sponsorship disclosures for context.")}</p>
-          <textarea className={styles.post} aria-label={l("笔记正文", "Post text")} maxLength={10000} value={text} placeholder={l("把想核验的小红书笔记粘贴到这里…", "Paste the post you want to review…")} onChange={e => { setText(e.target.value); changed(); }}/>
-          <div className={styles.count}>{text.length.toLocaleString()} / 10,000</div>
+        <section className={styles.mainSection}>
+          <div className="editor-heading"><h2><Icon kind="text"/>{l("笔记正文", "Post text")}</h2><span className="sample-button">{l("必填", "Required")}</span></div>
+          <textarea className="main-editor" aria-label={l("笔记正文", "Post text")} maxLength={10000} value={text} placeholder={l("把想核验的小红书笔记粘贴到这里…\n\n保留原文里的使用体验、产品名称与推广披露，让线索更完整。", "Paste the post you want to review…\n\nKeep product names, experiences and sponsorship disclosures for context.")} onChange={e => { setText(e.target.value); changed(); }}/>
+          <div className="editor-meta"><span>{l("正文必填，配图和评论选填", "Post text required; images and comments optional")}</span><span>{text.length.toLocaleString()} / 10,000</span></div>
         </section>
 
-        <details className={styles.card}>
+        <details className={styles.evidence}>
           <summary className={styles.heading}><h2><Icon kind="image"/>{l("笔记配图", "Post images")}</h2><span>{photos.length ? `${photos.length} / 2` : l("选填 · 展开", "Optional · Expand")}</span></summary>
           <p className={styles.hint}>{l("比较配图与上面的正文，并识别图中文字。最多 2 张，合计 2 MB。", "Compare images with the post and extract visible text. Up to 2 images, 2 MB total.")}</p>
           <input ref={photoInput} type="file" hidden multiple accept="image/jpeg,image/png,image/webp" onChange={e => { void choose(Array.from(e.target.files ?? []), "photos"); e.target.value = ""; }}/>
@@ -174,7 +173,7 @@ export default function NoteCheckWorkspace() {
           </div>)}
         </details>
 
-        <details className={styles.card}>
+        <details className={styles.evidence}>
           <summary className={styles.heading}><h2><Icon kind="comments"/>{l("评论区", "Comments")}</h2><span>{comments.length ? `${usable.length} / 30` : l("选填 · 展开", "Optional · Expand")}</span></summary>
           <p className={styles.hint}>{l("上传清晰的评论区截图，或手动添加。保留真实重复评论，至少 5 条才能分析协同风险。", "Upload a clear comment screenshot or type comments. Keep genuine repetitions. At least 5 comments are needed.")}</p>
           <input ref={screenInput} type="file" hidden accept="image/jpeg,image/png,image/webp" onChange={e => { void choose(Array.from(e.target.files ?? []), "screenshot"); e.target.value = ""; }}/>
@@ -194,12 +193,12 @@ export default function NoteCheckWorkspace() {
         </details>
       </fieldset>
       {error && <p className="error-message" role="alert">{error}</p>}
-      <div className={styles.actions}><span>{l("选填项不影响正文核验", "Optional evidence can be added later")}</span><button className="primary-button" disabled={!!busy || !text.trim() || (!!usable.length && !reviewed)} onClick={analyze}>{busy === "analysis" ? l("正在核验…", "Reviewing…") : busy ? l("正在处理材料…", "Processing…") : l("开始核验", "Review post")}<span aria-hidden="true"> →</span></button></div>
+      <div className={`editor-actions ${styles.actions}`}><span>{l("选填项不影响正文核验", "Optional evidence can be added later")}</span><button className="primary-button" disabled={!!busy || !text.trim() || (!!usable.length && !reviewed)} onClick={analyze}>{busy === "analysis" ? l("正在核验…", "Reviewing…") : busy ? l("正在处理材料…", "Processing…") : l("开始核验", "Review post")}<span aria-hidden="true"> →</span></button></div>
     </div>
 
-    <aside className={`${styles.card} ${styles.results}`} aria-live="polite" aria-busy={busy === "analysis"}>
-      <div className={styles.heading}><h2>{l("推广线索报告", "Promotion clues")}</h2><span>{busy === "analysis" ? l("核验中", "Reviewing") : findings ? l("本次结果", "Results") : l("等待核验", "Ready")}</span></div>
-      {!findings ? <><div className={styles.empty}><span className={styles.orbit}><Icon kind="check"/></span><h3>{busy === "analysis" ? l("正在逐项查看线索", "Reviewing the evidence") : l("多一点材料，多一份依据", "More context, more evidence")}</h3><p>{l("从正文开始，按需添加配图与评论。每一项都有独立的结果。", "Start with the post and optionally add images and comments. Each check has its own finding.")}</p></div><div className={styles.checklist}>{[l("推广表达", "Promotional language"), l("评论协同", "Comment coordination"), l("图文一致性", "Image-text alignment"), l("原图差异", "Original comparison")].map((v, i) => <div key={v}><span>{String(i + 1).padStart(2, "0")}</span>{v}<small>{i === 0 ? l("根据正文", "Post text") : l("按需补充", "Optional")}</small></div>)}</div></> : <>
+    <aside className="result-panel" aria-live="polite" aria-busy={busy === "analysis"}>
+      <div className="result-heading"><h2>{l("推广线索报告", "Promotion clues")}</h2><span className="status-label">{busy === "analysis" ? l("核验中", "Reviewing") : findings ? l("本次结果", "Results") : l("等待核验", "Ready")}</span></div>
+      {!findings ? <><div className="result-empty"><span className="empty-orbit"><Icon kind="check"/></span><h3>{busy === "analysis" ? l("正在逐项查看线索", "Reviewing the evidence") : l("多一点材料，多一份依据", "More context, more evidence")}</h3><p>{l("从正文开始，按需添加配图与评论。每一项都有独立的结果。", "Start with the post and optionally add images and comments. Each check has its own finding.")}</p></div><div className={styles.checklist}>{[l("推广表达", "Promotional language"), l("评论协同", "Comment coordination"), l("图文一致性", "Image-text alignment"), l("原图差异", "Original comparison")].map((v, i) => <div key={v}><span>{String(i + 1).padStart(2, "0")}</span>{v}<small>{i === 0 ? l("根据正文", "Post text") : l("按需补充", "Optional")}</small></div>)}</div></> : <>
         {findings.mainFailed && <p className={styles.notice}>{l("正文、评论及图文分析未完成，请重试。已完成的原图比对仍可查看。", "Post, comment and alignment analysis failed. Retry; any completed original comparisons remain below.")}</p>}
         <section className={`${styles.finding} ${styles.primaryFinding}`}><small>{l("01 · 推广表达", "01 · Promotional language")}</small><h3>{adTitle}</h3>{adValid && <p>{l("文案推广倾向 · 模型估计", "Text promotion estimate")} <strong>{(ad.probability! * 100).toFixed(1)}%</strong></p>}<p>{l("这项结果只来自正文。评论和图片线索分别列出，不合并成推广概率。", "This finding is based on the post text. Comments and images are reported separately, not combined into a probability.")}</p></section>
         <section className={styles.finding}><small>{l("02 · 评论协同", "02 · Comment coordination")}</small><h3>{groupTitle}</h3><p>{l("本次分析的评论数", "Comments analyzed")}: {group?.comment_count ?? (usable.length ? l("未完成", "Unavailable") : 0)}</p>{groupValid && <p>{l("协同风险 · 模型估计", "Estimated coordination risk")}: {(group.score! * 100).toFixed(1)}%</p>}<p>{l("相似话术是复核线索，不能直接证明水军或商业合作。", "Similar wording alone does not prove bots or sponsorship.")}</p></section>
@@ -215,7 +214,7 @@ export default function NoteCheckWorkspace() {
         })}<p>{l("裁剪、滤镜和压缩也会产生差异，请结合原图来源复核。", "Cropping, filters and compression can also cause differences. Review the original's source.")}</p></section>
         <button className="download-button" onClick={download}>{l("下载完整结果", "Download full results")} ↓</button>
       </>}
-      <p className={styles.footnote}>{l("辅助发现线索，不直接证明商业合作或内容造假。未提供材料与未完成检测都不代表零风险。", "Findings support review, not proof of sponsorship or deception. Missing or unavailable checks do not mean zero risk.")}</p>
+      <p className="result-note">{l("辅助发现线索，不直接证明商业合作或内容造假。未提供材料与未完成检测都不代表零风险。", "Findings support review, not proof of sponsorship or deception. Missing or unavailable checks do not mean zero risk.")}</p>
     </aside>
   </div>;
 }
