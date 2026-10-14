@@ -27,7 +27,7 @@ CLASSIFIER_PATH = Path(
 
 
 # 0.5 is ok
-THRESHOLD = 0.5
+THRESHOLD = 0.55
 
 
 def load_data(path):

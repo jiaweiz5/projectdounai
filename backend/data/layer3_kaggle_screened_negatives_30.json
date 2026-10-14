@@ -1,0 +1,3116 @@
+[
+  {
+    "id": "kaggle_xhs_6193dae7000000002103db80",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "6193dae7000000002103db80",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 12,
+    "comments": [
+      {
+        "id": "6193e547000000000102ec66",
+        "text": "为什么我的ai没有正片叠底",
+        "user_id": "5e745dd10000000001007f22",
+        "timestamp": "1637082439000"
+      },
+      {
+        "id": "61a70f6e0000000001025a63",
+        "text": "请问肌理填充进去后只有肌理绿色底色没了是什么原因呢谢谢！",
+        "user_id": "5dafd65b0000000001006e8e",
+        "timestamp": "1638338414000"
+      },
+      {
+        "id": "62f7513a0000000008010830",
+        "text": "为什么填充的图案不能放大缩小",
+        "user_id": "5da34a17000000000100a721",
+        "timestamp": "1660375354000"
+      },
+      {
+        "id": "6548d3550000000025015915",
+        "text": "大佬",
+        "user_id": "637c5d46000000002302b969",
+        "timestamp": "1699271509000"
+      },
+      {
+        "id": "652fdc3b000000001c03efa4",
+        "text": "画这个图的作用是啥？师傅用这个图生产毛衣吗",
+        "user_id": "58aeffb450c4b4298479eab1",
+        "timestamp": "1697635387000"
+      },
+      {
+        "id": "625a221600000000210353ae",
+        "text": "cdr也可以用吗",
+        "user_id": "5c5133d8000000001a02bee6",
+        "timestamp": "1650074134000"
+      },
+      {
+        "id": "61fbcc2e000000001302f552",
+        "text": "博主衣服怎么弄的阿",
+        "user_id": "5dfc6e650000000001003359",
+        "timestamp": "1643891758000"
+      },
+      {
+        "id": "61b96a55000000002003ebb8",
+        "text": "为什么在进行图案选项那里不能手动调节大小只能输入数字？",
+        "user_id": "5f433b180000000001008aeb",
+        "timestamp": "1639541333000"
+      },
+      {
+        "id": "6194b6fc000000000102cb53",
+        "text": "在窗口里找不透明度里面就有正片叠底的选项",
+        "user_id": "5fd374a700000000010038fa",
+        "timestamp": "1637136124000"
+      },
+      {
+        "id": "66d2d68f000000001202e13b",
+        "text": "右键",
+        "user_id": "601fa1cc0000000001005dc0",
+        "timestamp": "1725093520000"
+      },
+      {
+        "id": "632532c8000000001702bd9a",
+        "text": "请问是怎么填充的啊",
+        "user_id": "5f243f510000000001008d62",
+        "timestamp": "1663382216000"
+      },
+      {
+        "id": "63578dcd000000001803a317",
+        "text": "图案填充色板里有做好的图案",
+        "user_id": "5905ca5a82ec39123d86b38a",
+        "timestamp": "1666682317000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Varied design questions and answers from distinct users across a long period; no shared campaign pattern.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_62fcebe4000000001b018dcb",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "62fcebe4000000001b018dcb",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 7,
+    "comments": [
+      {
+        "id": "65b7b54b000000000803e5f0",
+        "text": "邮箱为什么登不上",
+        "user_id": "6022453500000000010049a5",
+        "timestamp": "1706538315000"
+      },
+      {
+        "id": "62fcf431000000001e01665d",
+        "text": "这个软件现在好像还没有办法变尺码。",
+        "user_id": "5e61c408000000000100b805",
+        "timestamp": "1660744753000"
+      },
+      {
+        "id": "65b7b568000000000600ff73",
+        "text": "可以试试163或者outlook的邮箱",
+        "user_id": "5f9e15e200000000010049bc",
+        "timestamp": "1706538344000"
+      },
+      {
+        "id": "65b7b981000000000803256a",
+        "text": "163的注册好了登录的时候显示登录失败",
+        "user_id": "6022453500000000010049a5",
+        "timestamp": "1706539393000"
+      },
+      {
+        "id": "65b7b9c8000000000600e976",
+        "text": "奇怪那你试试用谷歌账号什么的。对了这个需要梯子的",
+        "user_id": "5f9e15e200000000010049bc",
+        "timestamp": "1706539464000"
+      },
+      {
+        "id": "65b7bda6000000000800999f",
+        "text": "方便问问用的哪个吗我的加速器不管用",
+        "user_id": "6022453500000000010049a5",
+        "timestamp": "1706540454000"
+      },
+      {
+        "id": "62fd6ede000000001a00e47f",
+        "text": "哈哈哈哈可恶",
+        "user_id": "5f9e15e200000000010049bc",
+        "timestamp": "1660776158000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Three-user troubleshooting conversation with direct replies; no coordination signal.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_634bf3730000000007034983",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "634bf3730000000007034983",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 21,
+    "comments": [
+      {
+        "id": "63591b07000000001a01be22",
+        "text": "生怕我学会了",
+        "user_id": "565958eae00dd82270e428de",
+        "timestamp": "1666784007000"
+      },
+      {
+        "id": "6357c834000000000b03385a",
+        "text": "详细过程已发",
+        "user_id": "58dff40fa9b2ed6b05fba998",
+        "timestamp": "1666697268000"
+      },
+      {
+        "id": "638eaf69000000001c03f211",
+        "text": "为啥老师做的扭曲效果最上面和最下面一层的线条感觉会粗一些",
+        "user_id": "621dacdd000000001000f91a",
+        "timestamp": "1670295401000"
+      },
+      {
+        "id": "6352c00a000000001902c00c",
+        "text": "你明明就是怕我学会",
+        "user_id": "5bb4b3d024264b000104211d",
+        "timestamp": "1666367498000"
+      },
+      {
+        "id": "634d1e070000000016010a51",
+        "text": "厉害了",
+        "user_id": "5e314dc0000000000100a0ca",
+        "timestamp": "1665998343000"
+      },
+      {
+        "id": "635e8f270000000018038a01",
+        "text": "有没有不加速的",
+        "user_id": "56dd11391c07df06e1f4299f",
+        "timestamp": "1667141415000"
+      },
+      {
+        "id": "66c002b5000000000c01981b",
+        "text": "感觉是平面设计。。。",
+        "user_id": "6003a7e0000000000101d1d7",
+        "timestamp": "1723859638000"
+      },
+      {
+        "id": "638ea53b000000001c03ecd2",
+        "text": "好快哦我看着好困难老师",
+        "user_id": "621dacdd000000001000f91a",
+        "timestamp": "1670292795000"
+      },
+      {
+        "id": "63577ce5000000000a033e3d",
+        "text": "扭曲怎么搞",
+        "user_id": "5c360bd8000000000701d409",
+        "timestamp": "1666677989000"
+      },
+      {
+        "id": "634e9f9300000000160063bb",
+        "text": "眼睛都看花了",
+        "user_id": "5fa2753400000000010061b6",
+        "timestamp": "1666097043000"
+      },
+      {
+        "id": "63591b55000000000e021ea7",
+        "text": "主页有详细的噢",
+        "user_id": "58dff40fa9b2ed6b05fba998",
+        "timestamp": "1666784085000"
+      },
+      {
+        "id": "641c28a90000000014034504",
+        "text": "在哪里呀没找到",
+        "user_id": "5fbba0330000000001006b80",
+        "timestamp": "1679567017000"
+      },
+      {
+        "id": "64537c59000000001500f9d4",
+        "text": "在哪呢",
+        "user_id": "607aa77400000000010050d0",
+        "timestamp": "1683192921000"
+      },
+      {
+        "id": "638eb92e000000001d03087d",
+        "text": "實際都是一樣粗的因為有顏色過度所以視覺上會感覺粗些",
+        "user_id": "58dff40fa9b2ed6b05fba998",
+        "timestamp": "1670297902000"
+      },
+      {
+        "id": "6352c857000000000d039522",
+        "text": "看来要长视频才行了",
+        "user_id": "58dff40fa9b2ed6b05fba998",
+        "timestamp": "1666369623000"
+      },
+      {
+        "id": "6352c8bc000000000d039ada",
+        "text": "你也可以",
+        "user_id": "58dff40fa9b2ed6b05fba998",
+        "timestamp": "1666369724000"
+      },
+      {
+        "id": "638ea578000000001a00168c",
+        "text": "主頁不是有個更詳細的嘛",
+        "user_id": "58dff40fa9b2ed6b05fba998",
+        "timestamp": "1670292856000"
+      },
+      {
+        "id": "63577dec000000001103a112",
+        "text": "今晚出详细教程记得来哦",
+        "user_id": "58dff40fa9b2ed6b05fba998",
+        "timestamp": "1666678253000"
+      },
+      {
+        "id": "6352c885000000000e0225e6",
+        "text": "以后放慢速度",
+        "user_id": "58dff40fa9b2ed6b05fba998",
+        "timestamp": "1666369669000"
+      },
+      {
+        "id": "634e78370000000012016013",
+        "text": "你在开玩笑",
+        "user_id": "5a0864bfe8ac2b768e517267",
+        "timestamp": "1666086967000"
+      },
+      {
+        "id": "6352c893000000000d039841",
+        "text": "怎么就开玩笑了呢",
+        "user_id": "58dff40fa9b2ed6b05fba998",
+        "timestamp": "1666369683000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Varied questions and tutorial replies; repeated replies come mainly from the same respondent.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_63bfb12b000000001f00d8a0",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "63bfb12b000000001f00d8a0",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 21,
+    "comments": [
+      {
+        "id": "63c0d298000000001e02cc17",
+        "text": "声明：本片002003出现的参数化视频素材来自博主youis做视频遗漏了非常抱歉。大家快去看这位参数化设计博主！！",
+        "user_id": "598a8f8482ec393dfdb07864",
+        "timestamp": "1673581208000"
+      },
+      {
+        "id": "63ce41b00000000024011386",
+        "text": "我看懂了服设开始学建筑软件建筑开始学交互交互开始学码宇宙尽头皆为码",
+        "user_id": "5ab40e9de8ac2b5449b2d844",
+        "timestamp": "1674461616000"
+      },
+      {
+        "id": "63c0af970000000019025200",
+        "text": "拿我参数化部分的视频非商用的情况下请注明出处补充一下禁商用哦。",
+        "user_id": "61d770d7000000001000fb72",
+        "timestamp": "1673572247000"
+      },
+      {
+        "id": "63c0a303000000001c03c922",
+        "text": "醍醐灌顶",
+        "user_id": "59797c0c6a6a69133619d549",
+        "timestamp": "1673569027000"
+      },
+      {
+        "id": "63c1275f000000001e0341b5",
+        "text": "小红薯636678bc",
+        "user_id": "62220c150000000021027474",
+        "timestamp": "1673602911000"
+      },
+      {
+        "id": "63c4f9390000000024013cb3",
+        "text": "妈呀太难了我还合计你发展带我玩呢",
+        "user_id": "63661a4b000000001f015bd2",
+        "timestamp": "1673853241000"
+      },
+      {
+        "id": "63c0d3a4000000002401221b",
+        "text": "好的谢谢素材来源补充说明和分享",
+        "user_id": "61d770d7000000001000fb72",
+        "timestamp": "1673581476000"
+      },
+      {
+        "id": "63c0dbab000000001e03233a",
+        "text": "感谢你的分享",
+        "user_id": "598a8f8482ec393dfdb07864",
+        "timestamp": "1673583531000"
+      },
+      {
+        "id": "63ce7c600000000019005b1a",
+        "text": "哈哈哈哈哈",
+        "user_id": "598a8f8482ec393dfdb07864",
+        "timestamp": "1674476640000"
+      },
+      {
+        "id": "63c2081900000000190046fa",
+        "text": "哇！你的主页也很牛逼啊",
+        "user_id": "598a8f8482ec393dfdb07864",
+        "timestamp": "1673660441000"
+      },
+      {
+        "id": "63c20bf10000000024021e2e",
+        "text": "小姐姐的解说精准又清晰",
+        "user_id": "5b3b955c4eacab742278252b",
+        "timestamp": "1673661425000"
+      },
+      {
+        "id": "63c21f4a000000001e02dea9",
+        "text": "觉得很有意思做了些功课",
+        "user_id": "598a8f8482ec393dfdb07864",
+        "timestamp": "1673666378000"
+      },
+      {
+        "id": "63c0d2c9000000001e02d237",
+        "text": "我把您的信息置顶了！没有商用的哈纯分享",
+        "user_id": "598a8f8482ec393dfdb07864",
+        "timestamp": "1673581257000"
+      },
+      {
+        "id": "63c0d173000000001e02e53a",
+        "text": "sorry这位博主请问是哪部分啊？我其他都注明来源了可能有疏漏抱歉哈",
+        "user_id": "598a8f8482ec393dfdb07864",
+        "timestamp": "1673580915000"
+      },
+      {
+        "id": "63c0d1c7000000001e039240",
+        "text": "我看到了！绕圈圈那部分！抱歉！遗漏了视频无法修改了咋办不是故意的",
+        "user_id": "598a8f8482ec393dfdb07864",
+        "timestamp": "1673580999000"
+      },
+      {
+        "id": "63c46d4a000000001903f498",
+        "text": "往时尚圈发展一下呗！哈哈哈看好你到时候我给你设计灯光现场啥的奥挣大钱了记得分我一杯羹哈哈哈哈哈",
+        "user_id": "63661a4b000000001f015bd2",
+        "timestamp": "1673817418000"
+      },
+      {
+        "id": "63c46da6000000001d02a8e6",
+        "text": "但就是视频里这东西太高科技了要我肯定是搞不懂了",
+        "user_id": "63661a4b000000001f015bd2",
+        "timestamp": "1673817510000"
+      },
+      {
+        "id": "63c4da9e000000001e034262",
+        "text": "啥玩意我的意思是让你发展",
+        "user_id": "62220c150000000021027474",
+        "timestamp": "1673845406000"
+      },
+      {
+        "id": "63c25662000000001e036654",
+        "text": "我小学的时候也有这种想法",
+        "user_id": "5f243e19000000000101df1d",
+        "timestamp": "1673680482000"
+      },
+      {
+        "id": "63c237a6000000001b00c75c",
+        "text": "小益同学",
+        "user_id": "5db2c8380000000001004549",
+        "timestamp": "1673672614000"
+      },
+      {
+        "id": "63bff727000000001d03062d",
+        "text": "沙发哇哦学到了",
+        "user_id": "5c440dd7000000000700b226",
+        "timestamp": "1673525031000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Source-credit dispute and ordinary reactions; no multi-account repeated messaging.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_63c15734000000001c007d19",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "63c15734000000001c007d19",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 15,
+    "comments": [
+      {
+        "id": "63e1f086000000001e02f2a4",
+        "text": "怎么进入这些网站的官网",
+        "user_id": "5b715fb70534150001b94505",
+        "timestamp": "1675751558000"
+      },
+      {
+        "id": "65deaa43000000000401597d",
+        "text": "都要付费",
+        "user_id": "5c0a7c410000000005003645",
+        "timestamp": "1709091395000"
+      },
+      {
+        "id": "64801d29000000002a008eab",
+        "text": "网站里的照片可以保存吗？",
+        "user_id": "60935df30000000001004773",
+        "timestamp": "1686117673000"
+      },
+      {
+        "id": "652f81db000000001a0225b3",
+        "text": "您好wwd怎么安装在电脑里看？",
+        "user_id": "5f2e695b000000000101e458",
+        "timestamp": "1697612251000"
+      },
+      {
+        "id": "64797d8f0000000019033f80",
+        "text": "这个要切换外网看么？还是直接输入网址即可。",
+        "user_id": "5a8a8fa54eacab3b6d75d8e8",
+        "timestamp": "1685683599000"
+      },
+      {
+        "id": "648ac0ac0000000018038ef7",
+        "text": "在哪里打开这些网站呀",
+        "user_id": "5c52416700000000100045d2",
+        "timestamp": "1686814892000"
+      },
+      {
+        "id": "666ae33b000000002300fe8d",
+        "text": "图7打不开",
+        "user_id": "5be99dfc13dbf900019889c5",
+        "timestamp": "1718281019000"
+      },
+      {
+        "id": "64b6be96000000002c03ba2d",
+        "text": "wwdbof这些都要付费肿么办",
+        "user_id": "576ced756a6a69266fa1268b",
+        "timestamp": "1689697942000"
+      },
+      {
+        "id": "643d2e5b000000001802a381",
+        "text": "仲",
+        "user_id": "5d9c83a1000000000100b079",
+        "timestamp": "1681731163000"
+      },
+      {
+        "id": "63f48cb9000000001a004988",
+        "text": "第二个从哪里搜搜不到啊",
+        "user_id": "5c3bfa7e00000000050116c4",
+        "timestamp": "1676971193000"
+      },
+      {
+        "id": "63e1f0cb000000001e02f91a",
+        "text": "请在每张图最下方仔细看",
+        "user_id": "5db179a5000000000100492d",
+        "timestamp": "1675751627000"
+      },
+      {
+        "id": "65df1e0900000000040178c6",
+        "text": "以前我看的时候还不用呢难道是被我带火了？",
+        "user_id": "5db179a5000000000100492d",
+        "timestamp": "1709121033000"
+      },
+      {
+        "id": "64801e0d00000000290106e5",
+        "text": "当然可以",
+        "user_id": "5db179a5000000000100492d",
+        "timestamp": "1686117901000"
+      },
+      {
+        "id": "652f906b000000001900a276",
+        "text": "直接打开网站就可以了呀",
+        "user_id": "5db179a5000000000100492d",
+        "timestamp": "1697615979000"
+      },
+      {
+        "id": "6479836d000000001a037e1a",
+        "text": "这些不需要外网都是直接输入网址有可能有些网站打开慢",
+        "user_id": "5db179a5000000000100492d",
+        "timestamp": "1685685101000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Varied website-access questions with answers from one respondent.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_6427d01a00000000120331fa",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "6427d01a00000000120331fa",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 17,
+    "comments": [
+      {
+        "id": "6427d56c000000001403425a",
+        "text": "黑科技",
+        "user_id": "5fea8b2b0000000001004e5f",
+        "timestamp": "1680332139000"
+      },
+      {
+        "id": "642cd73b0000000016034f1b",
+        "text": "试过了效果不行",
+        "user_id": "5cf341f3000000001802d43d",
+        "timestamp": "1680660283000"
+      },
+      {
+        "id": "6427e1a7000000001a004736",
+        "text": "有无论文链接",
+        "user_id": "5d1e30ce0000000016036d1d",
+        "timestamp": "1680335271000"
+      },
+      {
+        "id": "642a4c3300000000140381a1",
+        "text": "哈哈哈我也在做这个用了全身模特的数据集可以很好的换裙子啥的hhh",
+        "user_id": "5b4dbf78e8ac2b557e5a2a84",
+        "timestamp": "1680493619000"
+      },
+      {
+        "id": "6427e741000000001403ce39",
+        "text": "求论文链接",
+        "user_id": "627deacf0000000021027c38",
+        "timestamp": "1680336704000"
+      },
+      {
+        "id": "64319a95000000001903220c",
+        "text": "如果能把这个和sd结合一下就好了我做的已经有细节了但是空间还很大",
+        "user_id": "60ed26900000000001008319",
+        "timestamp": "1680972437000"
+      },
+      {
+        "id": "64870ffb0000000018039e4d",
+        "text": "用什么ai工具做的呀",
+        "user_id": "5c4493080000000006012ba6",
+        "timestamp": "1686573051000"
+      },
+      {
+        "id": "646119a4000000000700e79b",
+        "text": "厉害",
+        "user_id": "61e02fe5000000001000c0f6",
+        "timestamp": "1684085156000"
+      },
+      {
+        "id": "642c1caf000000001501257b",
+        "text": "收藏了",
+        "user_id": "5f0135b5000000000101c4ce",
+        "timestamp": "1680612527000"
+      },
+      {
+        "id": "6427f77c000000001a005561",
+        "text": "好的谢谢",
+        "user_id": "5d1e30ce0000000016036d1d",
+        "timestamp": "1680340860000"
+      },
+      {
+        "id": "6427e2b70000000007009b7f",
+        "text": "哈哈其实是老技术新用法现在还是扩散模型厉害",
+        "user_id": "5ebc8ea0000000000101c89c",
+        "timestamp": "1680335543000"
+      },
+      {
+        "id": "642d8ee4000000000a000a80",
+        "text": "是的偏学术研究商用要求达不到git上还有个最近更新的类似虚拟试衣项目叫pdim试了下效果更差",
+        "user_id": "5ebc8ea0000000000101c89c",
+        "timestamp": "1680707300000"
+      },
+      {
+        "id": "6427e29f0000000007024fe4",
+        "text": "不能发链接不过去arxiv搜编号就行了编号在正文里面",
+        "user_id": "5ebc8ea0000000000101c89c",
+        "timestamp": "1680335519000"
+      },
+      {
+        "id": "6454ef1c000000001603b41c",
+        "text": "求分享",
+        "user_id": "5af05e9f11be1008408ab282",
+        "timestamp": "1683287836000"
+      },
+      {
+        "id": "646119b90000000014037dde",
+        "text": "有作品没",
+        "user_id": "61e02fe5000000001000c0f6",
+        "timestamp": "1684085177000"
+      },
+      {
+        "id": "646b1afd000000000a008967",
+        "text": "蹲",
+        "user_id": "5b873d471705b40001ebcd7e",
+        "timestamp": "1684740861000"
+      },
+      {
+        "id": "646b1b050000000014035a6f",
+        "text": "能看看作品吗",
+        "user_id": "5b873d471705b40001ebcd7e",
+        "timestamp": "1684740869000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Mixed technical discussion and individual questions about virtual try-on.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_64302d6b0000000012032f21",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "64302d6b0000000012032f21",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 17,
+    "comments": [
+      {
+        "id": "643168ad000000001900ff5e",
+        "text": "贴图到衣服上是怎么做的？1ai生成2用有裁片预设的素材贴图3其他？怎么做",
+        "user_id": "5b3368c86b58b72ce1bd4c40",
+        "timestamp": "1680959661000"
+      },
+      {
+        "id": "64310a8f0000000015001fb7",
+        "text": "花位无痕循环最后还是ps？我记得有看过有人说直接在mj里做但没分享方法",
+        "user_id": "5d037441000000001002cd73",
+        "timestamp": "1680935567000"
+      },
+      {
+        "id": "645dbd68000000000602089e",
+        "text": "请问怎么让这个mj出的图穿在真人模特上看效果呢？",
+        "user_id": "59acc12050c4b46db769afc5",
+        "timestamp": "1683864936000"
+      },
+      {
+        "id": "668de6a9000000001202f262",
+        "text": "比如我想要这个衣服上的图案它也能帮我提取出来吗",
+        "user_id": "5b9c7684d60968000165e99e",
+        "timestamp": "1720575657000"
+      },
+      {
+        "id": "666899e5000000001c014442",
+        "text": "可以问一下是高清的吗",
+        "user_id": "5e68fc3500000000010010d6",
+        "timestamp": "1718131174000"
+      },
+      {
+        "id": "65df3c92000000000c025381",
+        "text": "看图4好像花朵只有一半到衣服上怎么是完整的呢？",
+        "user_id": "555ebfc0589446492f06d7ff",
+        "timestamp": "1709128850000"
+      },
+      {
+        "id": "657158e00000000009020b22",
+        "text": "想看怎么生成矢量印花",
+        "user_id": "594c5dd450c4b440b69f96ad",
+        "timestamp": "1701927136000"
+      },
+      {
+        "id": "64dd9869000000002d018b64",
+        "text": "您好。有详细教程吗？",
+        "user_id": "614d7f1b000000000201d9ac",
+        "timestamp": "1692244073000"
+      },
+      {
+        "id": "64a6379d000000002d018ac7",
+        "text": "请问做出来图质量咋样高清嘛",
+        "user_id": "5bb83bef995b090001c88d1d",
+        "timestamp": "1688614813000"
+      },
+      {
+        "id": "64478401000000000a00a84e",
+        "text": "蹲一个3生成的图放到aiadobe成为矢量印花",
+        "user_id": "557e29b9f5a26332ebba42a5",
+        "timestamp": "1682408449000"
+      },
+      {
+        "id": "64326a4b000000000700d573",
+        "text": "ps套样机衣服是样机模板",
+        "user_id": "5c80a297000000001201c118",
+        "timestamp": "1681025611000"
+      },
+      {
+        "id": "64326a96000000001a006e44",
+        "text": "也就是有预先标注的区域的是吧而不是随便找一个衬衫都能把图案贴上去的",
+        "user_id": "5b3368c86b58b72ce1bd4c40",
+        "timestamp": "1681025686000"
+      },
+      {
+        "id": "64329fe30000000007020e25",
+        "text": "随便找一个衬衫也可以贴呀ps搞起来很简单的",
+        "user_id": "5c80a297000000001201c118",
+        "timestamp": "1681039331000"
+      },
+      {
+        "id": "64310d28000000001403fefd",
+        "text": "mj里出来的图就是无痕循环的呀只是在ps里放到衣服上衣服版式自己有就没必要用mj去生了嘛",
+        "user_id": "5c80a297000000001201c118",
+        "timestamp": "1680936232000"
+      },
+      {
+        "id": "643112d1000000001500cbf0",
+        "text": "明白了谢谢！",
+        "user_id": "5d037441000000001002cd73",
+        "timestamp": "1680937681000"
+      },
+      {
+        "id": "6461f084000000001500216f",
+        "text": "如果是想mj直接出会比较难控制ps直接套有模特的样机比较方便",
+        "user_id": "5c80a297000000001201c118",
+        "timestamp": "1684140164000"
+      },
+      {
+        "id": "64347e330000000007020490",
+        "text": "啊它居然还会做四方连续",
+        "user_id": "60c5e4120000000001003d55",
+        "timestamp": "1681161779000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Varied workflow questions and replies about image generation and clothing design.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_6433e7100000000014025c92",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "6433e7100000000014025c92",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 10,
+    "comments": [
+      {
+        "id": "64367c2a0000000019036b34",
+        "text": "还是不太行感觉",
+        "user_id": "5cff859d000000001603834a",
+        "timestamp": "1681292330000"
+      },
+      {
+        "id": "6510fe79000000001c03c007",
+        "text": "博主你的咒局太牛了我用你的咒语生成出来的也太好看了吧",
+        "user_id": "5f2c1236000000000101fcef",
+        "timestamp": "1695612537000"
+      },
+      {
+        "id": "64e485d2000000001a020b6c",
+        "text": "能做宠物衣服吗",
+        "user_id": "5ae359424eacab25c4fa9273",
+        "timestamp": "1692698066000"
+      },
+      {
+        "id": "6446a8cd000000000a005dc4",
+        "text": "必备单品：靴子最好有鞋带",
+        "user_id": "5b4a0346f7e8b9418da4b050",
+        "timestamp": "1682352333000"
+      },
+      {
+        "id": "64452732000000001402e4bf",
+        "text": "可以借用prompt嘛？",
+        "user_id": "562e530ba40e181c3aa0a126",
+        "timestamp": "1682253618000"
+      },
+      {
+        "id": "644253910000000008022673",
+        "text": "冉",
+        "user_id": "612c0aa90000000001003242",
+        "timestamp": "1682068369000"
+      },
+      {
+        "id": "64367d67000000001403568b",
+        "text": "哪里不行",
+        "user_id": "567946f450c4b43e69c3faf7",
+        "timestamp": "1681292647000"
+      },
+      {
+        "id": "64369017000000001900edea",
+        "text": "就是报看",
+        "user_id": "5cff859d000000001603834a",
+        "timestamp": "1681297431000"
+      },
+      {
+        "id": "64369088000000000b030017",
+        "text": "原来如此！！",
+        "user_id": "567946f450c4b43e69c3faf7",
+        "timestamp": "1681297544000"
+      },
+      {
+        "id": "643a538500000000190358d0",
+        "text": "听说这个30美元一个月哦",
+        "user_id": "5d9da9b500000000010013ac",
+        "timestamp": "1681544069000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Mixed reactions and questions; one favorable comment is insufficient to infer coordination.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_644258370000000027029dd1",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "644258370000000027029dd1",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 23,
+    "comments": [
+      {
+        "id": "6444947e000000001603dad3",
+        "text": "啊这个我正在用着",
+        "user_id": "611d07bc000000000100180e",
+        "timestamp": "1682216062000"
+      },
+      {
+        "id": "6580fd960000000018035fef",
+        "text": "需要买会员？",
+        "user_id": "5dad57f0000000000100711e",
+        "timestamp": "1702952342000"
+      },
+      {
+        "id": "6550c907000000001d00e2e1",
+        "text": "安卓行吗",
+        "user_id": "5e8bf4fa0000000001009d48",
+        "timestamp": "1699793159000"
+      },
+      {
+        "id": "653cabf3000000001d00dd37",
+        "text": "下载后广告关不掉怎么回事呀",
+        "user_id": "5e4ba2ab00000000010010d6",
+        "timestamp": "1698474995000"
+      },
+      {
+        "id": "646a371e0000000015004bc4",
+        "text": "收费吗",
+        "user_id": "6305acff000000001200cf4b",
+        "timestamp": "1684682526000"
+      },
+      {
+        "id": "649d9b9a000000002b0077c1",
+        "text": "好用吗姐妹",
+        "user_id": "585cf62950c4b46f527f6406",
+        "timestamp": "1688050586000"
+      },
+      {
+        "id": "65fdab8c000000000b01aead",
+        "text": "会员贵的嘞！",
+        "user_id": "624a9303000000001000607d",
+        "timestamp": "1711123340000"
+      },
+      {
+        "id": "65f16510000000000b014316",
+        "text": "感觉挺方便我乱糟糟的衣柜的",
+        "user_id": "62dea50a000000001e01c5a4",
+        "timestamp": "1710318864000"
+      },
+      {
+        "id": "65b6398e000000000803190b",
+        "text": "现在收费还超级贵",
+        "user_id": "5d0e13a50000000011005ef3",
+        "timestamp": "1706441102000"
+      },
+      {
+        "id": "65017395000000001a012e2e",
+        "text": "好用嘛",
+        "user_id": "576dfd9b6a6a697975af024c",
+        "timestamp": "1694593941000"
+      },
+      {
+        "id": "650179ed000000001d00053f",
+        "text": "挺好的现在也一直在用主要每天看看穿啥",
+        "user_id": "611d07bc000000000100180e",
+        "timestamp": "1694595566000"
+      },
+      {
+        "id": "6513e14c000000001d00d9d8",
+        "text": "能放多少件衣服",
+        "user_id": "6149f0ab0000000002020365",
+        "timestamp": "1695801676000"
+      },
+      {
+        "id": "6513e638000000001a012de3",
+        "text": "无上限吧我看到有些人上千件了",
+        "user_id": "611d07bc000000000100180e",
+        "timestamp": "1695802936000"
+      },
+      {
+        "id": "6611ecb10000000015002f02",
+        "text": "要付费吗",
+        "user_id": "653cc26c0000000004008166",
+        "timestamp": "1712450738000"
+      },
+      {
+        "id": "65924ed600000000110131f4",
+        "text": "需要而且很贵且不能永久买断",
+        "user_id": "565bcf289eb5782164487c11",
+        "timestamp": "1704087254000"
+      },
+      {
+        "id": "65eebd5d000000000b017e3a",
+        "text": "宝宝现在好像有永久会员了",
+        "user_id": "62dea50a000000001e01c5a4",
+        "timestamp": "1710144861000"
+      },
+      {
+        "id": "65ef21c600000000060278b0",
+        "text": "好的谢谢",
+        "user_id": "565bcf289eb5782164487c11",
+        "timestamp": "1710170566000"
+      },
+      {
+        "id": "6551edee000000002002f5fa",
+        "text": "可以的",
+        "user_id": "6068bbc7000000000101cb52",
+        "timestamp": "1699868142000"
+      },
+      {
+        "id": "653f7f3b000000001a010ac9",
+        "text": "搭搭好像没有广告",
+        "user_id": "611d07bc000000000100180e",
+        "timestamp": "1698660155000"
+      },
+      {
+        "id": "6497926b000000001f0310a6",
+        "text": "不收",
+        "user_id": "611d07bc000000000100180e",
+        "timestamp": "1687655019000"
+      },
+      {
+        "id": "654c9678000000002100088d",
+        "text": "工作休闲运动那个不能自己改嘛",
+        "user_id": "5c6a5a6a00000000100285c8",
+        "timestamp": "1699518072000"
+      },
+      {
+        "id": "6513e679000000001a01318c",
+        "text": "挺好的",
+        "user_id": "611d07bc000000000100180e",
+        "timestamp": "1695803001000"
+      },
+      {
+        "id": "658c0aeb000000002000756d",
+        "text": "超过一定数量就不能上传了",
+        "user_id": "59a2d4b16a6a690cec31442a",
+        "timestamp": "1703676651000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Wardrobe-app questions and replies; repeated participation comes from a single user.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_6450d52a0000000013036245",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "6450d52a0000000013036245",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 5,
+    "comments": [
+      {
+        "id": "6450d5930000000015004040",
+        "text": "大声呐喊！！看看孩子主页吧！！",
+        "user_id": "6135ce68000000001f034ee4",
+        "timestamp": "1683019155000"
+      },
+      {
+        "id": "65aa213c0000000002022ecc",
+        "text": "存30件衣服后就要付费了",
+        "user_id": "5b8f3f1144363b53f794328e",
+        "timestamp": "1705648444000"
+      },
+      {
+        "id": "66a88d0c000000001c038491",
+        "text": "这什么app",
+        "user_id": "58fe19515e87e7214f93c292",
+        "timestamp": "1722322189000"
+      },
+      {
+        "id": "65f16564000000000b01898e",
+        "text": "我去下载看看",
+        "user_id": "62dea50a000000001e01c5a4",
+        "timestamp": "1710318948000"
+      },
+      {
+        "id": "6646f93200000000120251ec",
+        "text": "lookie也可以！",
+        "user_id": "6244505800000000210288fb",
+        "timestamp": "1715927346000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Five varied comments, including one self-promotion request; no group coordination evidence.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_64a7baa6000000001a013116",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "64a7baa6000000001a013116",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 27,
+    "comments": [
+      {
+        "id": "64c8b476000000001a0235e0",
+        "text": "哪个软件",
+        "user_id": "6294e7a2000000001901ffa2",
+        "timestamp": "1690874998000"
+      },
+      {
+        "id": "6617e31c0000000019028bc9",
+        "text": "怎么用",
+        "user_id": "6569eea0000000002003108d",
+        "timestamp": "1712841501000"
+      },
+      {
+        "id": "6702a30c000000000c016a0a",
+        "text": "什么软件？",
+        "user_id": "5b8d3f3cd2bbb000014fe317",
+        "timestamp": "1728226061000"
+      },
+      {
+        "id": "66f8d4cb000000002400e0f4",
+        "text": "收费多少钱",
+        "user_id": "6218353100000000100047bf",
+        "timestamp": "1727583436000"
+      },
+      {
+        "id": "66f3ece3000000000b020a7f",
+        "text": "求",
+        "user_id": "5c2c6103000000000601285f",
+        "timestamp": "1727261923000"
+      },
+      {
+        "id": "66eb0f350000000002005586",
+        "text": "怎么用啊",
+        "user_id": "62d61909000000001501a305",
+        "timestamp": "1726680886000"
+      },
+      {
+        "id": "66e40be10000000016013323",
+        "text": "怎么使用",
+        "user_id": "5cd917b3000000001201f2e1",
+        "timestamp": "1726221282000"
+      },
+      {
+        "id": "66e0db960000000020023a44",
+        "text": "怎么试用",
+        "user_id": "5b0432434eacab2002ce9a94",
+        "timestamp": "1726012310000"
+      },
+      {
+        "id": "661d5609000000001b03b0c3",
+        "text": "还能用吗",
+        "user_id": "5bd034d95cb53f0001192415",
+        "timestamp": "1713198601000"
+      },
+      {
+        "id": "65fe44730000000016007bc6",
+        "text": "怎么试用",
+        "user_id": "5e0ab30200000000010083ac",
+        "timestamp": "1711162484000"
+      },
+      {
+        "id": "6578f0f900000000090272e4",
+        "text": "纯英文吧",
+        "user_id": "5f66a1dd000000000100426b",
+        "timestamp": "1702424825000"
+      },
+      {
+        "id": "657bbf7d000000003b00fce3",
+        "text": "不不中文滴",
+        "user_id": "647ef2830000000025036ab2",
+        "timestamp": "1702608765000"
+      },
+      {
+        "id": "657bd2bb000000000902361b",
+        "text": "要花钱的吧有试用的吗",
+        "user_id": "5f66a1dd000000000100426b",
+        "timestamp": "1702613691000"
+      },
+      {
+        "id": "661895f00000000009025851",
+        "text": "私你哈",
+        "user_id": "647ef2830000000025036ab2",
+        "timestamp": "1712887280000"
+      },
+      {
+        "id": "6704ab7d000000000c017337",
+        "text": "私您哦",
+        "user_id": "647ef2830000000025036ab2",
+        "timestamp": "1728359293000"
+      },
+      {
+        "id": "66f8ff0d0000000020020fc1",
+        "text": "私你哦",
+        "user_id": "647ef2830000000025036ab2",
+        "timestamp": "1727594253000"
+      },
+      {
+        "id": "66f4c071000000000d01e99d",
+        "text": "来啦",
+        "user_id": "647ef2830000000025036ab2",
+        "timestamp": "1727316081000"
+      },
+      {
+        "id": "66eb89e100000000200265fe",
+        "text": "来啦",
+        "user_id": "647ef2830000000025036ab2",
+        "timestamp": "1726712290000"
+      },
+      {
+        "id": "66e5353d000000000f0070f6",
+        "text": "来啦",
+        "user_id": "647ef2830000000025036ab2",
+        "timestamp": "1726297406000"
+      },
+      {
+        "id": "66e0fe8f000000000d01dee0",
+        "text": "你好私您啦",
+        "user_id": "647ef2830000000025036ab2",
+        "timestamp": "1726021263000"
+      },
+      {
+        "id": "661ddf20000000001c0396f0",
+        "text": "可以的",
+        "user_id": "647ef2830000000025036ab2",
+        "timestamp": "1713233696000"
+      },
+      {
+        "id": "6600d9c500000000160060fa",
+        "text": "私聊你哦",
+        "user_id": "647ef2830000000025036ab2",
+        "timestamp": "1711331781000"
+      },
+      {
+        "id": "65f44e2e0000000006025dfd",
+        "text": "一张图就够了吗",
+        "user_id": "5ff50005000000000101e98f",
+        "timestamp": "1710509614000"
+      },
+      {
+        "id": "65f3b004000000000b01a85d",
+        "text": "有宠物模特嘛",
+        "user_id": "57b669d15e87e75f5efae37e",
+        "timestamp": "1710469124000"
+      },
+      {
+        "id": "6577e6530000000038011439",
+        "text": "怎么没有这个软件",
+        "user_id": "5bcb570b8a04300001b88497",
+        "timestamp": "1702356563000"
+      },
+      {
+        "id": "65f7ed4a000000000b023973",
+        "text": "嗯嗯是的很简单",
+        "user_id": "647ef2830000000025036ab2",
+        "timestamp": "1710746954000"
+      },
+      {
+        "id": "65f7ed02000000001600603f",
+        "text": "有滴私你哈",
+        "user_id": "647ef2830000000025036ab2",
+        "timestamp": "1710746882000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Similar product questions are separated in time; repeated private-message responses come from one account.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "limited",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_64cb40ad0000000010033e9e",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "64cb40ad0000000010033e9e",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 5,
+    "comments": [
+      {
+        "id": "64f7ddcc00000000210131f2",
+        "text": "最喜欢蝶讯啦！",
+        "user_id": "61a6f0cd0000000021027f84",
+        "timestamp": "1693965772000"
+      },
+      {
+        "id": "66cd99020000000017019e97",
+        "text": "颜色流行",
+        "user_id": "569405afb8c8b47d3e030801",
+        "timestamp": "1724750083000"
+      },
+      {
+        "id": "66cd8c2b000000000c01837a",
+        "text": "有模版吗！求",
+        "user_id": "5bf919ec8f142c00015302e9",
+        "timestamp": "1724746796000"
+      },
+      {
+        "id": "6552d1ee000000001c0281a0",
+        "text": "您好请问有原文件吗做培训课件用谢谢了",
+        "user_id": "60a06753000000000101e8f3",
+        "timestamp": "1699926510000"
+      },
+      {
+        "id": "6513026c000000001c03dc7b",
+        "text": "求",
+        "user_id": "5d5bbf79000000000100b897",
+        "timestamp": "1695744620000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Five varied requests and one brand praise; no coordinated pattern.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_64e5b8ca000000000301f835",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "64e5b8ca000000000301f835",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 28,
+    "comments": [
+      {
+        "id": "66de82d3000000000b022319",
+        "text": "怎么弄啊",
+        "user_id": "5f6f31ba000000000100521a",
+        "timestamp": "1725858515000"
+      },
+      {
+        "id": "66cd43460000000016013660",
+        "text": "怎么换",
+        "user_id": "616143360000000002022513",
+        "timestamp": "1724728135000"
+      },
+      {
+        "id": "66b8bf96000000000d01eac7",
+        "text": "什么软件搞的呀",
+        "user_id": "587a38be82ec3903b018c140",
+        "timestamp": "1723383703000"
+      },
+      {
+        "id": "6697c2e9000000001303c580",
+        "text": "请问用什么网站？",
+        "user_id": "5ba1e2fa4716260001b23eae",
+        "timestamp": "1721221866000"
+      },
+      {
+        "id": "6689593d0000000015010cc3",
+        "text": "请问这是用ai软件？是否可以分享？",
+        "user_id": "5aae68b4e8ac2b1af055b866",
+        "timestamp": "1720277310000"
+      },
+      {
+        "id": "6674ee000000000005007f51",
+        "text": "什么软件",
+        "user_id": "5accdb6311be103244c1dd4f",
+        "timestamp": "1718939137000"
+      },
+      {
+        "id": "666e979c000000001b010798",
+        "text": "啥名字",
+        "user_id": "587a38be82ec3903b018c140",
+        "timestamp": "1718523804000"
+      },
+      {
+        "id": "666cfa94000000002101e427",
+        "text": "请问这是什么软件",
+        "user_id": "5941048e50c4b4402ed5c2d8",
+        "timestamp": "1718418068000"
+      },
+      {
+        "id": "665d9cb60000000005026f60",
+        "text": "啥软件",
+        "user_id": "59e9ce594eacab114f30b7b1",
+        "timestamp": "1717410998000"
+      },
+      {
+        "id": "66581ac9000000001b00403c",
+        "text": "什么软件",
+        "user_id": "597838c06a6a6939851d28ec",
+        "timestamp": "1717050058000"
+      },
+      {
+        "id": "662caf91000000001301850e",
+        "text": "求软件",
+        "user_id": "5f9c01a5000000000100a812",
+        "timestamp": "1714204561000"
+      },
+      {
+        "id": "662af2f7000000001301ac47",
+        "text": "什么软件？",
+        "user_id": "5680f7ebaed7587059911436",
+        "timestamp": "1714090743000"
+      },
+      {
+        "id": "6612b0d3000000001902c5c8",
+        "text": "怎么弄呀",
+        "user_id": "5cefdffc000000001200c34c",
+        "timestamp": "1712500947000"
+      },
+      {
+        "id": "65ed52e3000000000b017366",
+        "text": "怎么操作啊",
+        "user_id": "57f88637bd0da55162c5e7fa",
+        "timestamp": "1710052067000"
+      },
+      {
+        "id": "65ebb21f0000000007000740",
+        "text": "这个是什么软件",
+        "user_id": "619aab91000000001000f912",
+        "timestamp": "1709945375000"
+      },
+      {
+        "id": "65d4970f000000000503a84e",
+        "text": "求教程哦",
+        "user_id": "5aef153de8ac2b0814fcb752",
+        "timestamp": "1708431120000"
+      },
+      {
+        "id": "65a2aa5800000000020230c3",
+        "text": "求ai软件名称",
+        "user_id": "6420179c0000000012011aeb",
+        "timestamp": "1705159256000"
+      },
+      {
+        "id": "658650a100000000110127c5",
+        "text": "请问是啥软件",
+        "user_id": "5cff53f5000000001801cfb6",
+        "timestamp": "1703301281000"
+      },
+      {
+        "id": "6583fff5000000001a00f354",
+        "text": "这个是啥软件mj还是sd",
+        "user_id": "6469ffe6000000001f0324cb",
+        "timestamp": "1703149557000"
+      },
+      {
+        "id": "656fb662000000003800a254",
+        "text": "怎么收费",
+        "user_id": "5bc761a97b4bb000019e2e98",
+        "timestamp": "1701820002000"
+      },
+      {
+        "id": "65699767000000003a020bea",
+        "text": "请问是什么ai",
+        "user_id": "5a6d252fe8ac2b72ca80ab07",
+        "timestamp": "1701418855000"
+      },
+      {
+        "id": "6566d6cd00000000140148fd",
+        "text": "亲用的什么软件？",
+        "user_id": "65510acf00000000020366c6",
+        "timestamp": "1701238477000"
+      },
+      {
+        "id": "65662268000000001c03ef44",
+        "text": "大佬这是什么软件",
+        "user_id": "5de215d70000000001004eda",
+        "timestamp": "1701192296000"
+      },
+      {
+        "id": "655b0538000000002100b589",
+        "text": "什么软件求求",
+        "user_id": "60f0ebb60000000020029126",
+        "timestamp": "1700463928000"
+      },
+      {
+        "id": "655857ed000000002003f7da",
+        "text": "你好。请问怎么拥有这个软件",
+        "user_id": "58b4d4527fc5b871255ed029",
+        "timestamp": "1700288493000"
+      },
+      {
+        "id": "6552dffd000000001c02a3e2",
+        "text": "什么ai",
+        "user_id": "64892edd00000000100342d9",
+        "timestamp": "1699930109000"
+      },
+      {
+        "id": "65125d6f000000001b032ebf",
+        "text": "你好用什么方法呢",
+        "user_id": "5a0935234eacab5100624b8b",
+        "timestamp": "1695702383000"
+      },
+      {
+        "id": "64f9b6bb000000001b03c655",
+        "text": "请问是什么软件收费吗",
+        "user_id": "5ba3631d7f57090001a29e83",
+        "timestamp": "1694086843000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Many users independently ask the software name across months; wording is a common question, not proof of coordination.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "limited",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_64fd4a3d0000000020003d9f",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "64fd4a3d0000000020003d9f",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 6,
+    "comments": [
+      {
+        "id": "64fd4aaf000000001303ed89",
+        "text": "欧亨利式结尾",
+        "user_id": "5f73f1a300000000010050b9",
+        "timestamp": "1694321327000"
+      },
+      {
+        "id": "6697458000000000050320f4",
+        "text": "请问性别是咋设置的啊我那个一直显示女性",
+        "user_id": "5b447d306b58b73042a4d9d7",
+        "timestamp": "1721189760000"
+      },
+      {
+        "id": "6523a0c2000000001d001f7d",
+        "text": "对不起最后一张没绷住",
+        "user_id": "6041956a000000000100b0f3",
+        "timestamp": "1696833730000"
+      },
+      {
+        "id": "6669662d000000001c0080b5",
+        "text": "我以为身材没啥区别万万没想到是脸",
+        "user_id": "64c7a3b7000000000e024237",
+        "timestamp": "1718183469000"
+      },
+      {
+        "id": "64fd4c150000000021002153",
+        "text": "文化人我还去查一下",
+        "user_id": "5f100c5100000000010077ee",
+        "timestamp": "1694321685000"
+      },
+      {
+        "id": "66974de10000000005022c0c",
+        "text": "我的档案我的尺码档案",
+        "user_id": "5f100c5100000000010077ee",
+        "timestamp": "1721191905000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Mixed reactions and a short question-and-answer exchange.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_650e77e90000000013028882",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "650e77e90000000013028882",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 12,
+    "comments": [
+      {
+        "id": "65261acb000000001a013966",
+        "text": "请问为什么我做出来的跟垫图一点关系都没有呀",
+        "user_id": "60d765ec000000000100abc9",
+        "timestamp": "1696996043000"
+      },
+      {
+        "id": "66fa3c6f0000000004033bd3",
+        "text": "这个是怎么做的哟？有教程吗？",
+        "user_id": "6002ff56000000000100bfd4",
+        "timestamp": "1727675504000"
+      },
+      {
+        "id": "65d3743d000000000d00f7b8",
+        "text": "怎么做到？",
+        "user_id": "5c5bcfcd00000000180201f5",
+        "timestamp": "1708356669000"
+      },
+      {
+        "id": "65bf61aa000000000200c925",
+        "text": "谢谢分享多多练习一定会有进步的！",
+        "user_id": "628eb1ad0000000015015d00",
+        "timestamp": "1707041194000"
+      },
+      {
+        "id": "652668dc000000002202b753",
+        "text": "是用的sd吗？",
+        "user_id": "5a49c3fd4eacab24e0a1adac",
+        "timestamp": "1697016028000"
+      },
+      {
+        "id": "652668ef000000001d007858",
+        "text": "是呀",
+        "user_id": "60d765ec000000000100abc9",
+        "timestamp": "1697016047000"
+      },
+      {
+        "id": "65266904000000001d0039d8",
+        "text": "会不会是openpose插件问题",
+        "user_id": "60d765ec000000000100abc9",
+        "timestamp": "1697016069000"
+      },
+      {
+        "id": "65266a89000000001c017dbc",
+        "text": "是要实现什么功能呢垫的哪个图",
+        "user_id": "5a49c3fd4eacab24e0a1adac",
+        "timestamp": "1697016457000"
+      },
+      {
+        "id": "65273bea000000001a010026",
+        "text": "看着up主的视频想做平铺图生成模特原图和蒙版图都垫了",
+        "user_id": "60d765ec000000000100abc9",
+        "timestamp": "1697070058000"
+      },
+      {
+        "id": "652d3f60000000002000b1c5",
+        "text": "你解决了吗？我和你一样的问题这一步就卡住了",
+        "user_id": "54e5b860e779895d919562b6",
+        "timestamp": "1697464160000"
+      },
+      {
+        "id": "652d3f79000000001b033d30",
+        "text": "没有",
+        "user_id": "60d765ec000000000100abc9",
+        "timestamp": "1697464185000"
+      },
+      {
+        "id": "652d3fc6000000002002f9c5",
+        "text": "我也卡住这里了",
+        "user_id": "54e5b860e779895d919562b6",
+        "timestamp": "1697464262000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Several users troubleshoot the same tool and reply to one another; no scripted multi-account pattern.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_6526b362000000001e03ef26",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "6526b362000000001e03ef26",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 23,
+    "comments": [
+      {
+        "id": "6555a8af000000000f025f48",
+        "text": "应届生可以去工作吗服装设计与工程专业",
+        "user_id": "637765450000000024014b36",
+        "timestamp": "1700112559000"
+      },
+      {
+        "id": "66c2ae50000000000c0186a3",
+        "text": "想请问可以用于玩偶打版吗？没其他3d软件基础可以吗是需要在其他软件做好玩偶模型才能导入做裁片吗",
+        "user_id": "599810bd5e87e70d4b2bb205",
+        "timestamp": "1724034641000"
+      },
+      {
+        "id": "6526c239000000002003616a",
+        "text": "我能来打篮球吗",
+        "user_id": "5d2966be0000000012039596",
+        "timestamp": "1697038905000"
+      },
+      {
+        "id": "65274fd90000000021006a66",
+        "text": "style3d和clo3d等其他3d软件有什么功能上的不同嘛在学clo3d不知道style3d要不要也学",
+        "user_id": "5aed2d93e8ac2b22c3781608",
+        "timestamp": "1697075161000"
+      },
+      {
+        "id": "6526ba03000000002000b03e",
+        "text": "好看",
+        "user_id": "62ac2bff000000001b02b70b",
+        "timestamp": "1697036803000"
+      },
+      {
+        "id": "6526b5370000000020011da0",
+        "text": "到底是干嘛的外行还是听不懂",
+        "user_id": "5c4e5120000000001003e14e",
+        "timestamp": "1697035575000"
+      },
+      {
+        "id": "653a51f80000000019009ab9",
+        "text": "请问小姐姐使用style3d电脑配置需要什么样子的？谢谢",
+        "user_id": "5e888a680000000001004e4f",
+        "timestamp": "1698320888000"
+      },
+      {
+        "id": "66e9920e000000000c016c2a",
+        "text": "有系统课程吗",
+        "user_id": "61e4c96a0000000010006670",
+        "timestamp": "1726583311000"
+      },
+      {
+        "id": "66c0bc7b0000000020024032",
+        "text": "有中文版吗",
+        "user_id": "65aa4808000000001302bbbf",
+        "timestamp": "1723907196000"
+      },
+      {
+        "id": "668b82ed000000000502096a",
+        "text": "这玩意儿怎么下载",
+        "user_id": "6548e9360000000006004be1",
+        "timestamp": "1720419053000"
+      },
+      {
+        "id": "6555abca000000001b0316b0",
+        "text": "怎么不可以呢",
+        "user_id": "608e7e4500000000010083f3",
+        "timestamp": "1700113354000"
+      },
+      {
+        "id": "6555b8fe000000000f024604",
+        "text": "啊啊啊于老师回复我了现在在自学style3d希望到时候可以吧",
+        "user_id": "637765450000000024014b36",
+        "timestamp": "1700116734000"
+      },
+      {
+        "id": "6555be39000000001b03d81e",
+        "text": "加油肯定有希望的",
+        "user_id": "608e7e4500000000010083f3",
+        "timestamp": "1700118073000"
+      },
+      {
+        "id": "66c2c86800000000200235a9",
+        "text": "嗯嗯好哒没有基础可以呀需要一个模特",
+        "user_id": "608e7e4500000000010083f3",
+        "timestamp": "1724041320000"
+      },
+      {
+        "id": "66c2c9cf000000000b00cdce",
+        "text": "是不是需要用别的建模软件比如blender先把玩偶形体做了？",
+        "user_id": "599810bd5e87e70d4b2bb205",
+        "timestamp": "1724041680000"
+      },
+      {
+        "id": "6526c627000000001b0308f4",
+        "text": "来来来哈哈哈我摇人陪你打",
+        "user_id": "608e7e4500000000010083f3",
+        "timestamp": "1697039911000"
+      },
+      {
+        "id": "65274ffd000000001b03cfd5",
+        "text": "蹲",
+        "user_id": "6260c1f00000000021020d02",
+        "timestamp": "1697075197000"
+      },
+      {
+        "id": "65275be6000000001d00c87e",
+        "text": "推荐一起学我在视频里说的功能就是s更优的功能",
+        "user_id": "608e7e4500000000010083f3",
+        "timestamp": "1697078246000"
+      },
+      {
+        "id": "6526bbaf000000001c03d2dd",
+        "text": "过于外行的倒也不必听",
+        "user_id": "608e7e4500000000010083f3",
+        "timestamp": "1697037231000"
+      },
+      {
+        "id": "668a08920000000003039fba",
+        "text": "做完的服装能导出放到blender里吗",
+        "user_id": "5e6fafa900000000010057d3",
+        "timestamp": "1720322195000"
+      },
+      {
+        "id": "661bb1fd000000001503bd17",
+        "text": "学习免费的吗",
+        "user_id": "64239e140000000010029cb7",
+        "timestamp": "1713091070000"
+      },
+      {
+        "id": "65ec28d9000000001202da50",
+        "text": "3d建模很有意思加油",
+        "user_id": "62823fce0000000021026cb6",
+        "timestamp": "1709975769000"
+      },
+      {
+        "id": "6526b5ab00000000200208bc",
+        "text": "style3d打钱！",
+        "user_id": "5c4e5120000000001003e14e",
+        "timestamp": "1697035691000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Varied Style3D questions, jokes, and answers by the poster.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_65866d0b000000003801f958",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "65866d0b000000003801f958",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 13,
+    "comments": [
+      {
+        "id": "65a22ecd00000000020217dd",
+        "text": "有没有下载链接啊",
+        "user_id": "618c9de600000000100097db",
+        "timestamp": "1705127629000"
+      },
+      {
+        "id": "65866ebc000000001a00dd13",
+        "text": "冬季衣服多还不会穿搭谢谢你终于有这种软件了",
+        "user_id": "646e1c67000000001f00500e",
+        "timestamp": "1703308988000"
+      },
+      {
+        "id": "66fae051000000002400bc12",
+        "text": "有没有发型的",
+        "user_id": "5d6a6ea40000000001009d6d",
+        "timestamp": "1727717458000"
+      },
+      {
+        "id": "658671aa000000001b01e5dc",
+        "text": "这是哪个app",
+        "user_id": "5c7c9e1200000000170259a7",
+        "timestamp": "1703309738000"
+      },
+      {
+        "id": "66268c8b000000001301b2f2",
+        "text": "身高最低可以设置是多少呀？",
+        "user_id": "65cb2d5d0000000009025e71",
+        "timestamp": "1713802379000"
+      },
+      {
+        "id": "65cb539e0000000005018999",
+        "text": "这个可以自己导入照片吗",
+        "user_id": "5f39f14100000000010095a9",
+        "timestamp": "1707824030000"
+      },
+      {
+        "id": "65a25e610000000001013d6d",
+        "text": "好搭app",
+        "user_id": "5d5d032100000000010191f0",
+        "timestamp": "1705139809000"
+      },
+      {
+        "id": "6627dbe40000000013018606",
+        "text": "身高能设置142cm吗？",
+        "user_id": "65cb2d5d0000000009025e71",
+        "timestamp": "1713888228000"
+      },
+      {
+        "id": "6628868f0000000013024232",
+        "text": "这个我没试过",
+        "user_id": "5d5d032100000000010191f0",
+        "timestamp": "1713931920000"
+      },
+      {
+        "id": "658671c5000000001b01e91b",
+        "text": "不客气快过年了搭配起来",
+        "user_id": "5d5d032100000000010191f0",
+        "timestamp": "1703309765000"
+      },
+      {
+        "id": "65f92019000000000b020c6d",
+        "text": "姐妹好用吗",
+        "user_id": "5c429e39000000000703506e",
+        "timestamp": "1710825498000"
+      },
+      {
+        "id": "66fb979200000000200234f6",
+        "text": "好像没",
+        "user_id": "5d5d032100000000010191f0",
+        "timestamp": "1727764370000"
+      },
+      {
+        "id": "65867922000000001e01ef65",
+        "text": "好搭",
+        "user_id": "5d5d032100000000010191f0",
+        "timestamp": "1703311650000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "App questions with repeated answers from one respondent; no multi-account coordination evidence.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_658e7f8d0000000011031b44",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "658e7f8d0000000011031b44",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 14,
+    "comments": [
+      {
+        "id": "66dea9b9000000001202ec3b",
+        "text": "三连求",
+        "user_id": "5cd5b404000000001000863f",
+        "timestamp": "1725868473000"
+      },
+      {
+        "id": "66c42785000000000c01ac60",
+        "text": "outfitanyone运行之后显示错误",
+        "user_id": "5651132bc2bdeb03e589d71b",
+        "timestamp": "1724131206000"
+      },
+      {
+        "id": "65b46fd20000000001031bb1",
+        "text": "有出教程吗",
+        "user_id": "5afad8cd6b58b71df20d7a03",
+        "timestamp": "1706323922000"
+      },
+      {
+        "id": "65addb03000000000a00c14c",
+        "text": "求",
+        "user_id": "571858f14775a7570299c445",
+        "timestamp": "1705892611000"
+      },
+      {
+        "id": "65a764280000000002010cf2",
+        "text": "求",
+        "user_id": "63d73e2300000000260049eb",
+        "timestamp": "1705468968000"
+      },
+      {
+        "id": "65a694cd000000000102fa12",
+        "text": "求",
+        "user_id": "58d51a8550c4b43d6ab2422d",
+        "timestamp": "1705415885000"
+      },
+      {
+        "id": "65a384d4000000000102934b",
+        "text": "老大求教学",
+        "user_id": "5d5ac11b0000000001018c01",
+        "timestamp": "1705215188000"
+      },
+      {
+        "id": "6597925f000000000200d4ff",
+        "text": "求这个能回复我吗",
+        "user_id": "62c66531000000000e00c988",
+        "timestamp": "1704432223000"
+      },
+      {
+        "id": "65973c1e0000000001025945",
+        "text": "求",
+        "user_id": "65195a310000000023025c80",
+        "timestamp": "1704410142000"
+      },
+      {
+        "id": "65951d710000000001028cbb",
+        "text": "求",
+        "user_id": "6237e4050000000010006fc3",
+        "timestamp": "1704271217000"
+      },
+      {
+        "id": "659420650000000001035cfd",
+        "text": "求",
+        "user_id": "5ea5206d0000000001009e58",
+        "timestamp": "1704206437000"
+      },
+      {
+        "id": "6593eacc0000000018026cce",
+        "text": "求",
+        "user_id": "5a75495b4eacab082d32919d",
+        "timestamp": "1704192716000"
+      },
+      {
+        "id": "6592b563000000000601603d",
+        "text": "求",
+        "user_id": "651036250000000017023678",
+        "timestamp": "1704113507000"
+      },
+      {
+        "id": "65902a6600000000200076d1",
+        "text": "求",
+        "user_id": "5f222d000000000001001721",
+        "timestamp": "1703946854000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Many distinct users write the generic request 求 over several weeks; possible shared interest, no evidence of orchestration.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "limited",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_65d5d43a0000000007027d5d",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "65d5d43a0000000007027d5d",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 11,
+    "comments": [
+      {
+        "id": "65f4042c00000000070035f4",
+        "text": "配置要求多高？然后免费的吗",
+        "user_id": "653bfafe0000000002013a25",
+        "timestamp": "1710490668000"
+      },
+      {
+        "id": "65e0a413000000000c0250fc",
+        "text": "老师请问如何登录",
+        "user_id": "64f54463000000000200d29e",
+        "timestamp": "1709220883000"
+      },
+      {
+        "id": "66ce786d000000000d00c65c",
+        "text": "求网址",
+        "user_id": "6171f872000000000202338f",
+        "timestamp": "1724807277000"
+      },
+      {
+        "id": "66836f8f000000001202f1b8",
+        "text": "商业合作接单吗？",
+        "user_id": "5559d2f1e4b1cf7b9d257ff7",
+        "timestamp": "1719889807000"
+      },
+      {
+        "id": "65f8fd5600000000160045c5",
+        "text": "停用了么",
+        "user_id": "64298f1d0000000012012207",
+        "timestamp": "1710816599000"
+      },
+      {
+        "id": "65ed99e80000000007002fcb",
+        "text": "界面跟你的图片完全不一样",
+        "user_id": "5ae86e24e8ac2b7339edc22a",
+        "timestamp": "1710070248000"
+      },
+      {
+        "id": "66f8be21000000000c014775",
+        "text": "风中凌乱",
+        "user_id": "5fe810b6000000000101d282",
+        "timestamp": "1727577634000"
+      },
+      {
+        "id": "65f4048e00000000070032e3",
+        "text": "免费的代码都开源的可以自己改。配置不清楚我只在云端跑过。可以直接用那个网站不用自己配置",
+        "user_id": "5ebc8ea0000000000101c89c",
+        "timestamp": "1710490766000"
+      },
+      {
+        "id": "65f4070400000000060245fc",
+        "text": "地址哪里云端跑的",
+        "user_id": "653bfafe0000000002013a25",
+        "timestamp": "1710491396000"
+      },
+      {
+        "id": "65f40cc30000000007001386",
+        "text": "谷歌的colab",
+        "user_id": "5ebc8ea0000000000101c89c",
+        "timestamp": "1710492867000"
+      },
+      {
+        "id": "65e0c56900000000040140c4",
+        "text": "发不了地址你看图二那个地址进入就是无需登录",
+        "user_id": "5ebc8ea0000000000101c89c",
+        "timestamp": "1709229417000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Varied login, cost, and configuration questions with direct answers.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_65e9cc680000000003034759",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "65e9cc680000000003034759",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 22,
+    "comments": [
+      {
+        "id": "65ea8b880000000004016c2e",
+        "text": "没戏。在自己身上试穿新衣服是女人最大的乐趣而你却想剥夺？",
+        "user_id": "62b0f6c7000000001b0289e1",
+        "timestamp": "1709869960000"
+      },
+      {
+        "id": "65ea86c70000000004017980",
+        "text": "你这是纯概念展示吧？没有给衣物人体建模纯视频？",
+        "user_id": "575faa4582ec3944e4a692c4",
+        "timestamp": "1709868743000"
+      },
+      {
+        "id": "65ea1877000000000c027a26",
+        "text": "拍摄的时候没开机吧",
+        "user_id": "5a06d8fe4eacab17adf48029",
+        "timestamp": "1709840503000"
+      },
+      {
+        "id": "65ea98770000000004014b89",
+        "text": "似乎会比较难衣服最难的点在于穿了之后不合适导致的退货。还是要看试衣这个解决的是什么痛点对于鞋子或者包包这种定制化不太要求的方向可以试试。否则对于个人身材的数据建模需要非常精细",
+        "user_id": "559bc2a867bc656dd5135bb3",
+        "timestamp": "1709873271000"
+      },
+      {
+        "id": "65e9db470000000004035681",
+        "text": "哇真是超酷",
+        "user_id": "61fd449c000000001000d005",
+        "timestamp": "1709824839000"
+      },
+      {
+        "id": "65e9d0790000000004016ac2",
+        "text": "绝了这app",
+        "user_id": "632a278b000000002303e3e7",
+        "timestamp": "1709822073000"
+      },
+      {
+        "id": "65f599c4000000000402bb2b",
+        "text": "现在ai2d更衣都还不完善更别提vr3d的了",
+        "user_id": "5d1819700000000011020751",
+        "timestamp": "1710594500000"
+      },
+      {
+        "id": "66effebf0000000024005250",
+        "text": "有testflight版本吗",
+        "user_id": "5ef2e480000000000101fe47",
+        "timestamp": "1727004352000"
+      },
+      {
+        "id": "66b8b9f8000000001800f46a",
+        "text": "你是已经做出来了吗？你做的是我们公司其中一部分想做的项目你如果是独立创业者我们可以谈一下合作。",
+        "user_id": "5ef52b390000000001007707",
+        "timestamp": "1723382265000"
+      },
+      {
+        "id": "65ea8c9700000000040145c8",
+        "text": "主要解決線上買衣服的問題",
+        "user_id": "5f3ca0b500000000010010c3",
+        "timestamp": "1709870231000"
+      },
+      {
+        "id": "65ea921000000000040280f1",
+        "text": "我很需要！！！！！",
+        "user_id": "5bbf563241d19100019e73e3",
+        "timestamp": "1709871632000"
+      },
+      {
+        "id": "65ea461700000000040280b6",
+        "text": "開了我沒使用personna",
+        "user_id": "5f3ca0b500000000010010c3",
+        "timestamp": "1709852183000"
+      },
+      {
+        "id": "65ea7e68000000001202daba",
+        "text": "你试试啊哈哈",
+        "user_id": "5e74f52c000000000100713a",
+        "timestamp": "1709866600000"
+      },
+      {
+        "id": "6601905c0000000016007aad",
+        "text": "很牛杯",
+        "user_id": "5bbbe3076ccde00001eb3b96",
+        "timestamp": "1711378525000"
+      },
+      {
+        "id": "65f15a5300000000040298f0",
+        "text": "这个需求确实很大但是真正的难点在于技术不在于设计",
+        "user_id": "5ff7cf80000000000100bb85",
+        "timestamp": "1710316115000"
+      },
+      {
+        "id": "65f09e450000000007003728",
+        "text": "别想了现有技术力和成本控制做不到这个水平",
+        "user_id": "5b0bc009e8ac2b200f2b25cf",
+        "timestamp": "1710267973000"
+      },
+      {
+        "id": "65ead9fa0000000004036e31",
+        "text": "这个得商家配合才行单单二维平面图实现不了吧",
+        "user_id": "5a7dc4c8e8ac2b3e70af7aee",
+        "timestamp": "1709890042000"
+      },
+      {
+        "id": "65eace24000000000200f501",
+        "text": "做出来了吗",
+        "user_id": "5f2b5be9000000000100a8cd",
+        "timestamp": "1709887012000"
+      },
+      {
+        "id": "65eabb57000000000402a4a1",
+        "text": "预录全身视频再后台合成？感觉第一部的门槛就很高捏",
+        "user_id": "5fc871fa0000000001006bac",
+        "timestamp": "1709882199000"
+      },
+      {
+        "id": "65ea9cb7000000000200e80f",
+        "text": "如果真开发出来那是绝对nb的",
+        "user_id": "5959bba86a6a6917f431334c",
+        "timestamp": "1709874359000"
+      },
+      {
+        "id": "65ea96e5000000000403513c",
+        "text": "假得要命",
+        "user_id": "5bf146bd22098100010b7810",
+        "timestamp": "1709872869000"
+      },
+      {
+        "id": "65ea68d6000000000c024862",
+        "text": "可！！",
+        "user_id": "5f7298f20000000001002e6c",
+        "timestamp": "1709861078000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Mix of praise, skepticism, and technical criticism from different users.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_662dc8b4000000000401b682",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "662dc8b4000000000401b682",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 24,
+    "comments": [
+      {
+        "id": "6641b8b60000000010028e3b",
+        "text": "求网站",
+        "user_id": "563b723103eb843d9e0d0539",
+        "timestamp": "1715583159000"
+      },
+      {
+        "id": "662f0e30000000001301a1fe",
+        "text": "怎么登入的？电子邮件那里出现了红色波浪线邮件帐户是没错的",
+        "user_id": "5e08303a000000000100b158",
+        "timestamp": "1714359856000"
+      },
+      {
+        "id": "662f48e00000000010029679",
+        "text": "怎么用",
+        "user_id": "5c8b6bdf0000000012001570",
+        "timestamp": "1714374881000"
+      },
+      {
+        "id": "664b5dd0000000001c0359c1",
+        "text": "求网址",
+        "user_id": "5c19e6b200000000050340b5",
+        "timestamp": "1716215248000"
+      },
+      {
+        "id": "6630be160000000004002f6a",
+        "text": "是付费软件吗",
+        "user_id": "606449420000000001008055",
+        "timestamp": "1714470423000"
+      },
+      {
+        "id": "662e3660000000001603aa0c",
+        "text": "你好小姐姐人体模特的模板可以分享吗",
+        "user_id": "5adbf8544eacab3933ea2d28",
+        "timestamp": "1714304609000"
+      },
+      {
+        "id": "662df6cb0000000013027aa5",
+        "text": "体验到作为设计师的乐趣了！感恩推荐！！",
+        "user_id": "5e12b4230000000001007bfd",
+        "timestamp": "1714288332000"
+      },
+      {
+        "id": "66dff159000000001202d67a",
+        "text": "求网站",
+        "user_id": "5b0432434eacab2002ce9a94",
+        "timestamp": "1725952345000"
+      },
+      {
+        "id": "66dff14b000000001202751d",
+        "text": "求网站",
+        "user_id": "5b0432434eacab2002ce9a94",
+        "timestamp": "1725952331000"
+      },
+      {
+        "id": "6641b8f80000000009002431",
+        "text": "codecreate看这里",
+        "user_id": "5f158f7d000000000101ee3e",
+        "timestamp": "1715583225000"
+      },
+      {
+        "id": "6641ba17000000000d033cf1",
+        "text": "有网址吗？自己搜不到",
+        "user_id": "563b723103eb843d9e0d0539",
+        "timestamp": "1715583511000"
+      },
+      {
+        "id": "6641ca050000000004019ebe",
+        "text": "可以问codecreate要我在这里没办法直接发会被关小黑屋",
+        "user_id": "5f158f7d000000000101ee3e",
+        "timestamp": "1715587590000"
+      },
+      {
+        "id": "6641dd0f000000000d03338d",
+        "text": "好的",
+        "user_id": "563b723103eb843d9e0d0539",
+        "timestamp": "1715592463000"
+      },
+      {
+        "id": "662f16840000000013019a5e",
+        "text": "换个试试呢除了波浪线还有其他提示吗？",
+        "user_id": "5f158f7d000000000101ee3e",
+        "timestamp": "1714361989000"
+      },
+      {
+        "id": "662f62e60000000003034f4f",
+        "text": "换了两个都是显示红色波浪线用户名和密码不正确帐号密码和用户名没有错",
+        "user_id": "5e08303a000000000100b158",
+        "timestamp": "1714381542000"
+      },
+      {
+        "id": "662f65fc0000000003035154",
+        "text": "可以问问codecreate看看这是什么情况",
+        "user_id": "5f158f7d000000000101ee3e",
+        "timestamp": "1714382332000"
+      },
+      {
+        "id": "663069a1000000000303751e",
+        "text": "好的谢谢解答",
+        "user_id": "5e08303a000000000100b158",
+        "timestamp": "1714448801000"
+      },
+      {
+        "id": "662f492a000000000303625b",
+        "text": "codecreate看这里",
+        "user_id": "5f158f7d000000000101ee3e",
+        "timestamp": "1714374954000"
+      },
+      {
+        "id": "662f4902000000001002a2f7",
+        "text": "看起来好好用的样子",
+        "user_id": "5c8b6bdf0000000012001570",
+        "timestamp": "1714374914000"
+      },
+      {
+        "id": "664b60e2000000001c00e6c3",
+        "text": "找她codecreate",
+        "user_id": "5f158f7d000000000101ee3e",
+        "timestamp": "1716216034000"
+      },
+      {
+        "id": "6630c28e00000000040019c6",
+        "text": "是但可以先试用5天",
+        "user_id": "5f158f7d000000000101ee3e",
+        "timestamp": "1714471567000"
+      },
+      {
+        "id": "662e3b02000000001301a0bc",
+        "text": "这个模特是软件自带的哈可以直接用",
+        "user_id": "5f158f7d000000000101ee3e",
+        "timestamp": "1714305795000"
+      },
+      {
+        "id": "662df7ef0000000013018fce",
+        "text": "快去试试！想看你的分享",
+        "user_id": "5f158f7d000000000101ee3e",
+        "timestamp": "1714288623000"
+      },
+      {
+        "id": "6693d51c0000000005030cb5",
+        "text": "亲为啥老是注册不成功呀总是显示错误啥的",
+        "user_id": "59712e746a6a691eccef03de",
+        "timestamp": "1720964380000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Registration and website questions; repeated product references come from one responding account.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_66322ef1000000001e031307",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "66322ef1000000001e031307",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 8,
+    "comments": [
+      {
+        "id": "66615a5500000000050271b5",
+        "text": "怎么卖？",
+        "user_id": "623d950400000000100075dc",
+        "timestamp": "1717656150000"
+      },
+      {
+        "id": "663c3b6600000000090010dd",
+        "text": "求ppt",
+        "user_id": "65b242db000000000e0241b4",
+        "timestamp": "1715223398000"
+      },
+      {
+        "id": "663392a50000000016039aca",
+        "text": "求",
+        "user_id": "65beb8d8000000000e0277a5",
+        "timestamp": "1714655909000"
+      },
+      {
+        "id": "6632725d000000000403320c",
+        "text": "求",
+        "user_id": "5e64b5d600000000010012a5",
+        "timestamp": "1714582109000"
+      },
+      {
+        "id": "66615de1000000000a006c7e",
+        "text": "踢踢",
+        "user_id": "66155ea9000000000b031b5d",
+        "timestamp": "1717657058000"
+      },
+      {
+        "id": "663c3b850000000004018fa6",
+        "text": "亲需要请进店铺下单哦",
+        "user_id": "66155ea9000000000b031b5d",
+        "timestamp": "1715223429000"
+      },
+      {
+        "id": "6633a3b20000000003036925",
+        "text": "踢踢",
+        "user_id": "66155ea9000000000b031b5d",
+        "timestamp": "1714660275000"
+      },
+      {
+        "id": "6632cf530000000003035911",
+        "text": "滴滴",
+        "user_id": "66155ea9000000000b031b5d",
+        "timestamp": "1714605907000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Purchase requests with repeated seller replies from one account, not multiple coordinated accounts.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "limited",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_6649b4ff000000001303d312",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "6649b4ff000000001303d312",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 30,
+    "comments": [
+      {
+        "id": "6649bc20000000001c035402",
+        "text": "请问你是试用版还是已经订阅了呀我一直卡在申请试用的界面",
+        "user_id": "5ef33d58000000000101db07",
+        "timestamp": "1716108320000"
+      },
+      {
+        "id": "664a0c62000000001c03438f",
+        "text": "哇我想问一下线稿是怎么生成的啊",
+        "user_id": "61910d7c0000000021024de1",
+        "timestamp": "1716128867000"
+      },
+      {
+        "id": "664ab84a000000001c00e805",
+        "text": "贵吗？",
+        "user_id": "5e6dd9160000000001009275",
+        "timestamp": "1716172875000"
+      },
+      {
+        "id": "664a53210000000008003382",
+        "text": "免费的吗",
+        "user_id": "5aee7100e8ac2b3befb06b0c",
+        "timestamp": "1716146978000"
+      },
+      {
+        "id": "6661e553000000001c015233",
+        "text": "求秒学会教程",
+        "user_id": "5ef974c0000000000101cb49",
+        "timestamp": "1717691731000"
+      },
+      {
+        "id": "6653d6c90000000002000bb8",
+        "text": "这个怎么注册呀",
+        "user_id": "5bb6fd6d71e9a000013e7283",
+        "timestamp": "1716770506000"
+      },
+      {
+        "id": "6650fa6b000000000d031e5c",
+        "text": "好厉害求手把手教程",
+        "user_id": "5f9e5115000000000100275e",
+        "timestamp": "1716583020000"
+      },
+      {
+        "id": "664bc6530000000002001674",
+        "text": "非常棒哦",
+        "user_id": "5657e027f53ee07c2647d776",
+        "timestamp": "1716242004000"
+      },
+      {
+        "id": "6693d62b0000000005023bb8",
+        "text": "亲为啥我注册完就显示错误什么的啊",
+        "user_id": "59712e746a6a691eccef03de",
+        "timestamp": "1720964652000"
+      },
+      {
+        "id": "665d9aba000000001c0160d2",
+        "text": "喜欢这个软件",
+        "user_id": "5c2ffcc00000000007001a81",
+        "timestamp": "1717410491000"
+      },
+      {
+        "id": "6649bd24000000000d03213f",
+        "text": "我是已经订阅了",
+        "user_id": "5fa60e1b00000000010038a7",
+        "timestamp": "1716108581000"
+      },
+      {
+        "id": "6649bd66000000001c03784c",
+        "text": "哦好的谢谢请问是用这个需要开vpn吗",
+        "user_id": "5ef33d58000000000101db07",
+        "timestamp": "1716108646000"
+      },
+      {
+        "id": "6649bd8c0000000002001d1b",
+        "text": "不用呢",
+        "user_id": "5fa60e1b00000000010038a7",
+        "timestamp": "1716108685000"
+      },
+      {
+        "id": "6649be81000000001c00ecf6",
+        "text": "好嘞！谢谢您",
+        "user_id": "5ef33d58000000000101db07",
+        "timestamp": "1716108930000"
+      },
+      {
+        "id": "6649f54f000000001002b916",
+        "text": "不客气捏",
+        "user_id": "5fa60e1b00000000010038a7",
+        "timestamp": "1716122959000"
+      },
+      {
+        "id": "664b0509000000001c00fec9",
+        "text": "啊啊我也一直卡在那里点不动",
+        "user_id": "62bfb1ee000000001b026044",
+        "timestamp": "1716192521000"
+      },
+      {
+        "id": "664b3faa0000000002001cc1",
+        "text": "不会是网络问题吧",
+        "user_id": "5fa60e1b00000000010038a7",
+        "timestamp": "1716207531000"
+      },
+      {
+        "id": "66603250000000000502edc2",
+        "text": "订阅多少钱呢",
+        "user_id": "5648921ec2bdeb4b60af1bc8",
+        "timestamp": "1717580369000"
+      },
+      {
+        "id": "664a0d32000000001002a22b",
+        "text": "天老爷啊你还知道线稿",
+        "user_id": "5fa60e1b00000000010038a7",
+        "timestamp": "1716129074000"
+      },
+      {
+        "id": "664a10d7000000001c0367b4",
+        "text": "老师这不是你第五条讲的吗",
+        "user_id": "61910d7c0000000021024de1",
+        "timestamp": "1716130007000"
+      },
+      {
+        "id": "664a119b000000000d0335bf",
+        "text": "天老奶啊宝你太棒了",
+        "user_id": "5fa60e1b00000000010038a7",
+        "timestamp": "1716130204000"
+      },
+      {
+        "id": "664af1f0000000001002b1b3",
+        "text": "应该不贵的",
+        "user_id": "5fa60e1b00000000010038a7",
+        "timestamp": "1716187633000"
+      },
+      {
+        "id": "664af690000000001202f377",
+        "text": "500一个月还不贵呀",
+        "user_id": "5c33618b0000000007010d48",
+        "timestamp": "1716188817000"
+      },
+      {
+        "id": "664a66300000000008003eb6",
+        "text": "可以注册免费试用",
+        "user_id": "5fa60e1b00000000010038a7",
+        "timestamp": "1716151857000"
+      },
+      {
+        "id": "6661e589000000001c027031",
+        "text": "有手就行",
+        "user_id": "5fa60e1b00000000010038a7",
+        "timestamp": "1717691785000"
+      },
+      {
+        "id": "66541094000000001b0059a5",
+        "text": "应该是要用qq邮箱",
+        "user_id": "5fa60e1b00000000010038a7",
+        "timestamp": "1716785301000"
+      },
+      {
+        "id": "665166ba00000000100284fd",
+        "text": "小姐姐你",
+        "user_id": "5fa60e1b00000000010038a7",
+        "timestamp": "1716610746000"
+      },
+      {
+        "id": "664bf47300000000020026c3",
+        "text": "谢谢",
+        "user_id": "5fa60e1b00000000010038a7",
+        "timestamp": "1716253812000"
+      },
+      {
+        "id": "665d2509000000001202fb10",
+        "text": "没有面料版吗",
+        "user_id": "63c3d429000000002801b1b5",
+        "timestamp": "1717380361000"
+      },
+      {
+        "id": "66543118000000001c017807",
+        "text": "怎么注册没有注册页面",
+        "user_id": "5d351454000000001100980d",
+        "timestamp": "1716793625000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Varied price, signup, and tutorial questions; many answers come from one respondent.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_664abb430000000015010b96",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "664abb430000000015010b96",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 22,
+    "comments": [
+      {
+        "id": "6703ec86000000002400b3f7",
+        "text": "求",
+        "user_id": "62f6ae17000000001e01ddf8",
+        "timestamp": "1728310406000"
+      },
+      {
+        "id": "66ebcaaa0000000002004a7d",
+        "text": "求",
+        "user_id": "5f11062400000000010078c7",
+        "timestamp": "1726728874000"
+      },
+      {
+        "id": "66e52a97000000000b023507",
+        "text": "求急",
+        "user_id": "60764e370000000001007cb5",
+        "timestamp": "1726294680000"
+      },
+      {
+        "id": "66dea1e600000000170182fe",
+        "text": "求",
+        "user_id": "610662ca000000000100bdb1",
+        "timestamp": "1725866471000"
+      },
+      {
+        "id": "665d4f93000000001c014d3c",
+        "text": "求求求急",
+        "user_id": "5b16216b4eacab540b01d553",
+        "timestamp": "1717391252000"
+      },
+      {
+        "id": "66541199000000000f0071a3",
+        "text": "求求",
+        "user_id": "652816cf000000002a02b4a2",
+        "timestamp": "1716785561000"
+      },
+      {
+        "id": "664f45b4000000001c00f589",
+        "text": "可以买吗",
+        "user_id": "664f45390000000003032dfa",
+        "timestamp": "1716471220000"
+      },
+      {
+        "id": "664f31130000000002003aff",
+        "text": "求",
+        "user_id": "5a126d5611be107b18bfbb8f",
+        "timestamp": "1716465939000"
+      },
+      {
+        "id": "664dce78000000001c037154",
+        "text": "求",
+        "user_id": "62ef46fa000000001f016b5b",
+        "timestamp": "1716375160000"
+      },
+      {
+        "id": "664d490d00000000080001e1",
+        "text": "求",
+        "user_id": "5ce0c14900000000170154e6",
+        "timestamp": "1716341005000"
+      },
+      {
+        "id": "6703fcfc0000000024009f5c",
+        "text": "踢踢",
+        "user_id": "65649366000000001103e1f9",
+        "timestamp": "1728314621000"
+      },
+      {
+        "id": "66ebcad600000000240135b6",
+        "text": "踢踢",
+        "user_id": "65649366000000001103e1f9",
+        "timestamp": "1726728918000"
+      },
+      {
+        "id": "66e54f1f0000000024012ab6",
+        "text": "踢踢",
+        "user_id": "65649366000000001103e1f9",
+        "timestamp": "1726304031000"
+      },
+      {
+        "id": "66df100d000000001701b947",
+        "text": "踢踢",
+        "user_id": "65649366000000001103e1f9",
+        "timestamp": "1725894669000"
+      },
+      {
+        "id": "665d5453000000001c027028",
+        "text": "踢踢",
+        "user_id": "65649366000000001103e1f9",
+        "timestamp": "1717392468000"
+      },
+      {
+        "id": "66541281000000001b005958",
+        "text": "踢踢",
+        "user_id": "65649366000000001103e1f9",
+        "timestamp": "1716785793000"
+      },
+      {
+        "id": "664f47b0000000000d033d6d",
+        "text": "踢踢",
+        "user_id": "65649366000000001103e1f9",
+        "timestamp": "1716471729000"
+      },
+      {
+        "id": "664f39e20000000002003c80",
+        "text": "踢踢",
+        "user_id": "65649366000000001103e1f9",
+        "timestamp": "1716468195000"
+      },
+      {
+        "id": "664de23b000000001002b574",
+        "text": "踢踢",
+        "user_id": "65649366000000001103e1f9",
+        "timestamp": "1716380219000"
+      },
+      {
+        "id": "664d4a08000000000d033df0",
+        "text": "踢踢",
+        "user_id": "65649366000000001103e1f9",
+        "timestamp": "1716341256000"
+      },
+      {
+        "id": "66f7d959000000000f00c1b6",
+        "text": "求ppt",
+        "user_id": "5f76d8090000000001005f1c",
+        "timestamp": "1727519066000"
+      },
+      {
+        "id": "66eb7d96000000000f004524",
+        "text": "求",
+        "user_id": "62f596ee000000001f004bd5",
+        "timestamp": "1726709142000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Repeated 求 requests arrive over months; repeated 踢踢 replies come from one account, not a network of accounts.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "limited",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_664c68c3000000001500ad2d",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "664c68c3000000001500ad2d",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 9,
+    "comments": [
+      {
+        "id": "6679624c00000000050046ac",
+        "text": "邀请码怎么才能拿到",
+        "user_id": "5fb85c88000000000100566a",
+        "timestamp": "1719231053000"
+      },
+      {
+        "id": "666a6ac2000000001b010b52",
+        "text": "如何才能画的这么好看",
+        "user_id": "598964c482ec39662fb0789a",
+        "timestamp": "1718250178000"
+      },
+      {
+        "id": "664ca460000000001c00e1c7",
+        "text": "真的别太绝！",
+        "user_id": "630d5ffe000000001200caf2",
+        "timestamp": "1716298849000"
+      },
+      {
+        "id": "664c6dc0000000001c00fe09",
+        "text": "直接出整套设计案例啦",
+        "user_id": "555af9ebf5a2630ecfbc6823",
+        "timestamp": "1716284865000"
+      },
+      {
+        "id": "666a6ad6000000001303dc81",
+        "text": "我生成的都很丑",
+        "user_id": "598964c482ec39662fb0789a",
+        "timestamp": "1718250198000"
+      },
+      {
+        "id": "667963e6000000000d00ff9c",
+        "text": "他们给的帮你lookai时尚设计",
+        "user_id": "5733e74150c4b47a90a08cfd",
+        "timestamp": "1719231462000"
+      },
+      {
+        "id": "666a71ad000000002100d58b",
+        "text": "多试试真的要试很久你就当成给ai培训审美",
+        "user_id": "5733e74150c4b47a90a08cfd",
+        "timestamp": "1718251950000"
+      },
+      {
+        "id": "664d3ebc000000000d030b08",
+        "text": "谢谢",
+        "user_id": "5733e74150c4b47a90a08cfd",
+        "timestamp": "1716338365000"
+      },
+      {
+        "id": "664c7d130000000010029e93",
+        "text": "嘿嘿",
+        "user_id": "5733e74150c4b47a90a08cfd",
+        "timestamp": "1716288788000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Different users ask about an invitation code and design quality; one respondent answers.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_66702520000000001c021631",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "66702520000000001c021631",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 7,
+    "comments": [
+      {
+        "id": "668917af0000000017012eaf",
+        "text": "辅助ps的步骤看看",
+        "user_id": "62e344cd000000001f004141",
+        "timestamp": "1720260528000"
+      },
+      {
+        "id": "66c5735d000000000a0174ab",
+        "text": "感觉应该看过thetime的教程",
+        "user_id": "55da99ac3397db4eac61e0c4",
+        "timestamp": "1724216157000"
+      },
+      {
+        "id": "668917eb0000000018029bc8",
+        "text": "我看看之后做个视频",
+        "user_id": "646cf9f2000000001003461c",
+        "timestamp": "1720260588000"
+      },
+      {
+        "id": "668917b40000000017013025",
+        "text": "求求",
+        "user_id": "62e344cd000000001f004141",
+        "timestamp": "1720260533000"
+      },
+      {
+        "id": "66891aef00000000170030de",
+        "text": "感谢有你从今天开始我是你老粉",
+        "user_id": "62e344cd000000001f004141",
+        "timestamp": "1720261360000"
+      },
+      {
+        "id": "66c6ae5c00000000270128a9",
+        "text": "是谁？",
+        "user_id": "646cf9f2000000001003461c",
+        "timestamp": "1724296796000"
+      },
+      {
+        "id": "66c6aeeb000000000600c2b0",
+        "text": "搜了一下的确刷到过这个老师",
+        "user_id": "646cf9f2000000001003461c",
+        "timestamp": "1724296939000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Short tutorial question-and-answer exchange among three users.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_667b5d18000000001e012e98",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "667b5d18000000001e012e98",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 13,
+    "comments": [
+      {
+        "id": "667c15ea0000000017010547",
+        "text": "做毕设的学生开心死了",
+        "user_id": "5f104ea600000000010012af",
+        "timestamp": "1719408107000"
+      },
+      {
+        "id": "668e61f10000000016024fd0",
+        "text": "ok离我下岗又接近了一步",
+        "user_id": "6241ea9d000000002102ac37",
+        "timestamp": "1720607218000"
+      },
+      {
+        "id": "66ac5b06000000001c03e96d",
+        "text": "需要垫图吗",
+        "user_id": "5b74e030c41c610001bdfc42",
+        "timestamp": "1722571527000"
+      },
+      {
+        "id": "667fb9160000000017011e1f",
+        "text": "還是不錯好看但容我說你可能不喜歡聽或看的衣服設計很好但是妝跟髮還有頭飾要整體不好意思",
+        "user_id": "62050f6600000000100074e2",
+        "timestamp": "1719646487000"
+      },
+      {
+        "id": "667d84d9000000000d00c409",
+        "text": "这样以后设计师是不是可以下岗了",
+        "user_id": "5ac5882911be105be4c29285",
+        "timestamp": "1719502042000"
+      },
+      {
+        "id": "667d48d4000000001b01396b",
+        "text": "咋这么好看",
+        "user_id": "6495611b000000001001df9a",
+        "timestamp": "1719486677000"
+      },
+      {
+        "id": "667c1cac0000000005007650",
+        "text": "对可以来找点感觉",
+        "user_id": "6415a33200000000110208ec",
+        "timestamp": "1719409837000"
+      },
+      {
+        "id": "667d24f70000000016025e35",
+        "text": "说的是我吗",
+        "user_id": "5f4285330000000001006c4e",
+        "timestamp": "1719477495000"
+      },
+      {
+        "id": "667d27e6000000000d00f3b3",
+        "text": "欢迎来撩",
+        "user_id": "6415a33200000000110208ec",
+        "timestamp": "1719478247000"
+      },
+      {
+        "id": "668e637f00000000050206f5",
+        "text": "只会淘汰不懂运用工具人人工智能的东西必定缺少情绪的内在作为辅助设计的工具确是不错的",
+        "user_id": "6415a33200000000110208ec",
+        "timestamp": "1720607615000"
+      },
+      {
+        "id": "66ac6734000000000b02bc36",
+        "text": "不需要",
+        "user_id": "6415a33200000000110208ec",
+        "timestamp": "1722574644000"
+      },
+      {
+        "id": "667fbb6e00000000050058c7",
+        "text": "哈哈哈分享的东西就不要要求太高了没时间精修图你可以修一下再分享出来",
+        "user_id": "6415a33200000000110208ec",
+        "timestamp": "1719647087000"
+      },
+      {
+        "id": "667d85a8000000000d00da9d",
+        "text": "那不可能",
+        "user_id": "6415a33200000000110208ec",
+        "timestamp": "1719502248000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Varied comments on AI design with both support and criticism.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_668588be000000001f0057cc",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "668588be000000001f0057cc",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 6,
+    "comments": [
+      {
+        "id": "66a7c3ab000000001c013e3a",
+        "text": "你的长夏草莓的霉牛",
+        "user_id": "604350730000000001001249",
+        "timestamp": "1722270636000"
+      },
+      {
+        "id": "6695192b00000000050308fc",
+        "text": "我操！牛逼！",
+        "user_id": "5fd410910000000001003fcd",
+        "timestamp": "1721047339000"
+      },
+      {
+        "id": "6690e81c0000000023018abc",
+        "text": "抽象不过ai",
+        "user_id": "60a07eed0000000001006199",
+        "timestamp": "1720772636000"
+      },
+      {
+        "id": "66a7c409000000001303c2be",
+        "text": "这个属于半成品首页有更多有趣ai作品",
+        "user_id": "5ad01dc94eacab4df50a841d",
+        "timestamp": "1722270730000"
+      },
+      {
+        "id": "66a7c3db000000002601df2a",
+        "text": "眼球？！",
+        "user_id": "62c2c288000000001902bfb2",
+        "timestamp": "1722270683000"
+      },
+      {
+        "id": "66a7c50500000000260029c3",
+        "text": "有点有趣又带点惊悚",
+        "user_id": "5d1cacaa000000001601077c",
+        "timestamp": "1722270981000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Different aesthetic reactions from six users; no shared template.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_6697a0f8000000000d00f467",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "6697a0f8000000000d00f467",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 15,
+    "comments": [
+      {
+        "id": "6697c20e000000000503bb7f",
+        "text": "aida注意大小写区分哦",
+        "user_id": "632d81b00000000019023bfa",
+        "timestamp": "1721221647000"
+      },
+      {
+        "id": "66a041040000000005023520",
+        "text": "请问这是软件还是网站？",
+        "user_id": "5f4383d80000000001008bf5",
+        "timestamp": "1721778437000"
+      },
+      {
+        "id": "6697acaf000000002300ee12",
+        "text": "好潮阿",
+        "user_id": "56d0ecb5aed758479ef7074c",
+        "timestamp": "1721216176000"
+      },
+      {
+        "id": "6697ad240000000026000927",
+        "text": "设计的好酷也太方便了吧",
+        "user_id": "5799552334609417d78246ee",
+        "timestamp": "1721216292000"
+      },
+      {
+        "id": "6697aaae000000001303f68e",
+        "text": "终于更新了",
+        "user_id": "55fab345f5a263163040bb73",
+        "timestamp": "1721215663000"
+      },
+      {
+        "id": "669fb8c900000000050213eb",
+        "text": "泰裤辣",
+        "user_id": "6145e39d000000001f03bd0a",
+        "timestamp": "1721743561000"
+      },
+      {
+        "id": "66caa7a1000000001202c10b",
+        "text": "可以求一下网址吗",
+        "user_id": "5884eb9d82ec397e497ed4c1",
+        "timestamp": "1724557218000"
+      },
+      {
+        "id": "66b72f0d00000000120261f8",
+        "text": "是内测吗现在都进不去",
+        "user_id": "57faae2282ec3973532c779d",
+        "timestamp": "1723281166000"
+      },
+      {
+        "id": "66a1435400000000050399a7",
+        "text": "在线网站噢",
+        "user_id": "632d81b00000000019023bfa",
+        "timestamp": "1721844565000"
+      },
+      {
+        "id": "66b1c0ae000000001800fee2",
+        "text": "网站是什么？可以分享一下吗",
+        "user_id": "550bb626a46e9618712887aa",
+        "timestamp": "1722925231000"
+      },
+      {
+        "id": "66b1f82d000000001c03d602",
+        "text": "私",
+        "user_id": "632d81b00000000019023bfa",
+        "timestamp": "1722939437000"
+      },
+      {
+        "id": "6697aced00000000050228ea",
+        "text": "这套芭比粉跟你头像很配！",
+        "user_id": "632d81b00000000019023bfa",
+        "timestamp": "1721216237000"
+      },
+      {
+        "id": "6697b310000000002300efa0",
+        "text": "哇还真是！",
+        "user_id": "56d0ecb5aed758479ef7074c",
+        "timestamp": "1721217808000"
+      },
+      {
+        "id": "6697ad570000000005031cd8",
+        "text": "好玩！好用！",
+        "user_id": "632d81b00000000019023bfa",
+        "timestamp": "1721216344000"
+      },
+      {
+        "id": "6697ab1c0000000009014e53",
+        "text": "aida一款超级牛的服装设计黑科技！",
+        "user_id": "632d81b00000000019023bfa",
+        "timestamp": "1721215772000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Product promotion appears to come from one poster; other users ask varied questions, with no multi-account campaign evidence.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "limited",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  },
+  {
+    "id": "kaggle_xhs_66cfe6c7000000001f03b9c0",
+    "source": "Kaggle Xiaohongshu AIGC comments / ai-fashion",
+    "source_note_id": "66cfe6c7000000001f03b9c0",
+    "selection": "random within comment-count strata 5-10, 11-20, 21-30; seed 20261007",
+    "comment_count": 6,
+    "comments": [
+      {
+        "id": "66cffc2b0000000016013907",
+        "text": "好别致的视觉充满了生命力",
+        "user_id": "60f1302f00000000010077d3",
+        "timestamp": "1724906539000"
+      },
+      {
+        "id": "66e2ae2f000000000d00f0a7",
+        "text": "葫芦娃既视感",
+        "user_id": "62038f360000000010006568",
+        "timestamp": "1726131760000"
+      },
+      {
+        "id": "66df1266000000000c0160e3",
+        "text": "好棒这个",
+        "user_id": "66d45728000000001d023470",
+        "timestamp": "1725895270000"
+      },
+      {
+        "id": "66d0983a000000000b00ca53",
+        "text": "喜欢",
+        "user_id": "56549da6e58d1302daa57301",
+        "timestamp": "1724946491000"
+      },
+      {
+        "id": "66d0095d000000000c018f68",
+        "text": "是呀",
+        "user_id": "5733e74150c4b47a90a08cfd",
+        "timestamp": "1724909918000"
+      },
+      {
+        "id": "66e2b594000000000c015038",
+        "text": "哈哈哈哈哈",
+        "user_id": "5733e74150c4b47a90a08cfd",
+        "timestamp": "1726133652000"
+      }
+    ],
+    "label": 0,
+    "review_notes": "Varied reactions to the visual work and ordinary follow-up replies.",
+    "review_status": "provisional_negative_control",
+    "label_confidence": "moderate",
+    "label_basis": "Manual review of released comment text, anonymized user IDs, and timestamps; no verified platform investigation."
+  }
+]
