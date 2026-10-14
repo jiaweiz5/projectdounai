@@ -88,8 +88,8 @@ export default function NoteCheckWorkspace() {
     try {
       const body = new FormData(); body.append("file", screenshot.file);
       const response = await fetch("/api/analyze-screenshot", { method: "POST", body, signal: AbortSignal.timeout(110000) });
-      if (!response.ok) throw new Error("ocr");
       const payload = await response.json();
+      if (!response.ok) { setError(l(typeof payload.detail === "string" ? payload.detail : "千问截图识别未完成，请稍后重试。", "Qwen extraction failed. Please retry.")); return; }
       if (!Array.isArray(payload?.ocr?.comments) || !Array.isArray(payload?.ocr?.lines)) throw new Error("schema");
       const values: string[] = payload.ocr.comments.map((row: OCRLine) => row.text).filter((v: unknown): v is string => typeof v === "string" && !!v.trim());
       setOcrLines(payload.ocr.lines.filter((row: OCRLine) => typeof row.text === "string"));
@@ -175,7 +175,7 @@ export default function NoteCheckWorkspace() {
 
         <details className={styles.evidence}>
           <summary className={styles.heading}><h2><Icon kind="comments"/>{l("评论区", "Comments")}</h2><span>{comments.length ? `${usable.length} / 30` : l("选填 · 展开", "Optional · Expand")}</span></summary>
-          <p className={styles.hint}>{l("上传清晰的评论区截图，或手动添加。保留真实重复评论，至少 5 条才能分析协同风险。", "Upload a clear comment screenshot or type comments. Keep genuine repetitions. At least 5 comments are needed.")}</p>
+          <p className={styles.hint}>{l("截图将发送至阿里云百炼，由千问 3.5 Flash 识别并整理完整评论。请核对后再分析；也可手动添加。至少需要 5 条评论。", "Screenshots are sent to Alibaba Cloud Bailian for Qwen 3.5 Flash transcription. Review before analysis, or add comments manually. At least 5 comments are needed.")}</p>
           <input ref={screenInput} type="file" hidden accept="image/jpeg,image/png,image/webp" onChange={e => { void choose(Array.from(e.target.files ?? []), "screenshot"); e.target.value = ""; }}/>
           <div className={styles.row}><button className={styles.secondary} onClick={() => screenInput.current?.click()}>{l("选择评论截图", "Choose screenshot")}</button><span className={styles.hint}>JPG / PNG / WebP · ≤ 12 MB</span></div>
           {screenshot && <div className={styles.screenshot}>

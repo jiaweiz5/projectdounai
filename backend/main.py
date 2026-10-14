@@ -18,6 +18,7 @@ from layer4_detector import (
 from layer4_features import Layer4OCRError, extract_ocr_from_bytes
 from layer4_reference_features import Layer4ReferenceError
 from qwen_agent import generate_final_report
+from comment_vision import CommentVisionError, extract_comments
 from screenshot_ocr import (
     ScreenshotOCRError,
     extract_comment_lines,
@@ -305,7 +306,7 @@ async def analyze(request: AnalyzeRequest):
     return result
 @app.post("/analyze-screenshot")
 async def analyze_screenshot(file: UploadFile):
-    """Extract comments from a screenshot and run Layer 3."""
+    """Transcribe with Qwen; defer Layer 3 until user-reviewed submission."""
     if not file.content_type or not file.content_type.startswith("image/"):
         raise HTTPException(
             status_code=415,
@@ -318,26 +319,15 @@ async def analyze_screenshot(file: UploadFile):
             detail="The screenshot must be 12 MB or smaller.",
         )
     try:
-        ocr_lines = extract_text_lines(image_bytes)
-    except ScreenshotOCRError as exc:
+        extraction = await extract_comments(image_bytes)
+    except CommentVisionError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
-    # OCR text is filtered into comment lines before Layer 3 sees it.
-    comment_lines = extract_comment_lines(ocr_lines)
-    comments = [line["text"] for line in comment_lines]
-    layer3_result = analyze_comment_coordination(comments)
+    # Keep the legacy response key for existing clients. No local OCR runs here.
+    # Coordination is analyzed only after the user reviews the list and submits.
     return {
         "filename": file.filename,
-        "ocr": {
-            "line_count": len(ocr_lines),
-            "lines": ocr_lines,
-            "comment_count": len(comment_lines),
-            "comments": comment_lines,
-        },
-        "layer3": layer3_result,
-        "message": (
-            "Review ocr.comments before relying on the Layer 3 score. "
-            "For best results, crop the screenshot to the comment section."
-        ),
+        "ocr": extraction,
+        "message": "Review the Qwen-extracted comments before submitting analysis.",
     }
 @app.post("/analyze-layer4-reference")
 async def analyze_layer4_reference_uploads(
