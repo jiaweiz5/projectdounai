@@ -16,6 +16,7 @@ node_modules/
 # Private data, model artifacts, and uploaded files
 data/private/
 artifacts/
+model_runs/
 uploads/
 
 # macOS metadata

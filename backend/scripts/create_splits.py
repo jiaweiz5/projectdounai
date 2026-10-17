@@ -179,17 +179,17 @@ for key, group in by_text.items():
         for row in group
     }
 
-    # If the exact same text has conflicting labels,
-    # don't let the model train on contradictory truth.
+    # Conflicting exact texts cannot teach a binary authorship model,
+    # but keep them visible in the audit count.
     if len(labels) > 1:
 
         conflicting += len(group)
 
         continue
 
-    deduped.append(
-        group[0]
-    )
+    # Preserve distinct originals: a copied text can belong to more
+    # than one source group and all such groups must remain linked.
+    deduped.extend(group)
 
 
 rows = deduped
@@ -273,6 +273,31 @@ for i in range(
                 i,
                 int(j)
             )
+
+
+# Explicit origin links take precedence over similarity. H and every
+# derivative L1-L4 must carry the identical source_group_id.
+by_origin = {}
+for i, row in enumerate(rows):
+    origin = row.get("source_group_id")
+    if not origin:
+        raise ValueError(
+            f"Missing source_group_id on row {row.get('id', i)}; "
+            "assign a stable original-post ID before splitting"
+        )
+    if origin in by_origin:
+        uf.union(i, by_origin[origin])
+    else:
+        by_origin[origin] = i
+
+# Exact copies from different origins also belong to one split.
+by_exact_text = {}
+for i, row in enumerate(rows):
+    key = canonical_text(row["text"])
+    if key in by_exact_text:
+        uf.union(i, by_exact_text[key])
+    else:
+        by_exact_text[key] = i
 
 
 groups = defaultdict(list)
@@ -424,6 +449,17 @@ calibration_rows = rows_for_groups(
 test_rows = rows_for_groups(
     test_groups
 )
+
+origin_splits = {}
+for name, split_rows in (
+    ("fit", fit_rows), ("dev", dev_rows),
+    ("calibration", calibration_rows), ("test_locked", test_rows),
+):
+    for row in split_rows:
+        origin = row["source_group_id"]
+        previous = origin_splits.setdefault(origin, name)
+        if previous != name:
+            raise AssertionError(f"Source group {origin} in {previous} and {name}")
 
 
 # ============================================================

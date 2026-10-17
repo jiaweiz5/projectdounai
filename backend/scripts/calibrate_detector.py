@@ -1,4 +1,5 @@
 import json
+import hashlib
 from pathlib import Path
 
 import joblib
@@ -195,10 +196,16 @@ bundle = {
         calibrator,
 
     "model_version":
-        "tfidf-logreg-v1",
+        "tfidf-logreg-v2-full-human-body",
 
     "calibration_version":
-        "sigmoid-v1",
+        "sigmoid-v2-grouped",
+
+    "provenance": {
+        **json.loads((MODEL_DIR / "authorship_provenance.json").read_text(encoding="utf-8")),
+        "calibration_sha256": hashlib.sha256(CALIBRATION_FILE.read_bytes()).hexdigest(),
+        "baseline_model_sha256": hashlib.sha256(BASE_MODEL_FILE.read_bytes()).hexdigest(),
+    },
 }
 
 

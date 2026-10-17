@@ -1,7 +1,10 @@
 import json
+import hashlib
+import subprocess
 from pathlib import Path
 
 import joblib
+import sklearn
 
 from sklearn.feature_extraction.text import (
     TfidfVectorizer
@@ -253,6 +256,28 @@ joblib.dump(
     model,
     MODEL_FILE
 )
+
+
+def sha256(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+revision = subprocess.run(
+    ["git", "rev-parse", "HEAD"], cwd=BASE_DIR,
+    capture_output=True, text=True, check=False,
+)
+provenance = {
+    "fit_sha256": sha256(FIT_FILE),
+    "dev_sha256": sha256(DEV_FILE),
+    "fit_count": len(fit_rows),
+    "dev_count": len(dev_rows),
+    "sklearn_version": sklearn.__version__,
+    "code_commit": revision.stdout.strip() if revision.returncode == 0 else None,
+}
+(MODEL_DIR / "authorship_provenance.json").write_text(
+    json.dumps(provenance, indent=2) + "\n", encoding="utf-8"
+)
+print("Training provenance:", json.dumps(provenance, indent=2))
 
 
 print()

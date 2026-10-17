@@ -23,7 +23,9 @@ joblib>=1.4,<2.0
 numpy>=1.26,<3.0
 scikit-learn>=1.5,<2.0
 sentence-transformers>=5.0,<7.0
-torch>=2.2,<3.0
+torch>=2.6,<3.0
+transformers>=4.41,<5.0
+datasets>=3.0,<5.0
 
 # Screenshot upload and local OCR
 python-multipart>=0.0.20,<1.0

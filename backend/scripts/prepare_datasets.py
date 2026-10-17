@@ -2,6 +2,7 @@
 import sys
 import json
 import hashlib
+import argparse
 from pathlib import Path
 
 from datasets import load_dataset
@@ -110,9 +111,19 @@ def prepare_rednote():
         authorship
     ) in configs:
 
+        content_field = (
+            "desc" if authorship == "human"
+            else "note_content"
+        )
+
         for index, row in enumerate(
             read_jsonl(path)
         ):
+
+            if content_field not in row:
+                raise KeyError(
+                    f"{path.name} row {index}: missing {content_field}"
+                )
 
             title = clean_text(
                 row.get(
@@ -122,10 +133,7 @@ def prepare_rednote():
             )
 
             content = clean_text(
-                row.get(
-                    "note_content",
-                    ""
-                )
+                row[content_field]
             )
 
             text = (
@@ -150,6 +158,14 @@ def prepare_rednote():
                     + make_id(
                         f"{path.name}-{index}"
                     ),
+
+                # One original post and its known derivatives must
+                # always be assigned to the same split.
+                "source_group_id": (
+                    "rednote-" + str(row["note_id"])
+                    if authorship == "human" and row.get("note_id")
+                    else "rednote-" + make_id(f"{path.name}-{index}")
+                ),
 
                 "text":
                     text,
@@ -252,6 +268,9 @@ def prepare_anx():
             record = {
 
                 "id":
+                    f"anx-{split_name}-{index}",
+
+                "source_group_id":
                     f"anx-{split_name}-{index}",
 
                 "text":
@@ -418,7 +437,47 @@ def prepare_chasm():
 
     return output
 
+def prepare_reviewed(path):
+    """Import manually verified H/L examples with explicit origin links."""
+    output = []
+    seen_ids = set()
+    groups = {}
+    for index, row in enumerate(read_jsonl(path), 1):
+        for field in ("id", "source_group_id", "variant", "text", "label"):
+            if field not in row or row[field] in (None, ""):
+                raise ValueError(f"{path}:{index}: missing {field}")
+        if row["id"] in seen_ids:
+            raise ValueError(f"{path}:{index}: duplicate id {row['id']}")
+        seen_ids.add(row["id"])
+        if row["variant"] not in ("H", "L1", "L2", "L3", "L4"):
+            raise ValueError(f"{path}:{index}: unsupported variant")
+        expected = 0 if row["variant"] == "H" else 1
+        if type(row["label"]) is not int or row["label"] != expected:
+            raise ValueError(f"{path}:{index}: label must be {expected} for {row['variant']}")
+        group = groups.setdefault(str(row["source_group_id"]), set())
+        if row["variant"] in group:
+            raise ValueError(f"{path}:{index}: duplicate variant within original post")
+        group.add(row["variant"])
+        record = dict(row)
+        record["text"] = clean_text(row["text"])
+        record["source_group_id"] = "reviewed-" + str(row["source_group_id"])
+        record["source"] = "reviewed-H-L"
+        record["authorship"] = "human" if expected == 0 else "ai_involved"
+        if not record["text"]:
+            raise ValueError(f"{path}:{index}: empty text")
+        output.append(record)
+    for group_id, variants in groups.items():
+        if variants not in ({"H"}, {"H", "L1", "L2", "L3", "L4"}):
+            raise ValueError(f"{path}: incomplete H/L1-L4 group {group_id}: {sorted(variants)}")
+    return output
+
+
 def main():
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--reviewed-data", type=Path,
+                        help="Verified H/L1-L4 JSONL; keep final evaluation data separate")
+    args = parser.parse_args()
 
     print(
         "Preparing RedNote-Vibe..."
@@ -464,6 +523,12 @@ def main():
         rednote
         + anx
     )
+
+    if args.reviewed_data:
+        reviewed = prepare_reviewed(args.reviewed_data)
+        authorship.extend(reviewed)
+        print("Verified H/L examples:", len(reviewed),
+              "groups:", len({row["source_group_id"] for row in reviewed}))
 
 
     write_jsonl(

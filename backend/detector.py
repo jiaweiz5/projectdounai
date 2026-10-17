@@ -24,6 +24,8 @@ calibrator = bundle[
     "calibrator"
 ]
 
+DECISION_THRESHOLD = bundle.get("decision_threshold", 0.5)
+
 MODEL_VERSION = bundle.get(
     "model_version",
     "tfidf-logreg-v1"
@@ -125,7 +127,7 @@ def predict_ai_involvement(
     # Classification
     # ----------------------------------------
 
-    if calibrated_probability >= 0.5:
+    if calibrated_probability >= DECISION_THRESHOLD:
 
         classification = (
             "ai_involved"
