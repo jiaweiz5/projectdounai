@@ -1,172 +1,116 @@
+"""Layer 1 AI-involvement detector using the fine-tuned Chinese V3 checkpoint."""
+
+import json
+import os
 from pathlib import Path
 
 import joblib
+import numpy as np
+import torch
+from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
 
 BASE_DIR = Path(__file__).resolve().parent
+MODEL_DIR = Path(
+    os.environ.get(
+        "LAYER1_MODEL_DIR",
+        str(BASE_DIR.parent / "model_runs" / "zhv3-run1"),
+    )
+).expanduser().resolve()
 
-MODEL_FILE = (
-    BASE_DIR
-    / "models"
-    / "authorship_calibrated.joblib"
-)
-
-
-bundle = joblib.load(
-    MODEL_FILE
-)
-
-base_model = bundle[
-    "base_model"
-]
-
-calibrator = bundle[
-    "calibrator"
-]
-
-DECISION_THRESHOLD = bundle.get("decision_threshold", 0.5)
-
-MODEL_VERSION = bundle.get(
-    "model_version",
-    "tfidf-logreg-v1"
-)
-
-CALIBRATION_VERSION = bundle.get(
-    "calibration_version",
-    "sigmoid-v1"
-)
-
-
-def predict_ai_involvement(
-    text: str
+for filename in (
+    "config.json",
+    "model.safetensors",
+    "training_metadata.json",
+    "decision.json",
+    "calibration.joblib",
 ):
-    """
-    Analyze text for AI involvement.
+    if not (MODEL_DIR / filename).is_file():
+        raise RuntimeError(f"Missing Layer 1 model file: {MODEL_DIR / filename}")
 
-    This does NOT estimate what percentage
-    of characters were written by AI.
+metadata = json.loads(
+    (MODEL_DIR / "training_metadata.json").read_text(encoding="utf-8")
+)
+decision = json.loads(
+    (MODEL_DIR / "decision.json").read_text(encoding="utf-8")
+)
 
-    It estimates whether the overall text
-    resembles AI-involved examples from
-    our training data.
-    """
+MAX_LENGTH = int(metadata["max_length"])
+DECISION_THRESHOLD = float(decision["threshold"])
+MODEL_VERSION = f"zhv3-finetuned-epoch{metadata['epoch']}"
+CALIBRATION_VERSION = (
+    f"zhv3-calibration-{decision['calibration_sha256'][:8]}"
+)
 
-    text = (
-        text or ""
-    ).strip()
+DEVICE = torch.device(
+    "cuda" if torch.cuda.is_available()
+    else "mps"
+    if hasattr(torch.backends, "mps") and torch.backends.mps.is_available()
+    else "cpu"
+)
+
+tokenizer = AutoTokenizer.from_pretrained(
+    MODEL_DIR, local_files_only=True, trust_remote_code=False
+)
+model = AutoModelForSequenceClassification.from_pretrained(
+    MODEL_DIR, local_files_only=True, trust_remote_code=False
+).to(DEVICE).eval()
+
+if model.config.num_labels != 2:
+    raise RuntimeError("Expected class 0=human and class 1=AI")
+
+calibrator = joblib.load(MODEL_DIR / "calibration.joblib")
 
 
-    # ----------------------------------------
-    # Abstain on extremely short text
-    # ----------------------------------------
+def predict_ai_involvement(text: str) -> dict:
+    text = (text or "").strip()
 
     if len(text) < 20:
-
         return {
-            "status":
-                "insufficient_evidence",
-
-            "risk_score":
-                None,
-
-            "probability_any_ai":
-                None,
-
-            "reason":
-                "text_too_short",
-
-            "character_count":
-                len(text),
-
-            "model_version":
-                MODEL_VERSION,
-
-            "calibration_version":
-                CALIBRATION_VERSION,
+            "status": "insufficient_evidence",
+            "risk_score": None,
+            "probability_any_ai": None,
+            "reason": "text_too_short",
+            "character_count": len(text),
+            "model_version": MODEL_VERSION,
+            "calibration_version": CALIBRATION_VERSION,
         }
 
-
-    # ----------------------------------------
-    # Original model score
-    # ----------------------------------------
-
-    base_probability = float(
-        base_model
-        .predict_proba(
-            [text]
-        )[0, 1]
+    encoded = tokenizer(
+        [text],
+        padding=True,
+        truncation=True,
+        max_length=MAX_LENGTH,
+        return_tensors="pt",
     )
+    encoded = {key: value.to(DEVICE) for key, value in encoded.items()}
 
-
-    # ----------------------------------------
-    # Raw decision score
-    # ----------------------------------------
-
-    raw_score = (
-        base_model
-        .decision_function(
-            [text]
+    with torch.inference_mode():
+        logits = model(**encoded).logits
+        raw_probability = float(
+            logits.softmax(dim=-1)[0, 1].detach().cpu()
         )
-        .reshape(-1, 1)
+
+    clipped = float(np.clip(raw_probability, 1e-7, 1 - 1e-7))
+    log_odds = np.array(
+        [[np.log(clipped / (1 - clipped))]], dtype=float
     )
-
-
-    # ----------------------------------------
-    # Calibrated probability
-    # ----------------------------------------
-
     calibrated_probability = float(
-        calibrator
-        .predict_proba(
-            raw_score
-        )[0, 1]
+        calibrator.predict_proba(log_odds)[0, 1]
     )
 
-
-    # ----------------------------------------
-    # Classification
-    # ----------------------------------------
-
-    if calibrated_probability >= DECISION_THRESHOLD:
-
-        classification = (
-            "ai_involved"
-        )
-
-    else:
-
-        classification = (
-            "human_like"
-        )
-
+    classification = (
+        "ai_involved"
+        if calibrated_probability >= DECISION_THRESHOLD
+        else "human_like"
+    )
 
     return {
-        "status":
-            "supported",
-
-        # Original detector risk score.
-        "risk_score":
-            round(
-                base_probability,
-                4
-            ),
-
-        # Calibrated estimate.
-        "probability_any_ai":
-            round(
-                calibrated_probability,
-                4
-            ),
-
-        "classification":
-            classification,
-
-        "character_count":
-            len(text),
-
-        "model_version":
-            MODEL_VERSION,
-
-        "calibration_version":
-            CALIBRATION_VERSION,
+        "status": "supported",
+        "risk_score": round(raw_probability, 4),
+        "probability_any_ai": round(calibrated_probability, 4),
+        "classification": classification,
+        "character_count": len(text),
+        "model_version": MODEL_VERSION,
+        "calibration_version": CALIBRATION_VERSION,
     }
