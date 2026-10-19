@@ -9,7 +9,7 @@ from fastapi import FastAPI, HTTPException, UploadFile
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from ad_detector import predict_covert_ad
-from detector import predict_ai_involvement
+from detector import MODEL_VERSION as LAYER1_MODEL_VERSION, predict_ai_involvement
 from layer4_detector import (
     Layer4ConfigurationError,
     analyze_layer4_alignment,
@@ -276,7 +276,7 @@ def upload_file_suffix(file: UploadFile) -> str:
 @app.get("/health")
 def health():
     """Let local checks confirm that the API process is running."""
-    return {"status": "ok", "version": "0.4.0"}
+    return {"status": "ok", "version": "0.4.0", "layer1_model_version": LAYER1_MODEL_VERSION}
 @app.post("/analyze")
 async def analyze(request: AnalyzeRequest):
     """Run Layers 1–4 and optionally summarize their results with Qwen."""
