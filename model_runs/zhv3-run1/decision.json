@@ -1,0 +1,11 @@
+{
+  "threshold": 0.15203359451195297,
+  "max_human_fpr": 0.05,
+  "calibration_brier": 0.016037098841111,
+  "calibration_sha256": "138d208739003ccc3bb2f4896cef2f585edfc4eeb9fd30d2dcbce0552fbb004e",
+  "dev_sha256": "056c59b1f84d5a6452526be45a09edd9225df9e17debe2433a8564bffe9d06ed",
+  "dev_ai_recall": 0.9866402770905492,
+  "dev_human_fpr": 0.048260149130074564,
+  "dev_threshold": 0.15203359451195297,
+  "dev_auc": 0.9939790238945094
+}
