@@ -1,3 +1,406 @@
+# NoteCheck · XHS Verifier
+
+**A content-analysis tool for Xiaohongshu (RedNote) posts.** Examine signs of AI-assisted writing, promotional language, repetitive comments, and inconsistencies between images and text.
+
+The application provides two workflows: **AI Writing Check** and **Promotion Review**. Analyze a passage on its own, or combine a post's text, images, and comments to inspect separate signals that may warrant further review.
+
+> **Project status:** A locally run research demo. No public online service is currently provided. Results support human review; they do not prove AI use, undisclosed sponsorship, or common control of comment accounts.
+>
+> **Documentation scope:** This English README is based on the Chinese documentation dated October 13, 2026. Its backend and data descriptions refer to reviewed revision `ccd822a`; it is not a new audit of the latest repository state. Some historical evaluation results still require reconciliation, as explained below.
+
+## Contents
+
+- [Overview](#overview)
+- [Two User Workflows](#two-user-workflows)
+- [Workflow Diagram](#workflow-diagram)
+- [How to Use](#how-to-use)
+- [Interpreting Results](#interpreting-results)
+- [The Four Analysis Layers](#the-four-analysis-layers)
+- [Evaluation Results and Scope](#evaluation-results-and-scope)
+- [Architecture and Local Setup](#architecture-and-local-setup)
+- [Data Sources and Acknowledgments](#data-sources-and-acknowledgments)
+- [Limitations and Responsible Use](#limitations-and-responsible-use)
+
+## Overview
+
+When reading a product recommendation, two different questions may arise: **Does this writing resemble AI-assisted content?** And **does this post contain signs of promotion?**
+
+NoteCheck treats these as separate tasks. A person can write promotional content, and AI-assisted writing does not necessarily contain advertising. The system examines writing patterns, promotional language, relationships among comments, and the relationship between images and either the post text or a trusted original image.
+
+The project does not have access to platform account relationships, transactions, or sponsorship records. It analyzes the materials supplied by the user and highlights findings to review alongside the original content and its context.
+
+## Two User Workflows
+
+| Workflow | Question | Required and optional inputs | Results shown |
+| --- | --- | --- | --- |
+| **AI Writing Check** | Does this passage resemble AI-assisted writing? | Text to analyze | AI-writing signals |
+| **Promotion Review** | Does this recommendation contain promotional signals? | Post text required; images and comments optional | Promotional-language risk, comment analysis, image–text consistency, and optional comparison with a trusted original |
+
+AI Writing Check offers a lightweight text-focused experience. Promotion Review brings text, comments, and image findings into one workspace.
+
+Each result belongs to a different task. **The system does not combine them into an overall promotion score or a single probability that the content is authentic.**
+
+## Workflow Diagram
+
+The two entry points describe the user experience; the four analysis layers describe the tasks performed by the system.
+
+```mermaid
+flowchart TD
+    AI["AI Writing Check"] --> AIText["Text input"]
+    AIText --> L1["Layer 1: AI-writing signals"]
+    L1 --> AIResult["Display writing-analysis result"]
+
+    Review["Promotion Review"] --> Body["Post text: required"]
+    Review --> Comments["Comment text: optional"]
+    Review --> Screenshot["Comment screenshot: optional"]
+    Review --> Photos["Post images: optional, up to two"]
+
+    Screenshot --> Extract["OCR: extract comments"]
+    Extract --> Correct["User corrects text and comment boundaries"]
+    Correct --> Comments
+
+    Body --> L2["Layer 2: Promotional language"]
+    Comments --> L3["Layer 3: Repetition and coordination signals"]
+    Body --> L4A["Layer 4A: Image–text consistency"]
+    Photos --> L4A
+    Photos --> ImageOCR["OCR: extract text from post images"]
+    Photos --> L4B["Layer 4B: Image-difference analysis"]
+    Original["Trusted original: optional advanced input"] --> L4B
+
+    L2 --> Results["Display separate findings and analysis statuses"]
+    L3 --> Results
+    L4A --> Results
+    ImageOCR --> Results
+    L4B --> Results
+```
+
+This diagram represents user inputs and result presentation, rather than a strict backend execution sequence. The backend still uses a combined analysis endpoint. Showing only the relevant result in AI Writing Check does not imply that a dedicated Layer 1-only endpoint has been implemented.
+
+Comment coordination analysis requires at least **five usable comments**. Reference-image comparison requires both the image under review and a trusted original. Missing inputs, insufficient evidence, and unavailable results must remain distinct from a completed analysis that finds no clear signal.
+
+## How to Use
+
+### AI Writing Check
+
+1. Paste the post text or use the interface's text-import option. You can also try a sample to explore the workflow.
+2. Preserve the original punctuation, paragraph breaks, and emoji where possible. Avoid submitting only a few words without context.
+3. Select **Start Analysis** to view the writing-analysis result.
+
+The backend returns insufficient evidence for inputs shorter than **20 characters**. Meeting this minimum does not guarantee that a short passage contains enough evidence for a reliable assessment.
+
+This workflow displays Layer 1 results. It does not determine whether the post contains advertising or whether a product claim or personal experience is true.
+
+### Promotion Review
+
+#### 1. Add the post text — required
+
+Paste the text you want to review, preserving as much context as possible. The text is used to analyze promotional language. If you add an image, it also provides the text for image–text comparison.
+
+#### 2. Add post images — optional
+
+Upload images associated with the post to inspect broad image–text consistency and text extracted through optical character recognition (OCR). The backend currently accepts up to **two post images**. Follow the current interface's file-size limits.
+
+OCR identifies what an image says. It does not verify the truth of prices, claimed benefits, or certification information shown in that image.
+
+#### 3. Add comment text or screenshots — optional
+
+Enter comments directly or upload a cropped screenshot of the comment section. For screenshots, follow this sequence:
+
+**Upload screenshot → extract comments → review and correct text and boundaries → submit with the post text.**
+
+Correct recognition errors, missing text, and incorrectly merged or split comments. Preserve genuine duplicate comments because repetition itself is part of the analysis.
+
+Comment coordination analysis requires at least **five usable comments**. Smaller groups receive an insufficient-information result.
+
+#### 4. Add a trusted original image — optional advanced feature
+
+Expand the reference-image option and supply both the image under review and its trusted original to inspect differences.
+
+The two images should come from the same underlying image and have closely matching composition. Product photos taken from different angles are generally unsuitable for this comparison. The implementation primarily standardizes image dimensions before extracting differences; it does not provide robust alignment for rotation, perspective changes, or cropping.
+
+#### 5. Review each result separately
+
+Read the promotional-language result, then the comment and image findings. If an input type was not provided, that component cannot form a judgment. **Missing evidence is not treated as low risk.**
+
+## Interpreting Results
+
+### AI-writing signals do not prove AI use
+
+Layer 1 assesses whether the passage as a whole resembles AI-assisted examples in its training data. It cannot identify the author, determine the generating model, locate exactly which sentences were AI-written, or calculate the proportion of words generated or rewritten by AI.
+
+A displayed percentage must not be interpreted as “the percentage of this article written by AI.” The backend includes both a raw model score and a calibrated probability estimate; these are different fields.
+
+### Read promotion, comment, and image results separately
+
+The promotional-language classifier uses only the post text. Comments and images provide additional signals, but they are not combined into a unified promotion probability.
+
+For example, a post may use strongly promotional language without unusually repetitive comments. Another may contain little promotional language while its images do not correspond to its text. Both combinations are possible.
+
+| Finding | Appropriate interpretation |
+| --- | --- |
+| Higher promotional-language risk | Review the wording, sponsorship disclosures, and context. This does not establish paid collaboration. |
+| Higher comment similarity or coordination risk | Inspect the repeated language. This does not establish that accounts are bots or part of an organized campaign. |
+| Image and text broadly match | The semantic comparison did not trigger the relevant mismatch finding. This does not verify product efficacy or every statement in the post. |
+| Differences from a trusted original | Inspect the changed regions and their significance. Image editing alone does not establish deception. |
+| `likely_non_ad` | The model did not identify sufficiently clear advertising features. This does not mean “definitely not an advertisement.” |
+
+### Distinguish missing, insufficient, unavailable, and completed results
+
+| Status | Meaning |
+| --- | --- |
+| No images, comments, or trusted original supplied | The corresponding task lacks an input and cannot form a judgment. |
+| Text too short or fewer than five usable comments | The materials do not meet the analysis requirements. |
+| Analysis failed or service unavailable | No valid result was obtained for this attempt. |
+| Provisional result | The processing mode has not been sufficiently calibrated and should not be treated as a definitive classification. |
+| Analysis completed with no clear risk signal | The model did not detect a clear signal in the supplied materials; missed detections remain possible. |
+
+Long-text image matching has an additional limitation: the system compares an image with individual text segments and takes the **highest match score**. This mode has not been independently calibrated. A matching paragraph does not mean the image supports the entire post, and a provisional result should not be treated as a confirmed match or mismatch.
+
+## The Four Analysis Layers
+
+### Layer 1 — AI-writing signals
+
+The documented implementation uses **character-level TF-IDF** to convert character sequences into numerical features, followed by a **logistic-regression classifier** that evaluates overall writing patterns. A separate calibration set is used to calibrate the base model's output.
+
+Training labels cover AI-assisted writing, including partial continuations, rewriting, and polishing. They are not restricted to fully machine-generated articles.
+
+Short inputs, new slang, unfamiliar topics, unseen generative models, and deliberately altered writing styles can affect performance.
+
+### Layer 2 — Promotional language
+
+A separate character-level TF-IDF and logistic-regression model learns promotional language from labeled advertising and non-advertising text. It has its own data, vocabulary, and classifier weights, independent of Layer 1.
+
+The classifier uses **post text only**. It does not directly use comments, images, account history, or transaction records.
+
+The prediction path uses a threshold of **`0.55`**. Historical metrics and the evaluation script require reconciliation, as described in the evaluation section.
+
+### Layer 3 — Comment repetition and coordination signals
+
+The system preserves genuine duplicate comments and uses the pretrained **`BAAI/bge-small-zh-v1.5`** model to compare comment meanings. It then extracts **13 group-level features**, including duplicate proportions, similar comment pairs, and overall semantic clustering. A small classifier analyzes the comment group.
+
+Comment count is used for display and the minimum-input check; it is not directly included as a classifier feature. This does not mean group size has no effect on the statistical features.
+
+Ordinary questions such as “Where is the link?” or “Which shade is this?” may repeat naturally. The model analyzes visible language patterns and cannot establish real relationships between accounts.
+
+### Layer 4 — Image–text consistency and reference-image comparison
+
+**Layer 4A: Image–text consistency** uses the pretrained **`google/siglip2-base-patch16-224`** model. Controlled development examples were used to select the short-text match threshold of **`0.0278`**. SigLIP2 was not retrained or fine-tuned in this project.
+
+The match score is not a probability that the text is true. The short-text threshold should not be treated as a validated threshold for long text.
+
+**Layer 4B: Reference-image comparison** uses **six difference features** covering structure, grayscale, color, and changed regions, followed by a small classifier. Its saved decision threshold is **`0.2782`**. Development examples mainly cover intentional modifications and JPEG recompression controls; they do not represent all everyday edits or platform processing.
+
+OCR text extracted from images is provided for human review. It is not passed to a trained fact-checking or product-efficacy classifier. These image functions also do not constitute a general AI-generated-image detector.
+
+### What the team trained and what it reused
+
+| Component | Project work | Reused capability |
+| --- | --- | --- |
+| AI Writing Check | Trained a character-based classifier and fitted a score-calibration model | scikit-learn algorithms |
+| Promotional-language analysis | Trained an independent text classifier and selected a threshold | scikit-learn algorithms |
+| Comment analysis | Designed group-level features and trained a classifier | Pretrained BGE Chinese semantic representations |
+| Image–text consistency | Prepared development cases and selected a threshold | Pretrained SigLIP2 image–text representations |
+| Reference-image comparison | Extracted image differences, trained a classifier, and set a threshold | OpenCV image processing |
+| OCR | Developed comment-extraction rules and a user correction workflow | RapidOCR pretrained recognition components |
+
+## Evaluation Results and Scope
+
+The modules use different sample units, labels, and evaluation procedures. Their dataset sizes cannot be added into a single “total training size,” and their scores cannot be averaged into “overall system accuracy.” Interface improvements and passing API checks also do not establish improved model accuracy.
+
+| Module | Evaluation materials and method | Reportable result | Scope and qualification |
+| --- | --- | --- | --- |
+| Layer 1 | 3,729 texts in a locked project test set | Accuracy **96.49%**; F1 **97.52%**; ROC-AUC **0.9931** | Results on the project's internal split, not platform-wide accuracy or an original upstream benchmark score |
+| Layer 2 | 328 held-out labeled posts | Metrics pending reconciliation | Historical README values differ from saved-model re-evaluation; the evaluation script and prediction path use different thresholds |
+| Layer 3 | Grouped five-fold development validation on 291 comment groups | Accuracy **90.72%**; F1 **86.29%** | Includes team-constructed positive examples; the threshold also used these development results; not an independent test of verified real coordination events |
+| Layer 4A | 60 controlled short-text image–text cases | Historical five-fold development accuracy **93.33%** | Historical fold assignments and the dedicated evaluation script were not fully preserved in the reviewed revision; not evidence of long-text or unseen real-post performance |
+| Layer 4B | 50 comparisons derived from 25 source cases | Saved threshold **0.2782**; no independent test metric yet | Modified images and JPEG controls from the same source were grouped together; threshold selection used development results |
+
+### Layer 1 data split
+
+| Processing stage or purpose | Texts |
+| --- | ---: |
+| After filtering, before deduplication | 19,667 |
+| Retained after deduplication | 18,668 |
+| Base-classifier training | 9,336 |
+| Development | 2,803 |
+| Probability calibration | 2,800 |
+| Locked test set | 3,729 |
+
+The first two rows describe processing stages. The final four rows partition the deduplicated dataset; do not add all six rows together. Similar texts were grouped during splitting to reduce overlap between training and test content.
+
+### Why Layer 2 metrics are not finalized
+
+The historical README reported **87.2% accuracy** and **63.8% F1**. The backend review identified a threshold mismatch: the prediction path uses **`0.55`**, while the evaluation script uses **`0.50`**. Re-evaluating the saved model on the same 328 test posts produced:
+
+| Threshold | Re-evaluated accuracy | Re-evaluated F1 |
+| --- | ---: | ---: |
+| `0.50` | 84.76% | 63.77% |
+| `0.55` | 86.59% | 62.71% |
+
+The scikit-learn version used to load the model during this re-evaluation differed from the version recorded when it was saved. These values document the discrepancy; they are not newly confirmed official results.
+
+Re-evaluation should use a compatible environment and the actual runtime threshold, with the command, dependency versions, and confusion matrix saved. **Do not choose a more favorable threshold using test-set results.**
+
+### Scope of the comment and image data
+
+- **Layer 3:** The development data contains 191 manually screened negative groups and 100 team-constructed positive groups, totaling **4,723 comments**. These are not 291 verified real-world coordination incidents.
+- **Additional comment data:** Records exist for 30 provisional negative groups from a Kaggle comment resource. They are separate from the 291 development groups; no completed independent evaluation is claimed here.
+- **Layer 4A:** The 60 short-text image–text cases were used for threshold selection. Performance after selecting a threshold on development data does not replace independent testing.
+- **Layer 4B:** The 50 comparisons come from 25 original-image cases, each producing an intentionally modified comparison and a JPEG-recompression control. They are not 50 independent scenarios.
+- **Reference-image separation:** Complete separation of these development examples at the selected threshold does not imply 100% accuracy on unseen images.
+
+An independent Layer 4 test is planned using **30 new cases**: 20 image–text cases, split evenly between matches and mismatches, plus 10 reference-image comparisons, split evenly between normal or unmodified images and intentional modifications. This is a collection and evaluation target, **not a completed result**. Labels should be fixed before evaluation, development images must not be reused, and thresholds must not be adjusted based on the test results.
+
+**Metric guide:** Accuracy measures the proportion of correct predictions. Precision measures how many flagged examples belong to the target class. Recall measures how many actual target examples were found. F1 balances precision and recall. ROC-AUC describes how well scores rank the classes. Cross-validation results and final independent-test results should be reported separately.
+
+## Architecture and Local Setup
+
+### Technology stack
+
+| Area | Technologies and responsibilities |
+| --- | --- |
+| Frontend | **Next.js, React, TypeScript** — collect inputs, support OCR correction, and display results |
+| Backend | **Python, FastAPI** — load saved models and configurations; process text, comments, and images |
+| Text classifiers and calibration | **scikit-learn** — character-level TF-IDF, logistic regression, and score calibration |
+| Comment representations | **BGE** — pretrained Chinese semantic embeddings |
+| Image–text representations | **SigLIP2** — pretrained image–text matching capability |
+| Image processing | **OpenCV** — extract image-difference features |
+| Text recognition | **RapidOCR** — extract text from comment screenshots and post images |
+| Data and training scripts | Prepare data, extract features, train classifiers, calibrate scores, and evaluate results |
+
+Routine analysis uses saved models. Clicking Analyze does not retrain a model or automatically add the input to a training dataset. Running the demo generally does not require rerunning every training script, but it does require the corresponding model files and dependencies.
+
+The Python models run on the backend, not in the browser. A successfully started frontend does not establish that every backend model is ready.
+
+### Prerequisites
+
+Install Git, Python, and Node.js/npm. Consult `backend/requirements.txt` and `frontend/package.json` for dependencies. Model files must be compatible with the code and runtime environment.
+
+### Start the backend
+
+Clone the repository and enter the backend directory:
+
+```bash
+git clone https://github.com/jiaweiz5/projectdounai.git
+cd projectdounai/backend
+```
+
+**Windows PowerShell:**
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+python -m pip install -r requirements.txt
+python -m uvicorn main:app --reload --port 8000
+```
+
+**macOS / Linux:**
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+python -m uvicorn main:app --reload --port 8000
+```
+
+Some functions may download pretrained models on first use. Allow sufficient disk space and download time. Saved classifiers are located in `backend/models/`; related configuration and some caches are in `backend/data/`. Missing files can make individual analyses unavailable.
+
+### Start the frontend
+
+In a separate terminal, open the cloned repository's `frontend` directory and run:
+
+```bash
+npm install
+npm run dev
+```
+
+To specify the backend address, set the following in `frontend/.env.local`:
+
+```ini
+BACKEND_URL=http://127.0.0.1:8000
+```
+
+Restart the frontend after changing environment configuration. On the computer running the services, open:
+
+| Service | Local URL |
+| --- | --- |
+| Frontend | [http://localhost:3000](http://localhost:3000) |
+| Backend API documentation | [http://localhost:8000/docs](http://localhost:8000/docs) |
+| Backend health check | [http://localhost:8000/health](http://localhost:8000/health) |
+
+These are local addresses, not public deployment links. A successful health response does not establish that every model has finished loading or passed its own checks.
+
+### Main endpoints
+
+| Endpoint | Purpose |
+| --- | --- |
+| `GET /health` | Check service status |
+| `POST /analyze` | Receive post text and optional comments and images; return separate analyses |
+| `POST /analyze-screenshot` | Extract comments from a screenshot and run comment analysis |
+| `POST /analyze-layer4-reference` | Compare an image under review with a trusted original |
+
+Use the running version's `/docs` page to confirm request fields. Although the screenshot endpoint can return comment analysis, users should still review and correct the recognized text before final submission.
+
+### Optional Qwen report
+
+The backend can call an external Qwen service to turn detection results into a written explanation. **Qwen does not calculate the detection scores described above**, and the project did not train or fine-tune Qwen. In the reviewed version, the frontend sends **`include_report: false`** by default and displays the individual results directly.
+
+To enable reporting, configure:
+
+```ini
+QWEN_BASE_URL=<service-base-url>
+QWEN_API_KEY=<your-api-key>
+QWEN_MODEL=<model-name>
+```
+
+This path sends part of the post text and selected analysis information to the configured service. Confirm the applicable data-handling requirements before enabling it. Keep API keys in local environment configuration and do not commit them to the repository.
+
+### Validation and troubleshooting
+
+Run the following in `frontend` to check the production build:
+
+```bash
+npm run build
+```
+
+A successful build checks the frontend build process; it does not validate model accuracy.
+
+If analysis fails, check that the backend is running, the frontend proxy points to the correct address, and the required model and configuration files exist. Restart the backend after replacing model files so that it loads the new versions.
+
+Reproducing an evaluation and retraining a model are different tasks. Training scripts may overwrite models, caches, or data splits. Run experiments in a separate working copy and preserve data versions, environment details, and previous evaluation records before retraining.
+
+## Data Sources and Acknowledgments
+
+Thanks to the authors of the open datasets, models, and tools used in this project. Each source serves a different purpose. The full size of an upstream resource must not be presented as the amount of data used to train this project.
+
+| Source or tool | Use in this project |
+| --- | --- |
+| RedNote-Vibe | One source of human and AI text for Layer 1 |
+| `AnxForever/chinese-ai-detection-dataset` | Another Layer 1 text source, including AI-assisted writing, continuation, and rewriting examples |
+| Upstream sources including HC3 and THUCNews | Some materials entered indirectly through AnxForever and are already included in the project's data counts |
+| CHASM | Advertising labels and text for Layer 2; some comment materials for Layer 3 |
+| `BAAI/bge-small-zh-v1.5` | Layer 3 comment representations; not fine-tuned in this project |
+| `google/siglip2-base-patch16-224` | Layer 4 image–text representations; not fine-tuned in this project |
+| RapidOCR | Text recognition for comment screenshots and post images |
+| scikit-learn, OpenCV, and related open-source dependencies | Classifier training, calibration, image processing, and runtime support |
+| Team-created and reviewed data | Coordinated-style comments, image–text cases, modified images, and control examples |
+
+CHASM's advertising labels cannot be used directly as comment-coordination labels. Layer 3 labels come from a separate screening and construction process. Team-constructed positive examples are not investigated and confirmed real-world incidents.
+
+The team's work includes data screening and review, sample construction, feature design, classifier training, calibration, evaluation, and integration of the API, OCR workflow, and frontend. Reusing a pretrained model does not constitute authorship of its original training work or imply endorsement by its authors or data providers.
+
+Before using or redistributing data and images, check each original source's authorization terms and the applicable platform requirements. Availability of open-source code does not automatically permit unrestricted redistribution of every dataset or media asset.
+
+## Limitations and Responsible Use
+
+- The project analyzes user-supplied materials. It cannot verify account ownership relationships, commercial payments, purchase records, or an author's true intent.
+- Project evaluation results do not directly generalize to all Xiaohongshu content. Performance may change with topics, writing styles, generative models, and image-processing methods.
+- An absence of clear signals does not prove authenticity. Missing inputs, insufficient evidence, and failed analyses are not low-risk findings.
+- Image–text consistency does not verify product efficacy. Inconsistency does not prove that an image was AI-generated.
+- A reference image must be trustworthy and correspond to the image under review. Ordinary cropping, shifts, filters, and compression can also trigger differences.
+- Do not expose user IDs, avatars, contact details, or unrelated personal information from source data. Remove unnecessary personal information before sharing screenshots or presenting them publicly.
+- Higher-risk findings should guide human inspection of the evidence. They should not be used on their own to accuse creators, commenters, or brands of deception, artificial engagement, or illegal conduct.
+
 # 种草鉴别助手 · XHS Verifier
 
 面向小红书笔记的内容分析工具：查看文案中的 AI 写作特征，检查种草分享中的推广线索。
